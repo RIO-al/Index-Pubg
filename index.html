@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<title>PUBG UC Store - متجر شدات ببجي</title>
+<title id="pageTitle">PUBG UC Store - متجر شدات ببجي</title>
 <style>
 * {
     margin: 0;
@@ -89,9 +89,16 @@ header {
     filter: brightness(0) invert(1);
 }
 
-.cart-icon {
-    font-size: 24px;
-    cursor: default;
+/* زر القائمة (☰) */
+.menu-icon {
+    font-size: 28px;
+    cursor: pointer;
+    user-select: none;
+    transition: 0.2s;
+    color: #f7c948;
+}
+.menu-icon:hover {
+    transform: scale(1.05);
 }
 
 /* Hero Banner */
@@ -105,15 +112,14 @@ header {
     padding: 15px 25px;
 }
 
-/* المربع الأسود للنص وعلامة التوثيق - معدل ليكون بنفس ارتفاع الصورة */
+/* المربع الأسود للنص وعلامة التوثيق */
 .hero-badge-box {
     background: #111;
-    height: 48px;
+    padding: 8px 16px;
+    border-radius: 60px;
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 0 16px;
-    border-radius: 60px;
     border: 1px solid #333;
     box-shadow: 0 2px 6px rgba(0,0,0,0.5);
 }
@@ -138,7 +144,7 @@ header {
 }
 
 .pubg-text {
-    font-size: 20px;
+    font-size: 22px;
     font-weight: 800;
     letter-spacing: 0.5px;
     background: linear-gradient(135deg, #f9d56e, #ffb347);
@@ -146,7 +152,6 @@ header {
     background-clip: text;
     color: transparent;
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    line-height: 1;
 }
 
 .verified-badge {
@@ -203,7 +208,6 @@ header {
     margin: 0;
 }
 
-/* الأزرار الجديدة بدون مربعات (نصوص فقط) */
 .extra-buttons {
     display: flex;
     gap: 25px;
@@ -211,21 +215,24 @@ header {
 }
 
 .extra-btn {
-    background: none;
-    border: none;
-    padding: 0;
-    font-size: 15px;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 8px 16px;
+    border-radius: 40px;
+    font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    color: #ddd;
     transition: 0.2s;
-    font-family: inherit;
-    border-bottom: 1px solid transparent;
+    color: #eee;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
 .extra-btn:hover {
+    border-color: #f7c948;
+    background: #242424;
     color: #f7c948;
-    border-bottom-color: #f7c948;
 }
 
 /* Filters */
@@ -559,6 +566,102 @@ footer {
     font-size: 13px;
 }
 
+/* ========== القائمة الجانبية (menu) ========== */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 280px;
+    height: 100%;
+    background: #111;
+    border-left: 1px solid #f7c948;
+    z-index: 3000;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 25px rgba(0,0,0,0.7);
+}
+
+.side-menu.open {
+    right: 0;
+}
+
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(3px);
+    z-index: 2999;
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.2s;
+}
+
+.menu-overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+.menu-header {
+    padding: 20px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.menu-header h3 {
+    color: #f7c948;
+}
+.close-menu {
+    font-size: 28px;
+    cursor: pointer;
+    color: #aaa;
+}
+.close-menu:hover {
+    color: #f7c948;
+}
+
+.menu-items {
+    flex: 1;
+    padding: 15px 0;
+    overflow-y: auto;
+}
+.menu-item {
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s;
+    border-right: 3px solid transparent;
+    color: #ddd;
+}
+.menu-item:hover {
+    background: #1e1e1e;
+    border-right-color: #f7c948;
+    color: #f7c948;
+}
+.menu-divider {
+    height: 1px;
+    background: #222;
+    margin: 8px 0;
+}
+.account-info-top {
+    background: #1a1a1a;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #2a2a2a;
+}
+.account-id-display {
+    font-family: monospace;
+    font-size: 14px;
+    color: #f7c948;
+    word-break: break-all;
+}
+
 @media (max-width: 680px) {
     .hero {
         min-height: 140px;
@@ -571,29 +674,26 @@ footer {
         width: 38px;
         height: 38px;
     }
-    .hero-badge-box {
-        height: 38px;
-        padding: 0 12px;
-    }
     .pubg-text {
-        font-size: 16px;
-    }
-    .verified-badge svg {
-        width: 18px;
-        height: 18px;
+        font-size: 18px;
     }
     .country-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     .extra-buttons {
-        gap: 18px;
+        gap: 12px;
+        flex-wrap: wrap;
     }
     .extra-btn {
-        font-size: 13px;
+        padding: 6px 12px;
+        font-size: 12px;
     }
     .section-header {
         flex-direction: column;
         align-items: stretch;
+    }
+    .side-menu {
+        width: 260px;
     }
 }
 </style>
@@ -601,38 +701,35 @@ footer {
 <body>
 
 <header>
-    <div class="logo">PUBG UC</div>
+    <div class="logo" id="logoText">PUBG UC</div>
     <div class="nav-icons">
         <div class="login-area" id="loginArea">
-            <span>☰</span>
+            <!-- أزلنا رمز ☰ من هنا لنترك فقط تسجيل الدخول -->
             <span>تسجيل الدخول</span>
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23f7c948' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M14 10L21 3M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5'/%3E%3C/svg%3E" alt="long" class="login-icon-img" style="width:18px;">
         </div>
-        <!-- زر الحساب الجديد بجانب تسجيل الدخول -->
         <div id="headerAccountContainer"></div>
-        <span class="cart-icon">☰</span>
+        <div class="menu-icon" id="menuIcon">☰</div>
     </div>
 </header>
 
 <section class="hero">
     <div class="hero-content-new">
-        <!-- المربع الأسود حول العلامة والنص - تم تعديل الارتفاع -->
         <div class="hero-badge-box">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
                 </svg>
             </div>
-            <span class="pubg-text">PUBG MOBILE</span>
+            <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
         </div>
         <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
     </div>
 </section>
 
 <section class="section">
-    <!-- رأس القسم مع الأزرار الجديدة (بدون مربعات) -->
     <div class="section-header">
-        <h2 class="section-title">اختر الباقة</h2>
+        <h2 class="section-title" id="sectionTitle">اختر الباقة</h2>
         <div class="extra-buttons">
             <button class="extra-btn" id="couponBtn">استعمال كوبون</button>
             <button class="extra-btn" id="eventsBtn">لأحداث</button>
@@ -641,9 +738,8 @@ footer {
     </div>
 
     <div class="filters">
-        <!-- زر الدولة المعدل لفتح المودال بدلاً من dropdown -->
         <div class="country-modal-btn" id="openCountryModalBtn">
-            <span> اختر الدولة</span> <span>▼</span>
+            <span id="countryBtnText">اختر الدولة</span> <span>▼</span>
         </div>
         
         <div class="custom-dropdown" id="paymentDropdown">
@@ -656,182 +752,393 @@ footer {
         </div>
     </div>
 
-    <div class="cards">
-        <div class="card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC 60">
-            <div class="card-body">
-                <div class="card-title">60 UC</div>
-                <div class="price">$0.99</div>
-                <button class="buy-btn">شراء الآن</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC 325">
-            <div class="card-body">
-                <div class="card-title">325 UC</div>
-                <div class="price">$4.99</div>
-                <button class="buy-btn">شراء الآن</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC 660">
-            <div class="card-body">
-                <div class="card-title">660 UC</div>
-                <div class="price">$9.99</div>
-                <button class="buy-btn">شراء الآن</button>
-            </div>
-        </div>
-        <div class="card">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC 1800">
-            <div class="card-body">
-                <div class="card-title">1800 UC</div>
-                <div class="price">$24.99</div>
-                <button class="buy-btn">شراء الآن</button>
-            </div>
-        </div>
+    <div class="cards" id="cardsContainer">
+        <!-- سيتم تكرار البطاقات ديناميكياً للحفاظ على الترجمة لكننا سنبقي الـ HTML ثابت مع تغيير النصوص -->
     </div>
 </section>
 
-<footer>جميع الحقوق محفوظة © PUBG UC Store</footer>
+<footer id="footerText">جميع الحقوق محفوظة © PUBG UC Store</footer>
 
-<!-- مودال الحساب القديم -->
+<!-- مودال الحساب -->
 <div id="idModal" class="modal-overlay">
     <div class="popup-card">
-        <h3 style="color:#f7c948;">معرف اللاعب</h3>
+        <h3 style="color:#f7c948;" id="modalTitle">معرف اللاعب</h3>
         <p id="modalUserId">---</p>
         <div class="popup-buttons">
-            <button id="modalDeleteBtn" class="delete-btn">حذف</button>
-            <button id="modalChangeBtn" class="change-btn">تغيير</button>
+            <button id="modalDeleteBtn" class="delete-btn" id="deleteBtnText">حذف</button>
+            <button id="modalChangeBtn" class="change-btn" id="changeBtnText">تغيير</button>
         </div>
-        <div class="close-popup" id="closeModalBtn">إغلاق</div>
     </div>
 </div>
 
-<!-- مودال اختيار الدول بالقارات -->
+<!-- مودال اختيار الدول -->
 <div id="countryModal" class="country-modal-overlay">
     <div class="country-popup">
-        <h3> اختر دولتك</h3>
-        
+        <h3 id="countryModalTitle">اختر دولتك</h3>
         <div class="continent-section">
-            <div class="continent-title"> آسيا</div>
-            <div class="country-grid">
-                <div class="country-item" data-country="العراق">🇮🇶 العراق</div>
-                <div class="country-item" data-country="السعودية">🇸🇦 السعودية</div>
-                <div class="country-item" data-country="الإمارات">🇦🇪 الإمارات</div>
-                <div class="country-item" data-country="الكويت">🇰🇼 الكويت</div>
-                <div class="country-item" data-country="قطر">🇶🇦 قطر</div>
-                <div class="country-item" data-country="عمان">🇴🇲 عمان</div>
-                <div class="country-item" data-country="الأردن">🇯🇴 الأردن</div>
-                <div class="country-item" data-country="مصر">🇪🇬 مصر</div>
-                <div class="country-item" data-country="تركيا">🇹🇷 تركيا</div>
-            </div>
+            <div class="continent-title" id="asiaTitle">آسيا</div>
+            <div class="country-grid" id="asiaGrid"></div>
         </div>
-        
         <div class="continent-section">
-            <div class="continent-title"> أوروبا</div>
-            <div class="country-grid">
-                <div class="country-item" data-country="إسبانيا">🇪🇸 إسبانيا</div>
-                <div class="country-item" data-country="فرنسا">🇫🇷 فرنسا</div>
-                <div class="country-item" data-country="ألمانيا">🇩🇪 ألمانيا</div>
-                <div class="country-item" data-country="إيطاليا">🇮🇹 إيطاليا</div>
-                <div class="country-item" data-country="المملكة المتحدة">🇬🇧 بريطانيا</div>
-            </div>
+            <div class="continent-title" id="europeTitle">أوروبا</div>
+            <div class="country-grid" id="europeGrid"></div>
         </div>
-        
         <div class="continent-section">
-            <div class="continent-title"> أمريكا الشمالية</div>
-            <div class="country-grid">
-                <div class="country-item" data-country="الولايات المتحدة">🇺🇸 الولايات المتحدة</div>
-                <div class="country-item" data-country="كندا">🇨🇦 كندا</div>
-                <div class="country-item" data-country="المكسيك">🇲🇽 المكسيك</div>
-            </div>
+            <div class="continent-title" id="northAmericaTitle">أمريكا الشمالية</div>
+            <div class="country-grid" id="naGrid"></div>
         </div>
-        
         <div class="continent-section">
-            <div class="continent-title"> أمريكا الجنوبية</div>
-            <div class="country-grid">
-                <div class="country-item" data-country="البرازيل">🇧🇷 البرازيل</div>
-                <div class="country-item" data-country="الأرجنتين">🇦🇷 الأرجنتين</div>
-            </div>
+            <div class="continent-title" id="southAmericaTitle">أمريكا الجنوبية</div>
+            <div class="country-grid" id="saGrid"></div>
         </div>
-        
         <div class="close-country-popup" id="closeCountryModalBtn">إغلاق</div>
     </div>
 </div>
 
+<!-- القائمة الجانبية -->
+<div class="menu-overlay" id="menuOverlay"></div>
+<div class="side-menu" id="sideMenu">
+    <div class="menu-header">
+        <h3 id="menuTitle">القائمة</h3>
+        <div class="close-menu" id="closeMenuBtn">✕</div>
+    </div>
+    <div class="menu-items" id="menuItemsList"></div>
+</div>
+
 <script>
-    // --- 1. مودال الدول (قارات و 3 دول بصف) ---
-    const openModalBtn = document.getElementById('openCountryModalBtn');
-    const countryModal = document.getElementById('countryModal');
-    const closeCountryModal = document.getElementById('closeCountryModalBtn');
-    let selectedCountryBtn = null; // المرجع لزر الدولة في الواجهة (سنقوم بإنشائه ديناميكياً أو استخدام الزر نفسه)
-    
-    // إنشاء زر الدولة الذي يعرض الاختيار (نحول الزر الأصلي إلى زر قابل للتحديث)
-    const countryDisplayBtn = openModalBtn;
-    
-    function updateCountryButton(countryName) {
-        if (countryDisplayBtn) {
-            // إضافة العلم بناءً على الاسم (بسيط)
-            let flag = '';
-            if (countryName === 'العراق') flag = '🇮🇶';
-            else if (countryName === 'السعودية') flag = '🇸🇦';
-            else if (countryName === 'الإمارات') flag = '🇦🇪';
-            else if (countryName === 'الكويت') flag = '🇰🇼';
-            else if (countryName === 'قطر') flag = '🇶🇦';
-            else if (countryName === 'عمان') flag = '🇴🇲';
-            else if (countryName === 'الأردن') flag = '🇯🇴';
-            else if (countryName === 'مصر') flag = '🇪🇬';
-            else if (countryName === 'تركيا') flag = '🇹🇷';
-            else if (countryName === 'إسبانيا') flag = '🇪🇸';
-            else if (countryName === 'فرنسا') flag = '🇫🇷';
-            else if (countryName === 'ألمانيا') flag = '🇩🇪';
-            else if (countryName === 'إيطاليا') flag = '🇮🇹';
-            else if (countryName === 'المملكة المتحدة') flag = '🇬🇧';
-            else if (countryName === 'الولايات المتحدة') flag = '🇺🇸';
-            else if (countryName === 'كندا') flag = '🇨🇦';
-            else if (countryName === 'المكسيك') flag = '🇲🇽';
-            else if (countryName === 'البرازيل') flag = '🇧🇷';
-            else if (countryName === 'الأرجنتين') flag = '🇦🇷';
-            else flag = '';
-            
-            countryDisplayBtn.innerHTML = `<span>${flag} ${countryName}</span> <span>▼</span>`;
+    // ======================= 1. الترجمة حسب الدولة =======================
+    const translations = {
+        // العربية (العراق, السعودية, الإمارات, الكويت, قطر, عمان, الأردن, مصر)
+        default: {
+            pageTitle: "PUBG UC Store - متجر شدات ببجي",
+            logo: "PUBG UC",
+            loginArea: "تسجيل الدخول",
+            sectionTitle: "اختر الباقة",
+            coupon: "استعمال كوبون",
+            events: "لأحداث",
+            vip: "حساب VIP",
+            countryPlaceholder: "اختر الدولة",
+            paymentPlaceholder: "اختر وسيلة الدفع",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "شراء الآن",
+            footer: "جميع الحقوق محفوظة © PUBG UC Store",
+            modalTitle: "معرف اللاعب",
+            deleteBtn: "حذف",
+            changeBtn: "تغيير",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "اختر دولتك",
+            asia: "آسيا",
+            europe: "أوروبا",
+            northAmerica: "أمريكا الشمالية",
+            southAmerica: "أمريكا الجنوبية",
+            close: "إغلاق",
+            menuTitle: "القائمة",
+            addAccount: "➕ اضف حسابك",
+            notificationSettings: "اعدادات الاشعارات",
+            ordersCenter: "مركز الطلبات",
+            accountInfo: "معلومات الحساب",
+            logout: "تسجيل الخروج",
+            eventsMenu: "الاحداث",
+            instructions: "التعليمات",
+            support: "الدعم"
+        },
+        en: { // USA, UK, Canada
+            pageTitle: "PUBG UC Store",
+            logo: "PUBG UC",
+            loginArea: "Login",
+            sectionTitle: "Choose Package",
+            coupon: "Use Coupon",
+            events: "Events",
+            vip: "VIP Account",
+            countryPlaceholder: "Select Country",
+            paymentPlaceholder: "Payment Method",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Buy Now",
+            footer: "All Rights Reserved © PUBG UC Store",
+            modalTitle: "Player ID",
+            deleteBtn: "Delete",
+            changeBtn: "Change",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Select Your Country",
+            asia: "Asia",
+            europe: "Europe",
+            northAmerica: "North America",
+            southAmerica: "South America",
+            close: "Close",
+            menuTitle: "Menu",
+            addAccount: "➕ Add Account",
+            notificationSettings: "Notification Settings",
+            ordersCenter: "Orders Center",
+            accountInfo: "Account Info",
+            logout: "Logout",
+            eventsMenu: "Events",
+            instructions: "Instructions",
+            support: "Support"
+        },
+        es: { // Spain, Mexico, Argentina
+            pageTitle: "PUBG UC Store - Tienda de UC",
+            logo: "PUBG UC",
+            loginArea: "Iniciar sesión",
+            sectionTitle: "Elige el paquete",
+            coupon: "Usar cupón",
+            events: "Eventos",
+            vip: "Cuenta VIP",
+            countryPlaceholder: "Elige país",
+            paymentPlaceholder: "Método de pago",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Comprar ahora",
+            footer: "Todos los derechos reservados © PUBG UC Store",
+            modalTitle: "ID del jugador",
+            deleteBtn: "Eliminar",
+            changeBtn: "Cambiar",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Selecciona tu país",
+            asia: "Asia",
+            europe: "Europa",
+            northAmerica: "América del Norte",
+            southAmerica: "América del Sur",
+            close: "Cerrar",
+            menuTitle: "Menú",
+            addAccount: "➕ Agregar cuenta",
+            notificationSettings: "Configuración de notificaciones",
+            ordersCenter: "Centro de pedidos",
+            accountInfo: "Información de la cuenta",
+            logout: "Cerrar sesión",
+            eventsMenu: "Eventos",
+            instructions: "Instrucciones",
+            support: "Soporte"
+        },
+        fr: { // France
+            pageTitle: "PUBG UC Store - Boutique UC",
+            logo: "PUBG UC",
+            loginArea: "Connexion",
+            sectionTitle: "Choisissez le pack",
+            coupon: "Utiliser coupon",
+            events: "Événements",
+            vip: "Compte VIP",
+            countryPlaceholder: "Choisissez le pays",
+            paymentPlaceholder: "Mode de paiement",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Acheter maintenant",
+            footer: "Tous droits réservés © PUBG UC Store",
+            modalTitle: "ID du joueur",
+            deleteBtn: "Supprimer",
+            changeBtn: "Changer",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Sélectionnez votre pays",
+            asia: "Asie",
+            europe: "Europe",
+            northAmerica: "Amérique du Nord",
+            southAmerica: "Amérique du Sud",
+            close: "Fermer",
+            menuTitle: "Menu",
+            addAccount: "➕ Ajouter un compte",
+            notificationSettings: "Paramètres de notification",
+            ordersCenter: "Centre de commandes",
+            accountInfo: "Infos du compte",
+            logout: "Déconnexion",
+            eventsMenu: "Événements",
+            instructions: "Instructions",
+            support: "Support"
+        },
+        de: { // Germany
+            pageTitle: "PUBG UC Store",
+            logo: "PUBG UC",
+            loginArea: "Anmelden",
+            sectionTitle: "Paket wählen",
+            coupon: "Gutschein nutzen",
+            events: "Ereignisse",
+            vip: "VIP-Konto",
+            countryPlaceholder: "Land auswählen",
+            paymentPlaceholder: "Zahlungsmethode",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Jetzt kaufen",
+            footer: "Alle Rechte vorbehalten © PUBG UC Store",
+            modalTitle: "Spieler-ID",
+            deleteBtn: "Löschen",
+            changeBtn: "Ändern",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Wählen Sie Ihr Land",
+            asia: "Asien",
+            europe: "Europa",
+            northAmerica: "Nordamerika",
+            southAmerica: "Südamerika",
+            close: "Schließen",
+            menuTitle: "Menü",
+            addAccount: "➕ Konto hinzufügen",
+            notificationSettings: "Benachrichtigungseinstellungen",
+            ordersCenter: "Bestellzentrum",
+            accountInfo: "Kontoinformationen",
+            logout: "Abmelden",
+            eventsMenu: "Ereignisse",
+            instructions: "Anleitung",
+            support: "Support"
+        },
+        it: { // Italy
+            pageTitle: "PUBG UC Store",
+            logo: "PUBG UC",
+            loginArea: "Accedi",
+            sectionTitle: "Scegli il pacchetto",
+            coupon: "Usa coupon",
+            events: "Eventi",
+            vip: "Account VIP",
+            countryPlaceholder: "Scegli paese",
+            paymentPlaceholder: "Metodo di pagamento",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Acquista ora",
+            footer: "Tutti i diritti riservati © PUBG UC Store",
+            modalTitle: "ID giocatore",
+            deleteBtn: "Elimina",
+            changeBtn: "Cambia",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Seleziona il tuo paese",
+            asia: "Asia",
+            europe: "Europa",
+            northAmerica: "Nord America",
+            southAmerica: "Sud America",
+            close: "Chiudi",
+            menuTitle: "Menu",
+            addAccount: "➕ Aggiungi account",
+            notificationSettings: "Impostazioni notifiche",
+            ordersCenter: "Centro ordini",
+            accountInfo: "Info account",
+            logout: "Esci",
+            eventsMenu: "Eventi",
+            instructions: "Istruzioni",
+            support: "Supporto"
+        },
+        pt: { // Brazil
+            pageTitle: "PUBG UC Store - Loja de UC",
+            logo: "PUBG UC",
+            loginArea: "Entrar",
+            sectionTitle: "Escolha o pacote",
+            coupon: "Usar cupom",
+            events: "Eventos",
+            vip: "Conta VIP",
+            countryPlaceholder: "Escolha o país",
+            paymentPlaceholder: "Método de pagamento",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Hawala",
+            master: "Master Card",
+            buy: "Comprar agora",
+            footer: "Todos os direitos reservados © PUBG UC Store",
+            modalTitle: "ID do jogador",
+            deleteBtn: "Excluir",
+            changeBtn: "Alterar",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Selecione seu país",
+            asia: "Ásia",
+            europe: "Europa",
+            northAmerica: "América do Norte",
+            southAmerica: "América do Sul",
+            close: "Fechar",
+            menuTitle: "Menu",
+            addAccount: "➕ Adicionar conta",
+            notificationSettings: "Configurações de notificação",
+            ordersCenter: "Central de pedidos",
+            accountInfo: "Informações da conta",
+            logout: "Sair",
+            eventsMenu: "Eventos",
+            instructions: "Instruções",
+            support: "Suporte"
+        },
+        tr: { // Turkey
+            pageTitle: "PUBG UC Mağazası",
+            logo: "PUBG UC",
+            loginArea: "Giriş yap",
+            sectionTitle: "Paketi seç",
+            coupon: "Kupon kullan",
+            events: "Etkinlikler",
+            vip: "VIP Hesap",
+            countryPlaceholder: "Ülke seç",
+            paymentPlaceholder: "Ödeme yöntemi",
+            zain: "Zain Cash",
+            asiaHaw: "Asia Havale",
+            master: "Master Card",
+            buy: "Şimdi satın al",
+            footer: "Tüm hakları saklıdır © PUBG UC Store",
+            modalTitle: "Oyuncu ID",
+            deleteBtn: "Sil",
+            changeBtn: "Değiştir",
+            pubgBrand: "PUBG MOBILE",
+            countryModalTitle: "Ülkenizi seçin",
+            asia: "Asya",
+            europe: "Avrupa",
+            northAmerica: "Kuzey Amerika",
+            southAmerica: "Güney Amerika",
+            close: "Kapat",
+            menuTitle: "Menü",
+            addAccount: "➕ Hesap ekle",
+            notificationSettings: "Bildirim ayarları",
+            ordersCenter: "Sipariş merkezi",
+            accountInfo: "Hesap bilgileri",
+            logout: "Çıkış yap",
+            eventsMenu: "Etkinlikler",
+            instructions: "Talimatlar",
+            support: "Destek"
         }
+    };
+
+    function getLanguageForCountry(country) {
+        const map = {
+            "الولايات المتحدة": "en", "المملكة المتحدة": "en", "كندا": "en",
+            "إسبانيا": "es", "المكسيك": "es", "الأرجنتين": "es",
+            "فرنسا": "fr", "ألمانيا": "de", "إيطاليا": "it",
+            "البرازيل": "pt", "تركيا": "tr"
+        };
+        return map[country] || "default";
     }
-    
-    openModalBtn.addEventListener('click', () => {
-        countryModal.classList.add('active');
-    });
-    
-    function closeCountryModalFunc() {
-        countryModal.classList.remove('active');
+
+    function applyTranslation(langCode) {
+        const t = translations[langCode] || translations.default;
+        document.title = t.pageTitle;
+        document.getElementById("logoText").innerText = t.logo;
+        document.querySelector("#loginArea span").innerText = t.loginArea;
+        document.getElementById("sectionTitle").innerText = t.sectionTitle;
+        document.getElementById("couponBtn").innerText = t.coupon;
+        document.getElementById("eventsBtn").innerText = t.events;
+        document.getElementById("vipBtn").innerText = t.vip;
+        document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
+        document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ▼";
+        const paymentItems = document.querySelectorAll("#paymentList li");
+        if(paymentItems[0]) paymentItems[0].innerText = t.zain;
+        if(paymentItems[1]) paymentItems[1].innerText = t.asiaHaw;
+        if(paymentItems[2]) paymentItems[2].innerText = t.master;
+        document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
+        document.getElementById("footerText").innerText = t.footer;
+        document.getElementById("modalTitle").innerText = t.modalTitle;
+        document.getElementById("modalDeleteBtn").innerText = t.deleteBtn;
+        document.getElementById("modalChangeBtn").innerText = t.changeBtn;
+        document.getElementById("pubgBrandText").innerText = t.pubgBrand;
+        document.getElementById("countryModalTitle").innerText = t.countryModalTitle;
+        document.getElementById("asiaTitle").innerText = t.asia;
+        document.getElementById("europeTitle").innerText = t.europe;
+        document.getElementById("northAmericaTitle").innerText = t.northAmerica;
+        document.getElementById("southAmericaTitle").innerText = t.southAmerica;
+        document.getElementById("closeCountryModalBtn").innerText = t.close;
+        document.getElementById("menuTitle").innerText = t.menuTitle;
+        // تحديث القائمة الجانبية لاحقاً في refreshMenu
+        refreshMenuContent();
     }
-    closeCountryModal.addEventListener('click', closeCountryModalFunc);
-    countryModal.addEventListener('click', (e) => {
-        if (e.target === countryModal) closeCountryModalFunc();
-    });
-    
-    // إضافة حدث لكل العناصر
-    document.querySelectorAll('.country-item').forEach(item => {
-        item.addEventListener('click', () => {
-            const countryName = item.getAttribute('data-country');
-            updateCountryButton(countryName);
-            closeCountryModalFunc();
-            // يمكن تخزين الدولة في localStorage أو متغير
-            localStorage.setItem('selectedCountry', countryName);
-        });
-    });
-    
-    // استعادة الدولة المحفوظة
-    const savedCountry = localStorage.getItem('selectedCountry');
-    if (savedCountry) updateCountryButton(savedCountry);
-    
-    // --- 2. نقل زر الحساب إلى الهيدر ---
+
+    // =============== 2. إدارة الحساب (كما هو مع تعديل بسيط) ===============
     const STORAGE_KEY = 'pubg_user_id';
     let currentUserId = localStorage.getItem(STORAGE_KEY);
     const headerAccountContainer = document.getElementById('headerAccountContainer');
     const modalAccount = document.getElementById('idModal');
     const modalUserIdSpan = document.getElementById('modalUserId');
-    
     function onlyNumbers(str) { return /^\d+$/.test(str); }
     function promptNumbers(msg, def='') {
         let val = prompt(msg, def);
@@ -841,40 +1148,34 @@ footer {
         if (!onlyNumbers(val)) { alert('الأرقام فقط مسموحة'); return promptNumbers(msg, def); }
         return val;
     }
-    
     function showPopup(uid) {
         modalUserIdSpan.innerText = uid;
         modalAccount.classList.add('active');
-        const del = document.getElementById('modalDeleteBtn'), ch = document.getElementById('modalChangeBtn'), close = document.getElementById('closeModalBtn');
-        // إعادة تعريف الأحداث لتجنب التكرار
+        const del = document.getElementById('modalDeleteBtn'), ch = document.getElementById('modalChangeBtn');
         const newDel = del.cloneNode(true);
         const newCh = ch.cloneNode(true);
-        const newClose = close.cloneNode(true);
         del.parentNode.replaceChild(newDel, del);
         ch.parentNode.replaceChild(newCh, ch);
-        close.parentNode.replaceChild(newClose, close);
-        
         newDel.addEventListener('click', () => {
             localStorage.removeItem(STORAGE_KEY);
             refreshHeaderAccount();
             modalAccount.classList.remove('active');
+            refreshMenuContent();
         });
         newCh.addEventListener('click', () => {
             modalAccount.classList.remove('active');
             let newId = promptNumbers('أدخل الايدي الجديد (أرقام فقط):', currentUserId);
-            if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshHeaderAccount(); }
+            if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshHeaderAccount(); refreshMenuContent(); }
         });
-        newClose.addEventListener('click', () => modalAccount.classList.remove('active'));
         modalAccount.addEventListener('click', function out(e) { if(e.target===modalAccount){ modalAccount.classList.remove('active'); modalAccount.removeEventListener('click',out); } });
     }
-    
     function refreshHeaderAccount() {
         currentUserId = localStorage.getItem(STORAGE_KEY);
         if (!currentUserId) {
             headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف حسابك</div>`;
             document.getElementById('headerAddAccountBtn')?.addEventListener('click', () => {
                 let newId = promptNumbers('ادخل ايدي PUBG (أرقام فقط):');
-                if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshHeaderAccount(); }
+                if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshHeaderAccount(); refreshMenuContent(); }
             });
         } else {
             let display = currentUserId.length > 12 ? currentUserId.slice(0,10)+'...' : currentUserId;
@@ -883,48 +1184,164 @@ footer {
         }
     }
     refreshHeaderAccount();
-    
-    // --- 3. التعامل مع وسيلة الدفع (كما هو) ---
-    function initDropdown(triggerId, listId, btnId) {
-        const dropdown = document.getElementById(triggerId);
-        const btn = document.getElementById(btnId);
-        const list = document.getElementById(listId);
-        if (!dropdown || !btn || !list) return;
-        btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            document.querySelectorAll('.dropdown-list').forEach(menu => {
-                if (menu !== list) menu.style.display = 'none';
+
+    // =============== 3. القائمة الجانبية الديناميكية ===============
+    function refreshMenuContent() {
+        const menuContainer = document.getElementById("menuItemsList");
+        if(!menuContainer) return;
+        const hasAccount = !!localStorage.getItem(STORAGE_KEY);
+        const currentLang = getLanguageForCountry(localStorage.getItem('selectedCountry') || 'العراق');
+        const t = translations[currentLang] || translations.default;
+        let html = '';
+        if(hasAccount) {
+            const uid = localStorage.getItem(STORAGE_KEY);
+            const displayId = uid.length > 16 ? uid.slice(0,14)+'...' : uid;
+            html += `<div class="menu-item account-info-top" style="flex-direction:column; align-items:flex-start; cursor:default;">
+                        <div style="font-weight:bold;">${t.accountInfo}</div>
+                        <div class="account-id-display">🆔 ${displayId}</div>
+                     </div>`;
+            html += `<div class="menu-item" data-action="notifications">🔔 ${t.notificationSettings}</div>`;
+            html += `<div class="menu-item" data-action="orders">📦 ${t.ordersCenter}</div>`;
+            html += `<div class="menu-item" data-action="accountInfo">👤 ${t.accountInfo}</div>`;
+            html += `<div class="menu-item" data-action="logout">🚪 ${t.logout}</div>`;
+            html += `<div class="menu-divider"></div>`;
+        } else {
+            html += `<div class="menu-item" data-action="addAccount">➕ ${t.addAccount}</div>`;
+            html += `<div class="menu-divider"></div>`;
+        }
+        html += `<div class="menu-item" data-action="events">📅 ${t.eventsMenu}</div>`;
+        html += `<div class="menu-item" data-action="instructions">📖 ${t.instructions}</div>`;
+        html += `<div class="menu-item" data-action="support">🛟 ${t.support}</div>`;
+        menuContainer.innerHTML = html;
+        // attach events
+        document.querySelectorAll(".menu-item[data-action]").forEach(item => {
+            item.addEventListener('click', (e) => {
+                const action = item.dataset.action;
+                switch(action) {
+                    case 'addAccount':
+                        let newId = promptNumbers('ادخل ايدي PUBG (أرقام فقط):');
+                        if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshHeaderAccount(); refreshMenuContent(); }
+                        break;
+                    case 'notifications': alert(t.notificationSettings + " (قريباً)"); break;
+                    case 'orders': alert(t.ordersCenter + " (عرض الطلبات)"); break;
+                    case 'accountInfo': if(hasAccount) showPopup(localStorage.getItem(STORAGE_KEY)); break;
+                    case 'logout': localStorage.removeItem(STORAGE_KEY); refreshHeaderAccount(); refreshMenuContent(); alert("تم تسجيل الخروج"); break;
+                    case 'events': alert(t.eventsMenu + " (سيتم قريباً)"); break;
+                    case 'instructions': alert(t.instructions + "\n1- اختر الدولة\n2- أضف حسابك\n3- اختر الباقة والدفع"); break;
+                    case 'support': alert(t.support + ": support@pubgstore.com"); break;
+                }
+                closeMenu();
             });
-            list.style.display = list.style.display === 'block' ? 'none' : 'block';
-        });
-        list.querySelectorAll('li').forEach(li => {
-            li.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const val = li.getAttribute('data-value') || li.innerText;
-                btn.innerHTML = val + ' ▼';
-                list.style.display = 'none';
-                btn.setAttribute('data-selected', val);
-            });
-        });
-        document.addEventListener('click', (e) => {
-            if (!dropdown.contains(e.target)) list.style.display = 'none';
         });
     }
-    initDropdown('paymentDropdown', 'paymentList', 'paymentBtn');
-    
-    // أزرار الشراء
-    document.querySelectorAll('.buy-btn').forEach(btn => btn.addEventListener('click', () => alert('تمت إضافة الطلب! سيتم تحويلك لصفحة الدفع (تجريبي)')));
-    
-    // تسجيل الدخول
+
+    // التحكم في القائمة
+    const menuIcon = document.getElementById('menuIcon');
+    const sideMenu = document.getElementById('sideMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const closeMenuBtn = document.getElementById('closeMenuBtn');
+    function openMenu() { sideMenu.classList.add('open'); menuOverlay.classList.add('active'); }
+    function closeMenu() { sideMenu.classList.remove('open'); menuOverlay.classList.remove('active'); }
+    menuIcon.addEventListener('click', openMenu);
+    closeMenuBtn.addEventListener('click', closeMenu);
+    menuOverlay.addEventListener('click', closeMenu);
+
+    // =============== 4. مودال الدول والترجمة ===============
+    const countryModalDiv = document.getElementById('countryModal');
+    const openCountryBtn = document.getElementById('openCountryModalBtn');
+    const closeCountryModalBtn = document.getElementById('closeCountryModalBtn');
+    const countryData = {
+        asia: ["العراق", "السعودية", "الإمارات", "الكويت", "قطر", "عمان", "الأردن", "مصر", "تركيا"],
+        europe: ["إسبانيا", "فرنسا", "ألمانيا", "إيطاليا", "المملكة المتحدة"],
+        northAmerica: ["الولايات المتحدة", "كندا", "المكسيك"],
+        southAmerica: ["البرازيل", "الأرجنتين"]
+    };
+    function renderCountries() {
+        const asiaGrid = document.getElementById('asiaGrid');
+        const europeGrid = document.getElementById('europeGrid');
+        const naGrid = document.getElementById('naGrid');
+        const saGrid = document.getElementById('saGrid');
+        function renderGrid(grid, arr) {
+            grid.innerHTML = arr.map(c => `<div class="country-item" data-country="${c}">${getFlag(c)} ${c}</div>`).join('');
+            grid.querySelectorAll('.country-item').forEach(el => {
+                el.addEventListener('click', () => {
+                    const country = el.dataset.country;
+                    localStorage.setItem('selectedCountry', country);
+                    updateCountryButton(country);
+                    const lang = getLanguageForCountry(country);
+                    applyTranslation(lang);
+                    closeCountryModalFunc();
+                });
+            });
+        }
+        renderGrid(asiaGrid, countryData.asia);
+        renderGrid(europeGrid, countryData.europe);
+        renderGrid(naGrid, countryData.northAmerica);
+        renderGrid(saGrid, countryData.southAmerica);
+    }
+    function getFlag(country) {
+        const flags = { "العراق":"🇮🇶","السعودية":"🇸🇦","الإمارات":"🇦🇪","الكويت":"🇰🇼","قطر":"🇶🇦","عمان":"🇴🇲","الأردن":"🇯🇴","مصر":"🇪🇬","تركيا":"🇹🇷","إسبانيا":"🇪🇸","فرنسا":"🇫🇷","ألمانيا":"🇩🇪","إيطاليا":"🇮🇹","المملكة المتحدة":"🇬🇧","الولايات المتحدة":"🇺🇸","كندا":"🇨🇦","المكسيك":"🇲🇽","البرازيل":"🇧🇷","الأرجنتين":"🇦🇷"};
+        return flags[country] || "🏳️";
+    }
+    function updateCountryButton(country) {
+        const btnSpan = document.getElementById('countryBtnText');
+        if(btnSpan) btnSpan.innerHTML = `${getFlag(country)} ${country}`;
+    }
+    function closeCountryModalFunc() { countryModalDiv.classList.remove('active'); }
+    openCountryBtn.addEventListener('click', () => countryModalDiv.classList.add('active'));
+    closeCountryModalBtn.addEventListener('click', closeCountryModalFunc);
+    countryModalDiv.addEventListener('click', (e) => { if(e.target === countryModalDiv) closeCountryModalFunc(); });
+    renderCountries();
+    const savedCountry = localStorage.getItem('selectedCountry');
+    if(savedCountry) { updateCountryButton(savedCountry); applyTranslation(getLanguageForCountry(savedCountry)); }
+    else { applyTranslation('default'); }
+
+    // =============== 5. بطاقات UC (إعادة إنشاء لضمان الترجمة) ===============
+    const cardsData = [
+        { title: "60 UC", price: "$0.99" },
+        { title: "325 UC", price: "$4.99" },
+        { title: "660 UC", price: "$9.99" },
+        { title: "1800 UC", price: "$24.99" }
+    ];
+    function renderCards() {
+        const container = document.getElementById('cardsContainer');
+        container.innerHTML = '';
+        cardsData.forEach(card => {
+            const cardDiv = document.createElement('div');
+            cardDiv.className = 'card';
+            cardDiv.innerHTML = `
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC">
+                <div class="card-body">
+                    <div class="card-title">${card.title}</div>
+                    <div class="price">${card.price}</div>
+                    <button class="buy-btn">شراء الآن</button>
+                </div>
+            `;
+            container.appendChild(cardDiv);
+        });
+        document.querySelectorAll('.buy-btn').forEach(btn => btn.addEventListener('click', () => alert('تمت إضافة الطلب! سيتم تحويلك لصفحة الدفع (تجريبي)')));
+        const currentLang = getLanguageForCountry(localStorage.getItem('selectedCountry') || 'العراق');
+        const t = translations[currentLang] || translations.default;
+        document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
+    }
+    renderCards();
+
+    // وسيلة الدفع
+    function initDropdown() {
+        const dropdown = document.getElementById('paymentDropdown');
+        const btn = document.getElementById('paymentBtn');
+        const list = document.getElementById('paymentList');
+        btn.addEventListener('click', (e) => { e.stopPropagation(); list.style.display = list.style.display === 'block' ? 'none' : 'block'; });
+        list.querySelectorAll('li').forEach(li => {
+            li.addEventListener('click', (e) => { e.stopPropagation(); btn.innerHTML = li.innerText + ' ▼'; list.style.display = 'none'; });
+        });
+        document.addEventListener('click', () => list.style.display = 'none');
+    }
+    initDropdown();
     document.getElementById('loginArea')?.addEventListener('click', () => alert("مرحباً! يمكنك تسجيل الدخول لربط حسابك (تجريبي)"));
-    
-    // الأزرار الجديدة (كوبون، لأحداث، VIP) - بدون مربعات
     document.getElementById('couponBtn')?.addEventListener('click', () => alert('🔖 نافذة استعمال الكوبون (قريباً)'));
     document.getElementById('eventsBtn')?.addEventListener('click', () => alert('📅 سيتم عرض الأحداث والعروض قريباً'));
     document.getElementById('vipBtn')?.addEventListener('click', () => alert('👑 مميزات حساب VIP (قريباً)'));
-    
-    // إغلاق أي قوائم منسدلة عند النقر خارجها
-    window.addEventListener('click', (e) => { if(!e.target.closest('.custom-dropdown')) document.querySelectorAll('.dropdown-list').forEach(m=>m.style.display='none'); });
 </script>
 </body>
 </html>
