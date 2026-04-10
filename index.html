@@ -30,9 +30,9 @@ header {
     gap: 10px;
 }
 
-/* شعار الصورة - تكبير إضافي */
+/* شعار الصورة - تكبير */
 .logo-img {
-    height: 58px;  /* تم التكبير من 50px إلى 58px */
+    height: 58px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
@@ -165,20 +165,6 @@ header {
     height: 22px;
     fill: #4caf50;
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
-}
-
-.copyright-corner {
-    position: absolute;
-    bottom: 12px;
-    right: 20px;
-    z-index: 3;
-    color: white;
-    font-weight: bold;
-    font-size: 13px;
-    background: rgba(0,0,0,0.5);
-    padding: 4px 12px;
-    border-radius: 30px;
-    backdrop-filter: blur(2px);
 }
 
 .section {
@@ -478,15 +464,6 @@ header {
     background: #ffda6e;
 }
 
-.close-popup {
-    background: transparent;
-    color: #aaa;
-    margin-top: 12px;
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
 /* بطاقات UC */
 .cards {
     display: grid;
@@ -550,7 +527,7 @@ header {
     transform: scale(0.97);
 }
 
-/* قسم Round المزخرف */
+/* قسم Round بدون نجوم ولا لوكو جانبي */
 .round-brand-section {
     margin-top: 40px;
     padding: 25px 20px;
@@ -562,24 +539,18 @@ header {
     box-shadow: 0 10px 25px rgba(0,0,0,0.5);
 }
 
-/* كلمة Round مزخرفة */
+/* كلمة Round مزخرفة بدون نجوم وبدون صورة */
 .round-logo-text {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 14px;
+    gap: 0;
     margin-bottom: 15px;
     flex-wrap: wrap;
     position: relative;
 }
-.round-logo-text img {
-    height: 58px;  /* تم التكبير */
-    width: auto;
-    object-fit: contain;
-    filter: drop-shadow(0 0 8px rgba(247,201,72,0.6));
-}
 .round-logo-text span {
-    font-size: 48px;
+    font-size: 52px;
     font-weight: 900;
     font-family: 'Segoe UI', 'Tahoma', 'Amiri', serif;
     background: linear-gradient(135deg, #FFD966, #FFB347, #FF8C00);
@@ -587,32 +558,8 @@ header {
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 12px rgba(255,180,60,0.6);
-    letter-spacing: 3px;
-    position: relative;
+    letter-spacing: 4px;
     display: inline-block;
-}
-/* إضافة زخرفة: نقاط ذهبية وشرطة */
-.round-logo-text span::before,
-.round-logo-text span::after {
-    content: "✦";
-    font-size: 32px;
-    background: none;
-    -webkit-background-clip: unset;
-    background-clip: unset;
-    color: #f7c948;
-    text-shadow: none;
-    display: inline-block;
-    margin: 0 10px;
-    opacity: 0.9;
-    font-weight: normal;
-}
-.round-logo-text span::before {
-    content: "✦";
-    margin-left: 12px;
-}
-.round-logo-text span::after {
-    content: "✦";
-    margin-right: 12px;
 }
 
 .round-description {
@@ -656,11 +603,11 @@ header {
     filter: drop-shadow(0 0 6px #f7c948);
 }
 .social-icons img {
-    width: 42px;
-    height: 42px;
+    width: 46px;
+    height: 46px;
     object-fit: contain;
     border-radius: 50%;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
     padding: 4px;
     transition: 0.2s;
 }
@@ -724,7 +671,7 @@ footer {
     align-items: center;
 }
 .menu-header-img {
-    height: 58px;  /* تكبير الشعار داخل القائمة */
+    height: 58px;
     width: auto;
     object-fit: contain;
 }
@@ -896,16 +843,11 @@ footer {
         height: 48px;
     }
     .round-logo-text span {
-        font-size: 36px;
-    }
-    .round-logo-text span::before,
-    .round-logo-text span::after {
-        font-size: 24px;
-        margin: 0 6px;
+        font-size: 38px;
     }
     .social-icons img {
-        width: 36px;
-        height: 36px;
+        width: 38px;
+        height: 38px;
     }
 }
 </style>
@@ -965,10 +907,9 @@ footer {
 
     <div class="cards" id="cardsContainer"></div>
 
-    <!-- قسم Round المطور مع سوشيال ميديا -->
+    <!-- قسم Round بدون نجوم وبدون صورة جانبية -->
     <div class="round-brand-section">
         <div class="round-logo-text">
-            <img src="Rund.png" alt="Round" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2258%22 height=%2258%22 viewBox=%220 0 100 100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2240%22 font-weight=%22bold%22%3ER%3C/text%3E%3C/svg%3E'">
             <span>Round</span>
         </div>
         <div class="round-description">
@@ -977,9 +918,9 @@ footer {
         <div class="social-follow">
             <div class="social-text">✨ يمكنك متابعتنا على المنصات التالية : ✨</div>
             <div class="social-icons">
-                <a href="#" target="_blank"><img src="insta.png" alt="Instagram" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2242%22 height=%2242%22 viewBox=%220 0 24 24%22 fill=%22%23E4405F%22%3E%3Crect width=%2224%22 height=%2224%22 fill=%22%23E4405F%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3%22 font-size=%2212%22%3EIG%3C/text%3E%3C/svg%3E'"></a>
-                <a href="#" target="_blank"><img src="telegram.png" alt="Telegram" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2242%22 height=%2242%22 viewBox=%220 0 24 24%22 fill=%22%2326A5E4%22%3E%3Crect width=%2224%22 height=%2224%22 fill=%22%2326A5E4%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3%22 font-size=%2212%22%3ETG%3C/text%3E%3C/svg%3E'"></a>
-                <a href="#" target="_blank"><img src="tiktok.png" alt="TikTok" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2242%22 height=%2242%22 viewBox=%220 0 24 24%22 fill=%22%23000000%22%3E%3Crect width=%2224%22 height=%2224%22 fill=%22%2369C9D0%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3%22 font-size=%2212%22%3ETT%3C/text%3E%3C/svg%3E'"></a>
+                <a href="#" target="_blank"><img src="insta.png" alt="Instagram"></a>
+                <a href="#" target="_blank"><img src="telegram.png" alt="Telegram"></a>
+                <a href="#" target="_blank"><img src="tiktok.png" alt="TikTok"></a>
             </div>
         </div>
     </div>
