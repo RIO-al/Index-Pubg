@@ -105,11 +105,11 @@ header {
     padding: 15px 25px;
 }
 
-/* المربع الأسود للنص وعلامة التوثيق */
+/* المربع الأسود للنص وعلامة التوثيق - بدون زوايا مستديرة */
 .hero-badge-box {
     background: #111;
     padding: 8px 16px;
-    border-radius: 60px;
+    border-radius: 0; /* تم التعديل: إزالة الزوايا المستديرة */
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -207,25 +207,26 @@ header {
     align-items: center;
 }
 
+/* تعديل الأزرار: إزالة المربعات (بدون خلفية، حدود، زوايا) */
 .extra-btn {
-    background: #1a1a1a;
-    border: 1px solid #333;
-    padding: 8px 16px;
-    border-radius: 40px;
-    font-size: 14px;
+    background: none; /* إزالة الخلفية */
+    border: none; /* إزالة الحدود */
+    padding: 0; /* إزالة الحشو الداخلي */
+    border-radius: 0; /* إزالة الزوايا المستديرة */
+    font-size: 16px; /* تكبير النص قليلاً */
     font-weight: 500;
     cursor: pointer;
     transition: 0.2s;
-    color: #eee;
-    display: flex;
+    color: #ccc; /* لون رمادي فاتح */
+    display: inline-flex;
     align-items: center;
     gap: 8px;
 }
 
 .extra-btn:hover {
-    border-color: #f7c948;
-    background: #242424;
-    color: #f7c948;
+    color: #f7c948; /* تغيير اللون إلى الذهبي عند المرور */
+    background: none; /* تأكيد عدم وجود خلفية */
+    border: none;
 }
 
 /* Filters */
@@ -233,7 +234,6 @@ header {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
-    margin-bottom: 25px;
     align-items: center;
 }
 
@@ -582,8 +582,7 @@ footer {
         flex-wrap: wrap;
     }
     .extra-btn {
-        padding: 6px 12px;
-        font-size: 12px;
+        font-size: 14px; /* تعديل طفيف للشاشات الصغيرة */
     }
     .section-header {
         flex-direction: column;
@@ -604,13 +603,13 @@ footer {
         </div>
         <!-- زر الحساب الجديد بجانب تسجيل الدخول -->
         <div id="headerAccountContainer"></div>
-        <span class="cart-icon">🛒</span>
+        <span class="cart-icon">☰</span>
     </div>
 </header>
 
 <section class="hero">
     <div class="hero-content-new">
-        <!-- المربع الأسود حول العلامة والنص -->
+        <!-- المربع الأسود حول العلامة والنص - بدون زوايا مستديرة الآن -->
         <div class="hero-badge-box">
             <div class="verified-badge">
                 <svg viewBox="0 0 24 24">
@@ -624,20 +623,20 @@ footer {
 </section>
 
 <section class="section">
-    <!-- رأس القسم مع الأزرار الجديدة -->
+    <!-- رأس القسم مع الأزرار الجديدة (تم تعديل تصميمها) -->
     <div class="section-header">
         <h2 class="section-title">اختر الباقة</h2>
         <div class="extra-buttons">
-            <button class="extra-btn" id="couponBtn">🎟️ استعمال كوبون</button>
-            <button class="extra-btn" id="eventsBtn">📢 لأحداث</button>
-            <button class="extra-btn" id="vipBtn">👑 حساب VIP</button>
+            <button class="extra-btn" id="couponBtn">استعمال كوبون</button>
+            <button class="extra-btn" id="eventsBtn">لأحداث</button>
+            <button class="extra-btn" id="vipBtn">حساب VIP</button>
         </div>
     </div>
 
     <div class="filters">
         <!-- زر الدولة المعدل لفتح المودال بدلاً من dropdown -->
         <div class="country-modal-btn" id="openCountryModalBtn">
-            <span>🌍 اختر الدولة</span> <span>▼</span>
+            <span> اختر الدولة</span> <span>▼</span>
         </div>
         
         <div class="custom-dropdown" id="paymentDropdown">
@@ -692,7 +691,7 @@ footer {
 <!-- مودال الحساب القديم -->
 <div id="idModal" class="modal-overlay">
     <div class="popup-card">
-        <h3 style="color:#f7c948;">حساب PUBG</h3>
+        <h3 style="color:#f7c948;">معرف اللاعب</h3>
         <p id="modalUserId">---</p>
         <div class="popup-buttons">
             <button id="modalDeleteBtn" class="delete-btn">حذف</button>
@@ -705,10 +704,10 @@ footer {
 <!-- مودال اختيار الدول بالقارات -->
 <div id="countryModal" class="country-modal-overlay">
     <div class="country-popup">
-        <h3>🌍 اختر دولتك</h3>
+        <h3> اختر دولتك</h3>
         
         <div class="continent-section">
-            <div class="continent-title">🌏 آسيا</div>
+            <div class="continent-title"> آسيا</div>
             <div class="country-grid">
                 <div class="country-item" data-country="العراق">🇮🇶 العراق</div>
                 <div class="country-item" data-country="السعودية">🇸🇦 السعودية</div>
@@ -723,7 +722,7 @@ footer {
         </div>
         
         <div class="continent-section">
-            <div class="continent-title">🌍 أوروبا</div>
+            <div class="continent-title"> أوروبا</div>
             <div class="country-grid">
                 <div class="country-item" data-country="إسبانيا">🇪🇸 إسبانيا</div>
                 <div class="country-item" data-country="فرنسا">🇫🇷 فرنسا</div>
@@ -734,7 +733,7 @@ footer {
         </div>
         
         <div class="continent-section">
-            <div class="continent-title">🌎 أمريكا الشمالية</div>
+            <div class="continent-title"> أمريكا الشمالية</div>
             <div class="country-grid">
                 <div class="country-item" data-country="الولايات المتحدة">🇺🇸 الولايات المتحدة</div>
                 <div class="country-item" data-country="كندا">🇨🇦 كندا</div>
@@ -743,7 +742,7 @@ footer {
         </div>
         
         <div class="continent-section">
-            <div class="continent-title">🌎 أمريكا الجنوبية</div>
+            <div class="continent-title"> أمريكا الجنوبية</div>
             <div class="country-grid">
                 <div class="country-item" data-country="البرازيل">🇧🇷 البرازيل</div>
                 <div class="country-item" data-country="الأرجنتين">🇦🇷 الأرجنتين</div>
@@ -787,7 +786,7 @@ footer {
             else if (countryName === 'المكسيك') flag = '🇲🇽';
             else if (countryName === 'البرازيل') flag = '🇧🇷';
             else if (countryName === 'الأرجنتين') flag = '🇦🇷';
-            else flag = '🌍';
+            else flag = '';
             
             countryDisplayBtn.innerHTML = `<span>${flag} ${countryName}</span> <span>▼</span>`;
         }
@@ -909,11 +908,11 @@ footer {
     
     // أزرار الشراء
     document.querySelectorAll('.buy-btn').forEach(btn => btn.addEventListener('click', () => alert('تمت إضافة الطلب! سيتم تحويلك لصفحة الدفع (تجريبي)')));
-    
+
     // تسجيل الدخول
     document.getElementById('loginArea')?.addEventListener('click', () => alert("مرحباً! يمكنك تسجيل الدخول لربط حسابك (تجريبي)"));
     
-    // الأزرار الجديدة (كوبون، لأحداث، VIP)
+    // الأزرار الجديدة (كوبون، لأحداث، VIP) - تم تعديلها لتعمل كالمعتاد
     document.getElementById('couponBtn')?.addEventListener('click', () => alert('🔖 نافذة استعمال الكوبون (قريباً)'));
     document.getElementById('eventsBtn')?.addEventListener('click', () => alert('📅 سيتم عرض الأحداث والعروض قريباً'));
     document.getElementById('vipBtn')?.addEventListener('click', () => alert('👑 مميزات حساب VIP (قريباً)'));
