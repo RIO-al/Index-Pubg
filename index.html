@@ -947,21 +947,21 @@ footer {
 
 <section class="section">
     <div class="section-header">
-        <h2 class="section-title" id="sectionTitle">اختر الباقة</h2>
+        <h2 class="section-title" id="sectionTitle">اختر باقيه UC التي تريد</h2>
         <div class="extra-box">
-            <button class="extra-btn" id="couponBtn">📦 استعمال كوبون</button>
-            <button class="extra-btn" id="eventsBtn">🎯 لأحداث</button>
-            <button class="extra-btn" id="vipBtn">👑 حساب VIP</button>
+            <button class="extra-btn" id="couponBtn">استعمال كوبون</button>
+            <button class="extra-btn" id="eventsBtn">الأحداث</button>
+            <button class="extra-btn" id="vipBtn">حساب مميز</button>
         </div>
     </div>
 
     <div class="filters">
         <div class="country-modal-btn" id="openCountryModalBtn">
-            <span id="countryBtnText">اختر الدولة</span> <span>▼</span>
+            <span id="countryBtnText">اختر الدولة</span> <span></span>
         </div>
         
         <div class="custom-dropdown" id="paymentDropdown">
-            <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع ▼</div>
+            <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع </div>
             <ul class="dropdown-list" id="paymentList">
                 <li data-value="Zain Cash">Zain Cash</li>
                 <li data-value="Asia Hawala">Asia Hawala</li>
@@ -981,7 +981,7 @@ footer {
             هو متجر الشحن الرسمي من قبل <strong>Tencent</strong>. ادفع بأمان وسرعة مع <strong>روند</strong>.
         </div>
         <div class="social-follow">
-            <div class="social-text">✨ يمكنك متابعتنا على المنصات التالية : ✨</div>
+            <div class="social-text">يمكنك متابعتنا على المنصات التالية :</div>
             <div class="social-icons">
                 <a href="#" target="_blank"><img src="insta.png" alt="Instagram" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2246%22 height=%2246%22 viewBox=%220 0 24 24%22 fill=%22%23E4405F%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%228%22 fill=%22%23E4405F%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3%22 font-size=%2212%22%3EIG%3C/text%3E%3C/svg%3E'"></a>
                 <a href="#" target="_blank"><img src="telegram.png" alt="Telegram" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2246%22 height=%2246%22 viewBox=%220 0 24 24%22 fill=%22%2326A5E4%22%3E%3Crect width=%2224%22 height=%2224%22 rx=%228%22 fill=%22%2326A5E4%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 fill=%22white%22 dy=%22.3%22 font-size=%2212%22%3ETG%3C/text%3E%3C/svg%3E'"></a>
@@ -993,7 +993,7 @@ footer {
 
     <!-- قسم لماذا Round مع النصوص المطلوبة -->
     <div class="why-round-section">
-        <div class="why-title"><span>⚡ لماذا عليك استخدام موقع Round ⚡</span></div>
+        <div class="why-title"><span>لماذا عليك استخدام موقع Round</span></div>
         
         <div class="info-block">
             <p><span class="info-number">1</span><span class="info-text"><strong>Round: متجر الشحن الرسمي المعتمد لـ PUBG MOBILE في الخارج</strong><br>
@@ -1152,7 +1152,7 @@ footer {
         document.getElementById("eventsBtn").innerHTML = `🎯 ${t.events}`;
         document.getElementById("vipBtn").innerHTML = `👑 ${t.vip}`;
         if(!localStorage.getItem('selectedCountry')) document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
-        document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ▼";
+        document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ";
         let items = document.querySelectorAll("#paymentList li"); if(items[0]) items[0].innerText = t.zain; if(items[1]) items[1].innerText = t.asiaHaw; if(items[2]) items[2].innerText = t.master;
         document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
         document.getElementById("footerText").innerText = t.footer;
@@ -1179,7 +1179,7 @@ footer {
         let html = '';
         if(logged) {
             const userData = getLoggedUserData();
-            html += `<div class="menu-item user-info-top"><div class="username-large">${userData.username}</div><div class="account-id-display">📧 ${userData.email}</div></div>`;
+            html += `<div class="menu-item user-info-top"><div class="username-large">${userData.username}</div><div class="account-id-display"> ${userData.email}</div></div>`;
             html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div>`;
             html += `<div class="menu-item" data-action="orders">${t.ordersCenter}</div>`;
             html += `<div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>`;
@@ -1256,7 +1256,7 @@ footer {
     function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
     renderCards();
     
-    function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' ▼'; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
+    function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' '; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
     initDropdown();
     document.getElementById('couponBtn')?.addEventListener('click',()=>alert('🔖 كوبونات قريباً'));
     document.getElementById('eventsBtn')?.addEventListener('click',()=>alert('📅 الأحداث قريباً'));
