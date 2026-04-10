@@ -75,77 +75,71 @@ header {
     cursor: default;
 }
 
-/* Hero / Banner section */
+/* Hero / Banner section - بدون مربع اسود */
 .hero {
     position: relative;
     background: url('bg.jpg') center/cover no-repeat;
-    min-height: 280px;
+    min-height: 220px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 30px 20px;
+    align-items: flex-start; /* محاذاة للأعلى */
+    justify-content: flex-start; /* محاذاة لليسار (لأن rtl فالأقصى اليسار) */
+    padding: 20px 25px;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.55);
-    z-index: 1;
-}
-
+/* إزالة كل الخلفيات السوداء والشفافة */
 .hero-content-new {
     position: relative;
     z-index: 2;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(3px);
-    padding: 20px 30px;
-    border-radius: 60px;
-    border: 1px solid rgba(255,255,255,0.2);
+    gap: 12px; /* مسافة أقل */
+    background: transparent; /* بدون خلفية */
+    backdrop-filter: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
 }
 
+/* تصغير الصور */
 .pu-image {
-    width: 85px;
-    height: 85px;
-    border-radius: 25px;
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
     object-fit: cover;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-    border: 2px solid #f7c948;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    border: 1px solid rgba(247, 201, 72, 0.6);
 }
 
 .pubg-text {
-    font-size: 32px;
+    font-size: 22px;
     font-weight: 800;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     background: linear-gradient(135deg, #f9d56e, #ffb347);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
 .c-wrapper {
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(4px);
-    border-radius: 18px;
-    padding: 8px 12px;
+    background: transparent;
+    backdrop-filter: none;
+    border-radius: 0;
+    padding: 0;
+    border: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(255,215,0,0.4);
 }
 
 .c-image {
-    width: 42px;
-    height: 42px;
+    width: 36px;
+    height: 36px;
     object-fit: contain;
 }
 
+/* حقوق النشر في أسفل اليمين */
 .copyright-corner {
     position: absolute;
     bottom: 12px;
@@ -153,9 +147,9 @@ header {
     z-index: 3;
     color: white;
     font-weight: bold;
-    font-size: 14px;
-    background: rgba(0,0,0,0.6);
-    padding: 5px 12px;
+    font-size: 13px;
+    background: rgba(0,0,0,0.5);
+    padding: 4px 12px;
     border-radius: 30px;
     letter-spacing: 0.5px;
     backdrop-filter: blur(2px);
@@ -434,22 +428,23 @@ footer {
 
 /* Responsive */
 @media (max-width: 680px) {
-    .hero-content-new {
-        flex-direction: column;
-        text-align: center;
-        border-radius: 40px;
-        padding: 20px;
+    .hero {
+        min-height: 160px;
+        padding: 15px;
     }
-    .pubg-text {
-        font-size: 26px;
+    .hero-content-new {
+        gap: 8px;
     }
     .pu-image {
-        width: 70px;
-        height: 70px;
+        width: 38px;
+        height: 38px;
+    }
+    .pubg-text {
+        font-size: 18px;
     }
     .c-image {
-        width: 32px;
-        height: 32px;
+        width: 28px;
+        height: 28px;
     }
     .dropdown-btn {
         font-size: 13px;
@@ -479,15 +474,13 @@ footer {
     </div>
 </header>
 
-<!-- Hero Banner with modified content -->
+<!-- Hero Banner مع تعديل الصور و بدون مربع اسود و العناصر في أقصى اليسار -->
 <section class="hero">
     <div class="hero-content-new">
-        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23f7c948' rx='20'/%3E%3Ctext x='50' y='68' font-size='48' text-anchor='middle' fill='black' font-weight='bold'%3EPU%3C/text%3E%3C/svg%3E" 
-             alt="PU" class="pu-image">
+        <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
         <span class="pubg-text">PUBG MOBILE</span>
         <div class="c-wrapper">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 60 60'%3E%3Ccircle cx='30' cy='30' r='28' fill='%23f7c948'/%3E%3Ctext x='30' y='44' font-size='36' text-anchor='middle' fill='black' font-weight='bold'%3EC%3C/text%3E%3C/svg%3E" 
-                 alt="C" class="c-image">
+            <img src="C.png" alt="C" class="c-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2236%22 height=%2236%22 viewBox=%220 0 60 60%22%3E%3Ccircle cx=%2230%22 cy=%2230%22 r=%2228%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2230%22 y=%2244%22 font-size=%2236%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EC%3C/text%3E%3C/svg%3E'">
         </div>
     </div>
     <div class="copyright-corner">© سياسه و حقوق الموقع</div>
@@ -519,7 +512,7 @@ footer {
 
         <!-- Account section: add account or show saved ID -->
         <div class="account-wrapper" id="accountWrapper">
-            <!-- dynamic content will be injected here -->
+            <!-- dynamic content -->
         </div>
     </div>
 
@@ -563,7 +556,7 @@ footer {
     جميع الحقوق محفوظة © PUBG UC Store
 </footer>
 
-<!-- Modal Popup for showing saved ID -->
+<!-- Modal Popup -->
 <div id="idModal" class="modal-overlay">
     <div class="popup-card">
         <h3 style="color:#f7c948;">حساب PUBG</h3>
@@ -577,8 +570,8 @@ footer {
 </div>
 
 <script>
-    // ---------- 1. CUSTOM DROPDOWNS (toggle show/hide) ----------
-    function initDropdown(triggerId, listId, btnId, placeholderText) {
+    // 1. Custom Dropdowns
+    function initDropdown(triggerId, listId, btnId) {
         const dropdown = document.getElementById(triggerId);
         const btn = document.getElementById(btnId);
         const list = document.getElementById(listId);
@@ -586,12 +579,10 @@ footer {
 
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
-            // close other dropdowns first
             document.querySelectorAll('.dropdown-list').forEach(menu => {
                 if (menu !== list) menu.style.display = 'none';
             });
-            const isVisible = list.style.display === 'block';
-            list.style.display = isVisible ? 'none' : 'block';
+            list.style.display = list.style.display === 'block' ? 'none' : 'block';
         });
 
         list.querySelectorAll('li').forEach(li => {
@@ -600,12 +591,10 @@ footer {
                 const selectedValue = li.getAttribute('data-value') || li.innerText;
                 btn.innerHTML = selectedValue + ' ▼';
                 list.style.display = 'none';
-                // optional: store selected in dataset
                 btn.setAttribute('data-selected', selectedValue);
             });
         });
 
-        // close when clicking outside
         document.addEventListener('click', function(e) {
             if (!dropdown.contains(e.target)) {
                 list.style.display = 'none';
@@ -613,93 +602,93 @@ footer {
         });
     }
 
-    initDropdown('countryDropdown', 'countryList', 'countryBtn', 'اختر الدولة');
-    initDropdown('paymentDropdown', 'paymentList', 'paymentBtn', 'اختر وسيلة الدفع');
+    initDropdown('countryDropdown', 'countryList', 'countryBtn');
+    initDropdown('paymentDropdown', 'paymentList', 'paymentBtn');
 
-    // ---------- 2. ACCOUNT MANAGEMENT (PUBG ID) ----------
+    // 2. Account Management (الأرقام فقط)
     const STORAGE_KEY = 'pubg_user_id';
     let currentUserId = localStorage.getItem(STORAGE_KEY) || null;
     const accountWrapper = document.getElementById('accountWrapper');
     const modal = document.getElementById('idModal');
     const modalUserIdSpan = document.getElementById('modalUserId');
-    let activeSavedElement = null; // to store which element was clicked for modal
 
-    // Helper to refresh account UI
+    // دالة للتحقق من أن الإدخال أرقام فقط
+    function validateOnlyNumbers(input) {
+        return /^\d+$/.test(input);
+    }
+
+    function promptForNumbers(description, defaultValue = '') {
+        let value = prompt(description, defaultValue);
+        if (value === null) return null; // إلغاء
+        value = value.trim();
+        if (value === '') {
+            alert('لا يمكن ترك الحقل فارغاً');
+            return promptForNumbers(description, defaultValue);
+        }
+        if (!validateOnlyNumbers(value)) {
+            alert('خطأ: يسمح فقط بإدخال الأرقام (0-9). الرجاء إدخال ايدي PUBG بشكل صحيح.');
+            return promptForNumbers(description, defaultValue);
+        }
+        return value;
+    }
+
     function refreshAccountUI() {
         if (!accountWrapper) return;
         currentUserId = localStorage.getItem(STORAGE_KEY);
         if (!currentUserId) {
-            // show "اضف حسابك" button
             accountWrapper.innerHTML = `<button class="add-account-btn" id="addAccountBtn">➕ اضف حسابك</button>`;
             const addBtn = document.getElementById('addAccountBtn');
             if (addBtn) {
                 addBtn.addEventListener('click', () => {
-                    // show keyboard prompt to enter ID
-                    const newId = prompt('ادخل ايدي حساب ببجي الخاص بك:', '');
-                    if (newId && newId.trim() !== '') {
-                        const trimmedId = newId.trim();
-                        localStorage.setItem(STORAGE_KEY, trimmedId);
+                    const newId = promptForNumbers('ادخل ايدي حساب ببجي الخاص بك (أرقام فقط):', '');
+                    if (newId !== null && newId !== '') {
+                        localStorage.setItem(STORAGE_KEY, newId);
                         refreshAccountUI();
-                    } else if (newId === '') {
-                        alert('الرجاء إدخال ID صالح');
                     }
                 });
             }
         } else {
-            // show saved ID as clickable button
             const displayId = currentUserId.length > 18 ? currentUserId.slice(0, 15) + '...' : currentUserId;
             accountWrapper.innerHTML = `<button class="saved-id-btn" id="savedIdBtn">🆔 ${displayId}</button>`;
             const savedBtn = document.getElementById('savedIdBtn');
             if (savedBtn) {
                 savedBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
-                    // show popup with ID, delete & change
                     showIdPopup(currentUserId);
                 });
             }
         }
     }
 
-    // Show modal popup
     function showIdPopup(userId) {
         if (!modal || !modalUserIdSpan) return;
         modalUserIdSpan.innerText = userId;
         modal.classList.add('active');
 
-        // Remove previous listeners and attach new ones
         const deleteBtn = document.getElementById('modalDeleteBtn');
         const changeBtn = document.getElementById('modalChangeBtn');
         const closeBtn = document.getElementById('closeModalBtn');
 
-        // Clone to remove old listeners (clean approach)
         const newDelete = deleteBtn.cloneNode(true);
         const newChange = changeBtn.cloneNode(true);
         deleteBtn.parentNode.replaceChild(newDelete, deleteBtn);
         changeBtn.parentNode.replaceChild(newChange, changeBtn);
         
-        // close button handler
         const newClose = closeBtn.cloneNode(true);
         closeBtn.parentNode.replaceChild(newClose, closeBtn);
         
         newDelete.addEventListener('click', () => {
-            // حذف الحساب
             localStorage.removeItem(STORAGE_KEY);
             refreshAccountUI();
             modal.classList.remove('active');
         });
         
         newChange.addEventListener('click', () => {
-            // تغيير الايدي
-            const newId = prompt('أدخل ايدي PUBG الجديد:', currentUserId);
-            if (newId && newId.trim() !== '') {
-                localStorage.setItem(STORAGE_KEY, newId.trim());
+            modal.classList.remove('active');
+            const newId = promptForNumbers('أدخل ايدي PUBG الجديد (أرقام فقط):', currentUserId);
+            if (newId !== null && newId !== '') {
+                localStorage.setItem(STORAGE_KEY, newId);
                 refreshAccountUI();
-                modal.classList.remove('active');
-            } else if (newId === '') {
-                alert('لا يمكن ترك الحقل فارغاً');
-            } else {
-                // cancelled, just close modal
-                modal.classList.remove('active');
             }
         });
         
@@ -707,7 +696,6 @@ footer {
             modal.classList.remove('active');
         });
         
-        // click outside to close modal (on overlay)
         modal.addEventListener('click', function outsideClick(e) {
             if (e.target === modal) {
                 modal.classList.remove('active');
@@ -716,18 +704,9 @@ footer {
         });
     }
 
-    // initial load
     refreshAccountUI();
 
-    // ---------- 3. HERO MODIFICATIONS: already done in HTML, but ensure smooth behavior ----------
-    // Also note: the original text removed, new banner with PU.png, C.png, rounded corners implemented.
-    // Copyright text at bottom right is present.
-    
-    // optional: small fix for long.png: we added custom SVG next to login text,
-    // and "تسجيل الدخول" next to ☰ icon inside .login-area, plus Long.png style.
-    // Already handled.
-
-    // Also provide buy button alerts for demo (no functional backend needed)
+    // Buy buttons demo
     const buyBtns = document.querySelectorAll('.buy-btn');
     buyBtns.forEach(btn => {
         btn.addEventListener('click', () => {
@@ -735,9 +714,8 @@ footer {
         });
     });
 
-    // ensure dropdowns close properly if any conflict with modal
+    // Close dropdowns globally
     window.addEventListener('click', function(e) {
-        // close dropdowns if click outside (already done but ensure)
         if (!e.target.closest('.custom-dropdown')) {
             document.querySelectorAll('.dropdown-list').forEach(menu => {
                 menu.style.display = 'none';
@@ -745,24 +723,12 @@ footer {
         }
     });
     
-    // For login area (optional) just demo info
     const loginAreaDiv = document.getElementById('loginArea');
     if(loginAreaDiv){
         loginAreaDiv.addEventListener('click', () => {
             alert("مرحباً! يمكنك تسجيل الدخول لربط حسابك (تجريبي)");
         });
     }
-
-    // small tweak: adjust the displayed "Long.png" appearance: we already set an SVG.
-    // and additional style for consistency.
-    
-    // Also ensure that when user clicks on saved ID, the popup appears with delete/change exactly as requested.
-    // Also "اضف حسابك" appears when no ID.
-    // All good.
-
-    // Bonus: update copyright as per design.
-    // Also modified hero text removed perfectly.
-    console.log("تم تطبيق كافة المتطلبات: إزالة النص القديم، إضافة صورة PU مربعة، نص PUBG MOBILE، C.png داخل مربع شفاف، حقوق النشر بالأسفل، زر تسجيل الدخول بجانب ☰، قوائم منسدلة مخصصة (تظهر وتخفي عند الضغط)، إضافة زر اضف حسابك وحفظ الايدي، وعند الضغط على الايدي يظهر اشعار منبثق يحتوي على زر حذف (احمر) وتغيير (اصفر).");
 </script>
 </body>
 </html>
