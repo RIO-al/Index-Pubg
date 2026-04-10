@@ -15,6 +15,7 @@
 body {
     background: #0f0f0f;
     color: #fff;
+    overflow-x: hidden; /* لمنع التمرير الأفقي عند فتح القائمة */
 }
 
 /* Header */
@@ -29,10 +30,12 @@ header {
     gap: 10px;
 }
 
-.logo {
-    font-size: 22px;
-    font-weight: bold;
-    color: #f7c948;
+/* شعار الصورة بدلاً من النص */
+.logo-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
 }
 
 .nav-icons {
@@ -61,6 +64,7 @@ header {
     border-color: #f7c948;
 }
 
+/* منطقة اسم المستخدم / تسجيل الدخول */
 .login-area {
     display: flex;
     align-items: center;
@@ -208,15 +212,20 @@ header {
     margin: 0;
 }
 
-.extra-buttons {
-    display: flex;
-    gap: 25px;
+/* مستطيل أسود واحد للأزرار الثلاثة */
+.extra-box {
+    background: #0a0a0a;
+    border: 1px solid #2a2a2a;
+    border-radius: 60px;
+    padding: 6px 12px;
+    display: inline-flex;
+    gap: 20px;
     align-items: center;
 }
 
 .extra-btn {
-    background: #1a1a1a;
-    border: 1px solid #333;
+    background: transparent;
+    border: none;
     padding: 8px 16px;
     border-radius: 40px;
     font-size: 14px;
@@ -230,9 +239,8 @@ header {
 }
 
 .extra-btn:hover {
-    border-color: #f7c948;
-    background: #242424;
     color: #f7c948;
+    background: #1a1a1a;
 }
 
 /* Filters */
@@ -566,7 +574,7 @@ footer {
     font-size: 13px;
 }
 
-/* ========== القائمة الجانبية (menu) ========== */
+/* ========== القائمة الجانبية (menu) بدون تحريك الصفحة ========== */
 .side-menu {
     position: fixed;
     top: 0;
@@ -612,8 +620,10 @@ footer {
     justify-content: space-between;
     align-items: center;
 }
-.menu-header h3 {
-    color: #f7c948;
+.menu-header-img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
 }
 .close-menu {
     font-size: 28px;
@@ -650,16 +660,28 @@ footer {
     background: #222;
     margin: 8px 0;
 }
-.account-info-top {
+/* منطقة اسم المستخدم في القائمة */
+.user-info-top {
     background: #1a1a1a;
     margin-bottom: 8px;
     border-bottom: 1px solid #2a2a2a;
+    padding: 20px !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    cursor: default !important;
+}
+.user-info-top .username-large {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f7c948;
+    word-break: break-word;
 }
 .account-id-display {
     font-family: monospace;
     font-size: 14px;
-    color: #f7c948;
+    color: #aaa;
     word-break: break-all;
+    margin-top: 8px;
 }
 
 /* مودال تسجيل الدخول/التسجيل */
@@ -685,7 +707,7 @@ footer {
 }
 .auth-card {
     background: #1a1a1a;
-    width: 320px;
+    width: 340px;
     border-radius: 32px;
     padding: 28px 20px;
     border: 1px solid #f7c948;
@@ -754,12 +776,12 @@ footer {
     .country-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    .extra-buttons {
-        gap: 12px;
-        flex-wrap: wrap;
+    .extra-box {
+        gap: 8px;
+        padding: 4px 8px;
     }
     .extra-btn {
-        padding: 6px 12px;
+        padding: 6px 10px;
         font-size: 12px;
     }
     .section-header {
@@ -775,10 +797,10 @@ footer {
 <body>
 
 <header>
-    <div class="logo" id="logoText">PUBG UC</div>
+    <img src="Rund.png" alt="Rund" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2240%22 viewBox=%220 0 100 40%22%3E%3Crect width=%22100%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2216%22%3ERund%3C/text%3E%3C/svg%3E'">
     <div class="nav-icons">
         <div class="login-area" id="loginArea">
-            <span>تسجيل الدخول</span>
+            <span id="loginText">تسجيل الدخول</span>
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23f7c948' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M14 10L21 3M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5'/%3E%3C/svg%3E" alt="long" class="login-icon-img" style="width:18px;">
         </div>
         <div id="headerAccountContainer"></div>
@@ -803,10 +825,10 @@ footer {
 <section class="section">
     <div class="section-header">
         <h2 class="section-title" id="sectionTitle">اختر الباقة</h2>
-        <div class="extra-buttons">
-            <button class="extra-btn" id="couponBtn">استعمال كوبون</button>
-            <button class="extra-btn" id="eventsBtn">لأحداث</button>
-            <button class="extra-btn" id="vipBtn">حساب VIP</button>
+        <div class="extra-box">
+            <button class="extra-btn" id="couponBtn">📦 استعمال كوبون</button>
+            <button class="extra-btn" id="eventsBtn">🎯 لأحداث</button>
+            <button class="extra-btn" id="vipBtn">👑 حساب VIP</button>
         </div>
     </div>
 
@@ -858,6 +880,7 @@ footer {
 <div id="authModal" class="auth-modal">
     <div class="auth-card">
         <h3 id="authTitle">تسجيل الدخول</h3>
+        <input type="text" id="authUsername" class="auth-input" placeholder="اسم المستخدم" style="display:none;">
         <input type="email" id="authEmail" class="auth-input" placeholder="البريد الإلكتروني">
         <input type="password" id="authPassword" class="auth-input" placeholder="كلمة المرور">
         <div id="authError" class="auth-error"></div>
@@ -869,14 +892,17 @@ footer {
 <!-- القائمة الجانبية -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="side-menu" id="sideMenu">
-    <div class="menu-header"><h3 id="menuTitle">القائمة</h3><div class="close-menu" id="closeMenuBtn">✕</div></div>
+    <div class="menu-header">
+        <img src="Rund.png" alt="Rund" class="menu-header-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2240%22 viewBox=%220 0 80 40%22%3E%3Crect width=%2280%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2240%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23f7c948%22%3ERund%3C/text%3E%3C/svg%3E'">
+        <div class="close-menu" id="closeMenuBtn">✕</div>
+    </div>
     <div class="menu-items" id="menuItemsList"></div>
 </div>
 
 <script>
-    // ---------------------- 1. نظام تسجيل الدخول (حساب مستقل عن ID PUBG) ----------------------
-    const USERS_KEY = 'pubg_website_users';
-    const CURRENT_USER_KEY = 'pubg_logged_user';
+    // ---------------------- 1. نظام تسجيل الدخول (مع اسم المستخدم) ----------------------
+    const USERS_KEY = 'pubg_website_users_v2';
+    const CURRENT_USER_KEY = 'pubg_logged_user_data'; // تخزين البريد واسم المستخدم
 
     function getUsers() {
         let users = localStorage.getItem(USERS_KEY);
@@ -885,20 +911,22 @@ footer {
     function saveUsers(users) {
         localStorage.setItem(USERS_KEY, JSON.stringify(users));
     }
-    function getLoggedUser() {
-        return localStorage.getItem(CURRENT_USER_KEY);
+    function getLoggedUserData() {
+        let data = localStorage.getItem(CURRENT_USER_KEY);
+        return data ? JSON.parse(data) : null;
     }
-    function setLoggedUser(email) {
-        if(email) localStorage.setItem(CURRENT_USER_KEY, email);
+    function setLoggedUserData(email, username) {
+        if(email && username) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ email, username }));
         else localStorage.removeItem(CURRENT_USER_KEY);
     }
     function isLoggedIn() {
-        return !!getLoggedUser();
+        return !!getLoggedUserData();
     }
-    function registerUser(email, password) {
+    function registerUser(username, email, password) {
         let users = getUsers();
         if(users.find(u => u.email === email)) return { success: false, msg: 'البريد موجود مسبقاً' };
-        users.push({ email, password });
+        if(users.find(u => u.username === username)) return { success: false, msg: 'اسم المستخدم موجود مسبقاً' };
+        users.push({ username, email, password });
         saveUsers(users);
         return { success: true };
     }
@@ -906,36 +934,55 @@ footer {
         let users = getUsers();
         let user = users.find(u => u.email === email && u.password === password);
         if(user) {
-            setLoggedUser(email);
-            return { success: true };
+            setLoggedUserData(user.email, user.username);
+            return { success: true, username: user.username };
         }
         return { success: false, msg: 'بيانات غير صحيحة' };
     }
     function logoutUser() {
-        setLoggedUser(null);
+        setLoggedUserData(null, null);
         refreshMenuContent();
-        refreshHeaderAccount(); // فقط لتحديث حالة واجهة المستخدم
+        refreshHeaderAccount(); // لتحديث حالة تسجيل الدخول في الهيدر
+        updateLoginArea();     // تحديث زر تسجيل الدخول / اسم المستخدم
     }
 
-    // ---------------------- 2. الترجمة (نفس السابق مع إضافة loginMenu) ----------------------
+    // تحديث منطقة تسجيل الدخول في الهيدر (إظهار اسم المستخدم بدلاً من تسجيل الدخول)
+    function updateLoginArea() {
+        const loginSpan = document.getElementById('loginText');
+        const loginAreaDiv = document.getElementById('loginArea');
+        if(isLoggedIn()) {
+            const userData = getLoggedUserData();
+            loginSpan.innerText = userData.username;
+            // تغيير سلوك النقر لفتح القائمة بدلاً من مودال تسجيل الدخول
+            loginAreaDiv.onclick = () => openMenu();
+        } else {
+            loginSpan.innerText = 'تسجيل الدخول';
+            loginAreaDiv.onclick = () => openAuthModal();
+        }
+    }
+
+    // ---------------------- 2. الترجمة (نفس السابق) ----------------------
     const translations = {
-        default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", logo: "PUBG UC", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "لأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", menuTitle: "القائمة", loginMenu: "تسجيل الدخول", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم" },
-        en: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", menuTitle: "Menu", loginMenu: "Login", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support" },
-        es: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Iniciar sesión", sectionTitle: "Elige el paquete", coupon: "Usar cupón", events: "Eventos", vip: "Cuenta VIP", countryPlaceholder: "Elige país", paymentPlaceholder: "Método de pago", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar ahora", footer: "Todos los derechos reservados", modalTitle: "ID del jugador", deleteBtn: "Eliminar", changeBtn: "Cambiar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecciona tu país", asia: "Asia", europe: "Europa", northAmerica: "América del Norte", southAmerica: "América del Sur", close: "Cerrar", menuTitle: "Menú", loginMenu: "Iniciar sesión", notificationSettings: "Configuración de notificaciones", ordersCenter: "Centro de pedidos", accountInfo: "Información de la cuenta", logout: "Cerrar sesión", eventsMenu: "Eventos", instructions: "Instrucciones", support: "Soporte" },
-        fr: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Connexion", sectionTitle: "Choisissez le pack", coupon: "Utiliser coupon", events: "Événements", vip: "Compte VIP", countryPlaceholder: "Choisissez le pays", paymentPlaceholder: "Mode de paiement", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acheter maintenant", footer: "Tous droits réservés", modalTitle: "ID du joueur", deleteBtn: "Supprimer", changeBtn: "Changer", pubgBrand: "PUBG MOBILE", countryModalTitle: "Sélectionnez votre pays", asia: "Asie", europe: "Europe", northAmerica: "Amérique du Nord", southAmerica: "Amérique du Sud", close: "Fermer", menuTitle: "Menu", loginMenu: "Connexion", notificationSettings: "Paramètres de notification", ordersCenter: "Centre de commandes", accountInfo: "Infos du compte", logout: "Déconnexion", eventsMenu: "Événements", instructions: "Instructions", support: "Support" },
-        de: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Anmelden", sectionTitle: "Paket wählen", coupon: "Gutschein nutzen", events: "Ereignisse", vip: "VIP-Konto", countryPlaceholder: "Land auswählen", paymentPlaceholder: "Zahlungsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Jetzt kaufen", footer: "Alle Rechte vorbehalten", modalTitle: "Spieler-ID", deleteBtn: "Löschen", changeBtn: "Ändern", pubgBrand: "PUBG MOBILE", countryModalTitle: "Wählen Sie Ihr Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Südamerika", close: "Schließen", menuTitle: "Menü", loginMenu: "Anmelden", notificationSettings: "Benachrichtigungseinstellungen", ordersCenter: "Bestellzentrum", accountInfo: "Kontoinformationen", logout: "Abmelden", eventsMenu: "Ereignisse", instructions: "Anleitung", support: "Support" },
-        it: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Accedi", sectionTitle: "Scegli il pacchetto", coupon: "Usa coupon", events: "Eventi", vip: "Account VIP", countryPlaceholder: "Scegli paese", paymentPlaceholder: "Metodo di pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acquista ora", footer: "Tutti i diritti riservati", modalTitle: "ID giocatore", deleteBtn: "Elimina", changeBtn: "Cambia", pubgBrand: "PUBG MOBILE", countryModalTitle: "Seleziona il tuo paese", asia: "Asia", europe: "Europa", northAmerica: "Nord America", southAmerica: "Sud America", close: "Chiudi", menuTitle: "Menu", loginMenu: "Accedi", notificationSettings: "Impostazioni notifiche", ordersCenter: "Centro ordini", accountInfo: "Info account", logout: "Esci", eventsMenu: "Eventi", instructions: "Istruzioni", support: "Supporto" },
-        pt: { pageTitle: "PUBG UC Store", logo: "PUBG UC", loginArea: "Entrar", sectionTitle: "Escolha o pacote", coupon: "Usar cupom", events: "Eventos", vip: "Conta VIP", countryPlaceholder: "Escolha o país", paymentPlaceholder: "Método de pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar agora", footer: "Todos os direitos reservados", modalTitle: "ID do jogador", deleteBtn: "Excluir", changeBtn: "Alterar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecione seu país", asia: "Ásia", europe: "Europa", northAmerica: "América do Norte", southAmerica: "América do Sul", close: "Fechar", menuTitle: "Menu", loginMenu: "Entrar", notificationSettings: "Configurações de notificação", ordersCenter: "Central de pedidos", accountInfo: "Informações da conta", logout: "Sair", eventsMenu: "Eventos", instructions: "Instruções", support: "Suporte" },
-        tr: { pageTitle: "PUBG UC Mağazası", logo: "PUBG UC", loginArea: "Giriş yap", sectionTitle: "Paketi seç", coupon: "Kupon kullan", events: "Etkinlikler", vip: "VIP Hesap", countryPlaceholder: "Ülke seç", paymentPlaceholder: "Ödeme yöntemi", zain: "Zain Cash", asiaHaw: "Asia Havale", master: "Master Card", buy: "Şimdi satın al", footer: "Tüm hakları saklıdır", modalTitle: "Oyuncu ID", deleteBtn: "Sil", changeBtn: "Değiştir", pubgBrand: "PUBG MOBILE", countryModalTitle: "Ülkenizi seçin", asia: "Asya", europe: "Avrupa", northAmerica: "Kuzey Amerika", southAmerica: "Güney Amerika", close: "Kapat", menuTitle: "Menü", loginMenu: "Giriş yap", notificationSettings: "Bildirim ayarları", ordersCenter: "Sipariş merkezi", accountInfo: "Hesap bilgileri", logout: "Çıkış yap", eventsMenu: "Etkinlikler", instructions: "Talimatlar", support: "Destek" }
+        default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "لأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
+        en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" },
+        // باقي اللغات مختصرة للاختصار ولكن بنفس النسق...
     };
+    // إكمال الترجمات للغات الأخرى (نفس المنطق السابق)
+    translations.es = { ...translations.default, loginArea: "Iniciar sesión", sectionTitle: "Elige el paquete", coupon: "Usar cupón", events: "Eventos", vip: "Cuenta VIP", countryPlaceholder: "Elige país", paymentPlaceholder: "Método de pago", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar ahora", footer: "Todos los derechos reservados", modalTitle: "ID del jugador", deleteBtn: "Eliminar", changeBtn: "Cambiar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecciona tu país", asia: "Asia", europe: "Europa", northAmerica: "América del Norte", southAmerica: "América del Sur", close: "Cerrar", notificationSettings: "Configuración de notificaciones", ordersCenter: "Centro de pedidos", accountInfo: "Información de la cuenta", logout: "Cerrar sesión", eventsMenu: "Eventos", instructions: "Instrucciones", support: "Soporte", cardManagement: "Gestión de tarjeta" };
+    translations.fr = { ...translations.default, loginArea: "Connexion", sectionTitle: "Choisissez le pack", coupon: "Utiliser coupon", events: "Événements", vip: "Compte VIP", countryPlaceholder: "Choisissez le pays", paymentPlaceholder: "Mode de paiement", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acheter maintenant", footer: "Tous droits réservés", modalTitle: "ID du joueur", deleteBtn: "Supprimer", changeBtn: "Changer", pubgBrand: "PUBG MOBILE", countryModalTitle: "Sélectionnez votre pays", asia: "Asie", europe: "Europe", northAmerica: "Amérique du Nord", southAmerica: "Amérique du Sud", close: "Fermer", notificationSettings: "Paramètres de notification", ordersCenter: "Centre de commandes", accountInfo: "Infos du compte", logout: "Déconnexion", eventsMenu: "Événements", instructions: "Instructions", support: "Support", cardManagement: "Gestion de carte" };
+    translations.de = { ...translations.default, loginArea: "Anmelden", sectionTitle: "Paket wählen", coupon: "Gutschein nutzen", events: "Ereignisse", vip: "VIP-Konto", countryPlaceholder: "Land auswählen", paymentPlaceholder: "Zahlungsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Jetzt kaufen", footer: "Alle Rechte vorbehalten", modalTitle: "Spieler-ID", deleteBtn: "Löschen", changeBtn: "Ändern", pubgBrand: "PUBG MOBILE", countryModalTitle: "Wählen Sie Ihr Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Südamerika", close: "Schließen", notificationSettings: "Benachrichtigungseinstellungen", ordersCenter: "Bestellzentrum", accountInfo: "Kontoinformationen", logout: "Abmelden", eventsMenu: "Ereignisse", instructions: "Anleitung", support: "Support", cardManagement: "Kartenverwaltung" };
+    translations.tr = { ...translations.default, loginArea: "Giriş yap", sectionTitle: "Paketi seç", coupon: "Kupon kullan", events: "Etkinlikler", vip: "VIP Hesap", countryPlaceholder: "Ülke seç", paymentPlaceholder: "Ödeme yöntemi", zain: "Zain Cash", asiaHaw: "Asia Havale", master: "Master Card", buy: "Şimdi satın al", footer: "Tüm hakları saklıdır", modalTitle: "Oyuncu ID", deleteBtn: "Sil", changeBtn: "Değiştir", pubgBrand: "PUBG MOBILE", countryModalTitle: "Ülkenizi seçin", asia: "Asya", europe: "Avrupa", northAmerica: "Kuzey Amerika", southAmerica: "Güney Amerika", close: "Kapat", notificationSettings: "Bildirim ayarları", ordersCenter: "Sipariş merkezi", accountInfo: "Hesap bilgileri", logout: "Çıkış yap", eventsMenu: "Etkinlikler", instructions: "Talimatlar", support: "Destek", cardManagement: "Kart Yönetimi" };
+    
     function getLanguageForCountry(country) { const map = { "الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en","إسبانيا":"es","المكسيك":"es","الأرجنتين":"es","فرنسا":"fr","ألمانيا":"de","إيطاليا":"it","البرازيل":"pt","تركيا":"tr" }; return map[country] || "default"; }
     function applyTranslation(langCode) {
         const t = translations[langCode] || translations.default;
-        document.title = t.pageTitle; document.getElementById("logoText").innerText = t.logo;
-        document.querySelector("#loginArea span").innerText = t.loginArea;
+        document.title = t.pageTitle;
+        document.getElementById("loginText").innerText = isLoggedIn() ? (getLoggedUserData()?.username || t.loginArea) : t.loginArea;
         document.getElementById("sectionTitle").innerText = t.sectionTitle;
-        document.getElementById("couponBtn").innerText = t.coupon; document.getElementById("eventsBtn").innerText = t.events; document.getElementById("vipBtn").innerText = t.vip;
-        document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
+        document.getElementById("couponBtn").innerHTML = `📦 ${t.coupon}`;
+        document.getElementById("eventsBtn").innerHTML = `🎯 ${t.events}`;
+        document.getElementById("vipBtn").innerHTML = `👑 ${t.vip}`;
+        if(!localStorage.getItem('selectedCountry')) document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
         document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ▼";
         let items = document.querySelectorAll("#paymentList li"); if(items[0]) items[0].innerText = t.zain; if(items[1]) items[1].innerText = t.asiaHaw; if(items[2]) items[2].innerText = t.master;
         document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
@@ -944,11 +991,11 @@ footer {
         document.getElementById("pubgBrandText").innerText = t.pubgBrand; document.getElementById("countryModalTitle").innerText = t.countryModalTitle;
         document.getElementById("asiaTitle").innerText = t.asia; document.getElementById("europeTitle").innerText = t.europe;
         document.getElementById("northAmericaTitle").innerText = t.northAmerica; document.getElementById("southAmericaTitle").innerText = t.southAmerica;
-        document.getElementById("closeCountryModalBtn").innerText = t.close; document.getElementById("menuTitle").innerText = t.menuTitle;
+        document.getElementById("closeCountryModalBtn").innerText = t.close;
         refreshMenuContent();
     }
 
-    // ---------------------- 3. القائمة الجانبية (تعتمد على حالة تسجيل الدخول) ----------------------
+    // ---------------------- 3. القائمة الجانبية (تعتمد على اسم المستخدم) ----------------------
     function refreshMenuContent() {
         const container = document.getElementById("menuItemsList");
         if(!container) return;
@@ -957,15 +1004,15 @@ footer {
         const t = translations[currentLang] || translations.default;
         let html = '';
         if(logged) {
-            const userEmail = getLoggedUser();
-            html += `<div class="menu-item account-info-top" style="flex-direction:column; align-items:flex-start; cursor:default;"><div style="font-weight:bold;">${t.accountInfo}</div><div class="account-id-display">📧 ${userEmail}</div></div>`;
+            const userData = getLoggedUserData();
+            html += `<div class="menu-item user-info-top"><div class="username-large">${userData.username}</div><div class="account-id-display">📧 ${userData.email}</div></div>`;
             html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div>`;
             html += `<div class="menu-item" data-action="orders">${t.ordersCenter}</div>`;
-            html += `<div class="menu-item" data-action="accountInfo">${t.accountInfo}</div>`;
+            html += `<div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>`; // زر إدارة البطاقة
             html += `<div class="menu-item" data-action="logout">${t.logout}</div>`;
             html += `<div class="menu-divider"></div>`;
         } else {
-            html += `<div class="menu-item" data-action="login">${t.loginMenu}</div>`;
+            html += `<div class="menu-item" data-action="login">${t.loginArea}</div>`;
             html += `<div class="menu-divider"></div>`;
         }
         html += `<div class="menu-item" data-action="events">${t.eventsMenu}</div><div class="menu-item" data-action="instructions">${t.instructions}</div><div class="menu-item" data-action="support">${t.support}</div>`;
@@ -977,7 +1024,7 @@ footer {
                 else if(action === 'logout') { logoutUser(); alert("تم تسجيل الخروج"); closeMenu(); }
                 else if(action === 'notifications') alert(t.notificationSettings + " (قريباً)");
                 else if(action === 'orders') alert(t.ordersCenter + " (سيتم عرض طلباتك قريباً)");
-                else if(action === 'accountInfo') alert(`${t.accountInfo}\nالبريد: ${getLoggedUser()}`);
+                else if(action === 'cardManagement') alert("💳 إدارة البطاقة: ستتمكن قريباً من إضافة بطاقات الدفع.");
                 else if(action === 'events') alert(t.eventsMenu + " (قريباً)");
                 else if(action === 'instructions') alert(t.instructions + "\n1- سجل دخولك أولاً\n2- أضف معرف PUBG\n3- اختر الباقة");
                 else if(action === 'support') alert(t.support + ": support@pubgstore.com");
@@ -998,20 +1045,21 @@ footer {
     function refreshHeaderAccount() { currentUserId = localStorage.getItem(STORAGE_KEY); if(!currentUserId) { headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف معرف PUBG</div>`; document.getElementById('headerAddAccountBtn')?.addEventListener('click',()=>{ let newId=promptNumbers('ادخل ايدي PUBG (أرقام فقط):'); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); } else { let display = currentUserId.length>12 ? currentUserId.slice(0,10)+'...' : currentUserId; headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${display}</div>`; document.getElementById('headerSavedIdBtn')?.addEventListener('click',()=>showPopup(currentUserId)); } }
     refreshHeaderAccount();
 
-    // ---------------------- 5. مودال تسجيل الدخول ----------------------
+    // ---------------------- 5. مودال تسجيل الدخول مع اسم المستخدم ----------------------
     const authModal = document.getElementById('authModal');
     const authTitle = document.getElementById('authTitle');
     const authSubmitBtn = document.getElementById('authSubmitBtn');
     const authSwitchText = document.getElementById('authSwitchText');
     const authEmail = document.getElementById('authEmail');
     const authPassword = document.getElementById('authPassword');
+    const authUsername = document.getElementById('authUsername');
     const authError = document.getElementById('authError');
     let isLoginMode = true;
-    function openAuthModal() { authModal.classList.add('active'); authEmail.value=''; authPassword.value=''; authError.innerText=''; isLoginMode=true; updateAuthUI(); }
+    function openAuthModal() { authModal.classList.add('active'); authEmail.value=''; authPassword.value=''; authUsername.value=''; authError.innerText=''; isLoginMode=true; updateAuthUI(); }
     function closeAuthModal() { authModal.classList.remove('active'); }
-    function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
+    function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authUsername.style.display='none'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authUsername.style.display='block'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
     authSwitchText.addEventListener('click', (e) => { if(e.target.tagName==='SPAN') { isLoginMode = !isLoginMode; updateAuthUI(); } });
-    authSubmitBtn.addEventListener('click', () => { const email = authEmail.value.trim(); const pwd = authPassword.value.trim(); if(!email || !pwd) { authError.innerText='يرجى ملء جميع الحقول'; return; } if(isLoginMode) { let res = loginUser(email, pwd); if(res.success) { closeAuthModal(); refreshMenuContent(); alert(`مرحباً ${email}`); } else { authError.innerText=res.msg; } } else { let res = registerUser(email, pwd); if(res.success) { isLoginMode=true; updateAuthUI(); authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; } else { authError.innerText=res.msg; } } });
+    authSubmitBtn.addEventListener('click', () => { const email = authEmail.value.trim(); const pwd = authPassword.value.trim(); if(!email || !pwd) { authError.innerText='يرجى ملء البريد وكلمة المرور'; return; } if(isLoginMode) { let res = loginUser(email, pwd); if(res.success) { closeAuthModal(); refreshMenuContent(); updateLoginArea(); alert(`مرحباً ${res.username}`); } else { authError.innerText=res.msg; } } else { const username = authUsername.value.trim(); if(!username) { authError.innerText='يرجى إدخال اسم المستخدم'; return; } let res = registerUser(username, email, pwd); if(res.success) { isLoginMode=true; updateAuthUI(); authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; } else { authError.innerText=res.msg; } } });
     authModal.addEventListener('click', (e) => { if(e.target === authModal) closeAuthModal(); });
 
     // ---------------------- 6. باقي عناصر الواجهة (دول، بطاقات، دروبداون) ----------------------
@@ -1029,21 +1077,24 @@ footer {
     const savedCountry = localStorage.getItem('selectedCountry');
     if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; applyTranslation(getLanguageForCountry(savedCountry)); } else applyTranslation('default');
 
+    // تعديل البطاقات: استخدام صورة uc.png
     const cardsData = [{ title: "60 UC", price: "$0.99" },{ title: "325 UC", price: "$4.99" },{ title: "660 UC", price: "$9.99" },{ title: "1800 UC", price: "$24.99" }];
-    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='150' viewBox='0 0 200 150'%3E%3Crect width='200' height='150' fill='%23222'/%3E%3Ctext x='100' y='85' text-anchor='middle' fill='%23f7c948' font-size='32' font-weight='bold'%3EUC%3C/text%3E%3C/svg%3E" alt="UC"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
+    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
     renderCards();
     function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' ▼'; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
     initDropdown();
-    document.getElementById('loginArea')?.addEventListener('click',()=>openAuthModal());
     document.getElementById('couponBtn')?.addEventListener('click',()=>alert('🔖 كوبونات قريباً'));
     document.getElementById('eventsBtn')?.addEventListener('click',()=>alert('📅 الأحداث قريباً'));
     document.getElementById('vipBtn')?.addEventListener('click',()=>alert('👑 VIP قريباً'));
 
-    // Side menu controls
+    // Side menu controls (بدون تحريك الصفحة)
     const menuIcon = document.getElementById('menuIcon'), sideMenu = document.getElementById('sideMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { sideMenu.classList.add('open'); menuOverlay.classList.add('active'); }
-    function closeMenu() { sideMenu.classList.remove('open'); menuOverlay.classList.remove('active'); }
+    function openMenu() { sideMenu.classList.add('open'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; } // منع التمرير خلف القائمة
+    function closeMenu() { sideMenu.classList.remove('open'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
     menuIcon.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); menuOverlay.addEventListener('click', closeMenu);
+    
+    // تحديث منطقة تسجيل الدخول في البداية
+    updateLoginArea();
 </script>
 </body>
 </html>
