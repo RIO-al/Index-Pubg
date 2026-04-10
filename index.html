@@ -15,7 +15,7 @@
 body {
     background: #0f0f0f;
     color: #fff;
-    overflow-x: hidden; /* لمنع التمرير الأفقي عند فتح القائمة */
+    overflow-x: hidden;
 }
 
 /* Header */
@@ -30,12 +30,12 @@ header {
     gap: 10px;
 }
 
-/* شعار الصورة بدلاً من النص */
 .logo-img {
     height: 40px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
+    cursor: pointer;
 }
 
 .nav-icons {
@@ -45,7 +45,6 @@ header {
     font-size: 22px;
 }
 
-/* زر الحساب الجديد بجانب تسجيل الدخول */
 .header-account-btn {
     background: #1e1e1e;
     padding: 6px 12px;
@@ -64,7 +63,6 @@ header {
     border-color: #f7c948;
 }
 
-/* منطقة اسم المستخدم / تسجيل الدخول */
 .login-area {
     display: flex;
     align-items: center;
@@ -93,7 +91,6 @@ header {
     filter: brightness(0) invert(1);
 }
 
-/* زر القائمة (☰) */
 .menu-icon {
     font-size: 28px;
     cursor: pointer;
@@ -116,7 +113,6 @@ header {
     padding: 15px 25px;
 }
 
-/* المربع الأسود للنص وعلامة التوثيق */
 .hero-badge-box {
     background: #111;
     padding: 8px 16px;
@@ -172,7 +168,6 @@ header {
     filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));
 }
 
-/* حقوق النشر */
 .copyright-corner {
     position: absolute;
     bottom: 12px;
@@ -187,14 +182,155 @@ header {
     backdrop-filter: blur(2px);
 }
 
-/* Section */
-.section {
+/* Main Content & Pages */
+.main-content, .page {
     padding: 30px 20px;
     max-width: 1200px;
     margin: auto;
 }
 
-/* عنوان القسم والأزرار الجانبية */
+.page {
+    display: none;
+}
+.page.active-page {
+    display: block;
+}
+.back-home-btn {
+    background: #1a1a1a;
+    border: 1px solid #f7c948;
+    padding: 8px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    margin-bottom: 25px;
+    display: inline-block;
+    color: #f7c948;
+    font-weight: bold;
+}
+.back-home-btn:hover {
+    background: #f7c948;
+    color: #111;
+}
+
+/* Notifications Page */
+.notif-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+.toggle-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1a1a1a;
+    padding: 15px 20px;
+    border-radius: 60px;
+    margin: 20px 0;
+    border: 1px solid #333;
+}
+.toggle-label {
+    font-size: 18px;
+    font-weight: bold;
+}
+.toggle-switch {
+    width: 60px;
+    height: 30px;
+    background: #333;
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s;
+}
+.toggle-switch.active {
+    background: #f7c948;
+}
+.toggle-switch::after {
+    content: "";
+    width: 26px;
+    height: 26px;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    transition: 0.2s;
+}
+.toggle-switch.active::after {
+    right: 30px;
+}
+.notif-info {
+    background: #0f0f0f;
+    padding: 15px;
+    border-radius: 20px;
+    margin-top: 20px;
+    border-right: 4px solid #f7c948;
+    color: #ccc;
+}
+.user-email-display {
+    color: #f7c948;
+    font-weight: bold;
+}
+
+/* Orders Page */
+.orders-header {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    margin-bottom: 20px;
+}
+.filter-buttons {
+    display: flex;
+    gap: 15px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+.filter-btn {
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 8px 20px;
+    border-radius: 40px;
+    cursor: pointer;
+    transition: 0.2s;
+    color: #eee;
+}
+.filter-btn.active {
+    background: #f7c948;
+    color: #111;
+    border-color: #f7c948;
+}
+.orders-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 20px;
+}
+.order-card {
+    background: #1a1a1a;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.order-status {
+    padding: 4px 12px;
+    border-radius: 40px;
+    font-size: 12px;
+    font-weight: bold;
+}
+.status-completed { background: #2e7d32; color: white; }
+.status-pending { background: #ed6c02; color: white; }
+.empty-msg {
+    text-align: center;
+    padding: 40px;
+    color: #aaa;
+    background: #111;
+    border-radius: 20px;
+}
+
+/* باقي التنسيقات */
 .section-header {
     display: flex;
     justify-content: space-between;
@@ -203,7 +339,6 @@ header {
     gap: 15px;
     margin-bottom: 25px;
 }
-
 .section-title {
     font-size: 24px;
     color: #f7c948;
@@ -211,8 +346,6 @@ header {
     padding-right: 12px;
     margin: 0;
 }
-
-/* مستطيل أسود واحد للأزرار الثلاثة */
 .extra-box {
     background: #0a0a0a;
     border: 1px solid #2a2a2a;
@@ -222,7 +355,6 @@ header {
     gap: 20px;
     align-items: center;
 }
-
 .extra-btn {
     background: transparent;
     border: none;
@@ -237,13 +369,10 @@ header {
     align-items: center;
     gap: 8px;
 }
-
 .extra-btn:hover {
     color: #f7c948;
     background: #1a1a1a;
 }
-
-/* Filters */
 .filters {
     display: flex;
     gap: 15px;
@@ -251,8 +380,6 @@ header {
     margin-bottom: 25px;
     align-items: center;
 }
-
-/* زر الدولة المعدل ليصبح مفتاح المودال */
 .country-modal-btn {
     background: #1a1a1a;
     padding: 12px 16px;
@@ -267,13 +394,10 @@ header {
     color: #eee;
     min-width: 160px;
 }
-
 .country-modal-btn:hover {
     border-color: #f7c948;
     background: #242424;
 }
-
-/* مودال الدول بالقارات */
 .country-modal-overlay {
     position: fixed;
     top: 0;
@@ -290,12 +414,10 @@ header {
     opacity: 0;
     transition: 0.2s;
 }
-
 .country-modal-overlay.active {
     visibility: visible;
     opacity: 1;
 }
-
 .country-popup {
     background: #1a1a1a;
     width: 90%;
@@ -306,32 +428,11 @@ header {
     border: 1px solid #f7c948;
     overflow-y: auto;
 }
-
-.country-popup h3 {
-    color: #f7c948;
-    text-align: center;
-    margin-bottom: 20px;
-    font-size: 22px;
-}
-
-.continent-section {
-    margin-bottom: 25px;
-}
-
-.continent-title {
-    font-size: 18px;
-    color: #ffb347;
-    border-bottom: 1px solid #333;
-    padding-bottom: 6px;
-    margin-bottom: 12px;
-}
-
 .country-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 12px;
 }
-
 .country-item {
     background: #0f0f0f;
     padding: 10px 8px;
@@ -340,33 +441,15 @@ header {
     cursor: pointer;
     transition: 0.2s;
     border: 1px solid #2a2a2a;
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
 }
-
 .country-item:hover {
     background: #f7c948;
     color: #111;
-    border-color: #f7c948;
 }
-
-.close-country-popup {
-    text-align: center;
-    margin-top: 20px;
-    color: #aaa;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-/* باقي التنسيقات كما هي */
 .custom-dropdown {
     position: relative;
     min-width: 190px;
 }
-
 .dropdown-btn {
     background: #1a1a1a;
     padding: 12px 16px;
@@ -376,16 +459,7 @@ header {
     justify-content: space-between;
     align-items: center;
     border: 1px solid #333;
-    transition: 0.2s;
-    font-size: 14px;
-    color: #eee;
 }
-
-.dropdown-btn:hover {
-    border-color: #f7c948;
-    background: #242424;
-}
-
 .dropdown-list {
     position: absolute;
     top: 110%;
@@ -399,154 +473,46 @@ header {
     margin: 0;
     z-index: 100;
     display: none;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
-
 .dropdown-list li {
     padding: 10px 16px;
     cursor: pointer;
-    transition: 0.1s;
-    font-size: 14px;
-    color: #ddd;
 }
-
 .dropdown-list li:hover {
     background: #f7c948;
     color: #111;
 }
-
-/* Modal Account (ID PUBG) */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(3px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.2s;
-}
-
-.modal-overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-.popup-card {
-    background: #1a1a1a;
-    width: 320px;
-    border-radius: 28px;
-    padding: 24px 20px;
-    text-align: center;
-    border: 1px solid #f7c948;
-    box-shadow: 0 20px 30px rgba(0,0,0,0.5);
-}
-
-.popup-card p {
-    margin: 15px 0;
-    font-size: 18px;
-    word-break: break-all;
-    background: #0f0f0f;
-    padding: 12px;
-    border-radius: 20px;
-    font-family: monospace;
-}
-
-.popup-buttons {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 10px;
-}
-
-.popup-buttons button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 40px;
-    font-weight: bold;
-    font-size: 14px;
-    cursor: pointer;
-}
-
-.delete-btn {
-    background: #c0392b;
-    color: white;
-}
-
-.delete-btn:hover {
-    background: #e74c3c;
-}
-
-.change-btn {
-    background: #f7c948;
-    color: #111;
-}
-
-.change-btn:hover {
-    background: #ffda6e;
-}
-
-.close-popup {
-    background: transparent;
-    color: #aaa;
-    margin-top: 12px;
-    font-size: 12px;
-    text-decoration: underline;
-    cursor: pointer;
-}
-
-/* Cards */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 20px;
 }
-
 .card {
     background: #1a1a1a;
     border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
     transition: 0.25s;
     border: 1px solid #2a2a2a;
 }
-
 .card:hover {
     transform: translateY(-6px);
     border-color: #f7c948;
 }
-
 .card img {
     width: 100%;
     height: 170px;
     object-fit: cover;
-    background: #252525;
 }
-
 .card-body {
     padding: 16px;
     text-align: center;
 }
-
-.card-title {
-    font-size: 18px;
-    margin-bottom: 8px;
-    font-weight: bold;
-}
-
 .price {
     color: #f7c948;
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 12px;
 }
-
 .buy-btn {
     background: #f7c948;
     color: #111;
@@ -556,14 +522,7 @@ header {
     font-weight: bold;
     cursor: pointer;
     width: 100%;
-    transition: 0.2s;
 }
-
-.buy-btn:hover {
-    background: #ffdd77;
-    transform: scale(0.97);
-}
-
 footer {
     margin-top: 40px;
     padding: 20px;
@@ -573,8 +532,7 @@ footer {
     color: #999;
     font-size: 13px;
 }
-
-/* ========== القائمة الجانبية (menu) بدون تحريك الصفحة ========== */
+/* القائمة الجانبية */
 .side-menu {
     position: fixed;
     top: 0;
@@ -589,11 +547,9 @@ footer {
     flex-direction: column;
     box-shadow: -5px 0 25px rgba(0,0,0,0.7);
 }
-
 .side-menu.open {
     right: 0;
 }
-
 .menu-overlay {
     position: fixed;
     top: 0;
@@ -607,12 +563,10 @@ footer {
     opacity: 0;
     transition: 0.2s;
 }
-
 .menu-overlay.active {
     visibility: visible;
     opacity: 1;
 }
-
 .menu-header {
     padding: 20px;
     border-bottom: 1px solid #222;
@@ -623,17 +577,12 @@ footer {
 .menu-header-img {
     height: 40px;
     width: auto;
-    object-fit: contain;
 }
 .close-menu {
     font-size: 28px;
     cursor: pointer;
     color: #aaa;
 }
-.close-menu:hover {
-    color: #f7c948;
-}
-
 .menu-items {
     flex: 1;
     padding: 15px 0;
@@ -660,7 +609,6 @@ footer {
     background: #222;
     margin: 8px 0;
 }
-/* منطقة اسم المستخدم في القائمة */
 .user-info-top {
     background: #1a1a1a;
     margin-bottom: 8px;
@@ -670,21 +618,12 @@ footer {
     align-items: flex-start !important;
     cursor: default !important;
 }
-.user-info-top .username-large {
+.username-large {
     font-size: 20px;
     font-weight: bold;
     color: #f7c948;
-    word-break: break-word;
 }
-.account-id-display {
-    font-family: monospace;
-    font-size: 14px;
-    color: #aaa;
-    word-break: break-all;
-    margin-top: 8px;
-}
-
-/* مودال تسجيل الدخول/التسجيل */
+/* مودال تسجيل الدخول */
 .auth-modal {
     position: fixed;
     top: 0;
@@ -713,10 +652,6 @@ footer {
     border: 1px solid #f7c948;
     text-align: center;
 }
-.auth-card h3 {
-    color: #f7c948;
-    margin-bottom: 20px;
-}
 .auth-input {
     width: 100%;
     padding: 12px;
@@ -725,11 +660,6 @@ footer {
     border: 1px solid #333;
     border-radius: 40px;
     color: white;
-    font-size: 14px;
-    outline: none;
-}
-.auth-input:focus {
-    border-color: #f7c948;
 }
 .auth-btn {
     background: #f7c948;
@@ -748,353 +678,362 @@ footer {
     color: #aaa;
     cursor: pointer;
 }
-.auth-switch span {
-    color: #f7c948;
-    text-decoration: underline;
-}
 .auth-error {
     color: #e67e22;
     font-size: 12px;
-    margin-top: 8px;
 }
-
 @media (max-width: 680px) {
-    .hero {
-        min-height: 140px;
-        padding: 12px 15px;
-    }
-    .hero-content-new {
-        gap: 8px;
-    }
-    .pu-image {
-        width: 38px;
-        height: 38px;
-    }
-    .pubg-text {
-        font-size: 18px;
-    }
-    .country-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .extra-box {
-        gap: 8px;
-        padding: 4px 8px;
-    }
-    .extra-btn {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
-    .section-header {
-        flex-direction: column;
-        align-items: stretch;
-    }
-    .side-menu {
-        width: 260px;
-    }
+    .country-grid { grid-template-columns: repeat(2, 1fr); }
+    .extra-box { gap: 8px; }
 }
 </style>
 </head>
 <body>
 
 <header>
-    <img src="Rund.png" alt="Rund" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2240%22 viewBox=%220 0 100 40%22%3E%3Crect width=%22100%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2216%22%3ERund%3C/text%3E%3C/svg%3E'">
+    <img src="Rund.png" alt="Rund" class="logo-img" id="logoImg" onclick="showMainPage()" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2240%22 viewBox=%220 0 100 40%22%3E%3Crect width=%22100%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2216%22%3ERund%3C/text%3E%3C/svg%3E'">
     <div class="nav-icons">
-        <div class="login-area" id="loginArea">
-            <span id="loginText">تسجيل الدخول</span>
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23f7c948' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 3h6v6M14 10L21 3M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5'/%3E%3C/svg%3E" alt="long" class="login-icon-img" style="width:18px;">
-        </div>
+        <div class="login-area" id="loginArea"><span id="loginText">تسجيل الدخول</span><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%23f7c948' stroke-width='2'%3E%3Cpath d='M15 3h6v6M14 10L21 3M10 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5'/%3E%3C/svg%3E" class="login-icon-img"></div>
         <div id="headerAccountContainer"></div>
         <div class="menu-icon" id="menuIcon">☰</div>
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-content-new">
-        <div class="hero-badge-box">
-            <div class="verified-badge">
-                <svg viewBox="0 0 24 24">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                </svg>
-            </div>
-            <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
-        </div>
-        <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
+<!-- الصفحة الرئيسية -->
+<div id="mainPage" class="main-content active-page">
+    <section class="hero">
+        <div class="hero-content-new"><div class="hero-badge-box"><div class="verified-badge"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div><span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span></div><img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22%3EPU%3C/text%3E%3C/svg%3E'"></div>
+    </section>
+    <div class="section">
+        <div class="section-header"><h2 class="section-title" id="sectionTitle">اختر الباقة</h2><div class="extra-box"><button class="extra-btn" id="couponBtn">📦 استعمال كوبون</button><button class="extra-btn" id="eventsBtn">🎯 لأحداث</button><button class="extra-btn" id="vipBtn">👑 حساب VIP</button></div></div>
+        <div class="filters"><div class="country-modal-btn" id="openCountryModalBtn"><span id="countryBtnText">اختر الدولة</span> <span>▼</span></div><div class="custom-dropdown" id="paymentDropdown"><div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع ▼</div><ul class="dropdown-list" id="paymentList"><li data-value="Zain Cash">Zain Cash</li><li data-value="Asia Hawala">Asia Hawala</li><li data-value="Master Card">Master Card</li></ul></div></div>
+        <div class="cards" id="cardsContainer"></div>
     </div>
-</section>
+</div>
 
-<section class="section">
-    <div class="section-header">
-        <h2 class="section-title" id="sectionTitle">اختر الباقة</h2>
-        <div class="extra-box">
-            <button class="extra-btn" id="couponBtn">📦 استعمال كوبون</button>
-            <button class="extra-btn" id="eventsBtn">🎯 لأحداث</button>
-            <button class="extra-btn" id="vipBtn">👑 حساب VIP</button>
+<!-- صفحة الإشعارات -->
+<div id="notificationsPage" class="page">
+    <div style="padding: 20px; max-width: 800px; margin: auto;">
+        <button class="back-home-btn" onclick="showMainPage()">← العودة للرئيسية</button>
+        <div class="notif-header">اشعارات الموقع</div>
+        <div class="toggle-container">
+            <span class="toggle-label">تفعيل الإشعارات</span>
+            <div id="notifToggle" class="toggle-switch"></div>
         </div>
-    </div>
-
-    <div class="filters">
-        <div class="country-modal-btn" id="openCountryModalBtn">
-            <span id="countryBtnText">اختر الدولة</span> <span>▼</span>
-        </div>
-        
-        <div class="custom-dropdown" id="paymentDropdown">
-            <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع ▼</div>
-            <ul class="dropdown-list" id="paymentList">
-                <li data-value="Zain Cash">Zain Cash</li>
-                <li data-value="Asia Hawala">Asia Hawala</li>
-                <li data-value="Master Card">Master Card</li>
-            </ul>
+        <div class="notif-info">
+            عند تفعيل الاشعارات سيصلك اشعارات الخصومات و العروض و التحديثات الى بريدك: <span id="notifUserEmail" class="user-email-display">---</span>
         </div>
     </div>
+</div>
 
-    <div class="cards" id="cardsContainer"></div>
-</section>
+<!-- صفحة مركز الطلبات -->
+<div id="ordersPage" class="page">
+    <div style="padding: 20px; max-width: 1000px; margin: auto;">
+        <button class="back-home-btn" onclick="showMainPage()">← العودة للرئيسية</button>
+        <div class="orders-header">سجل جميع طلباتك</div>
+        <div class="filter-buttons">
+            <button class="filter-btn" data-filter="completed">المكتمله</button>
+            <button class="filter-btn" data-filter="pending">المعلقه</button>
+            <button class="filter-btn active" data-filter="all">جميع الطلبات</button>
+        </div>
+        <div id="ordersListContainer" class="orders-list"></div>
+    </div>
+</div>
 
 <footer id="footerText">جميع الحقوق محفوظة © PUBG UC Store</footer>
 
-<!-- مودال ID PUBG -->
-<div id="idModal" class="modal-overlay">
-    <div class="popup-card">
-        <h3 style="color:#f7c948;" id="modalTitle">معرف اللاعب</h3>
-        <p id="modalUserId">---</p>
-        <div class="popup-buttons">
-            <button id="modalDeleteBtn" class="delete-btn">حذف</button>
-            <button id="modalChangeBtn" class="change-btn">تغيير</button>
-        </div>
-    </div>
-</div>
-
-<!-- مودال الدول -->
-<div id="countryModal" class="country-modal-overlay">
-    <div class="country-popup">
-        <h3 id="countryModalTitle">اختر دولتك</h3>
-        <div class="continent-section"><div class="continent-title" id="asiaTitle">آسيا</div><div class="country-grid" id="asiaGrid"></div></div>
-        <div class="continent-section"><div class="continent-title" id="europeTitle">أوروبا</div><div class="country-grid" id="europeGrid"></div></div>
-        <div class="continent-section"><div class="continent-title" id="northAmericaTitle">أمريكا الشمالية</div><div class="country-grid" id="naGrid"></div></div>
-        <div class="continent-section"><div class="continent-title" id="southAmericaTitle">أمريكا الجنوبية</div><div class="country-grid" id="saGrid"></div></div>
-        <div class="close-country-popup" id="closeCountryModalBtn">إغلاق</div>
-    </div>
-</div>
-
-<!-- مودال تسجيل الدخول / إنشاء حساب -->
-<div id="authModal" class="auth-modal">
-    <div class="auth-card">
-        <h3 id="authTitle">تسجيل الدخول</h3>
-        <input type="text" id="authUsername" class="auth-input" placeholder="اسم المستخدم" style="display:none;">
-        <input type="email" id="authEmail" class="auth-input" placeholder="البريد الإلكتروني">
-        <input type="password" id="authPassword" class="auth-input" placeholder="كلمة المرور">
-        <div id="authError" class="auth-error"></div>
-        <button id="authSubmitBtn" class="auth-btn">دخول</button>
-        <div id="authSwitchText" class="auth-switch">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></div>
-    </div>
-</div>
-
-<!-- القائمة الجانبية -->
-<div class="menu-overlay" id="menuOverlay"></div>
-<div class="side-menu" id="sideMenu">
-    <div class="menu-header">
-        <img src="Rund.png" alt="Rund" class="menu-header-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2240%22 viewBox=%220 0 80 40%22%3E%3Crect width=%2280%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2240%22 y=%2225%22 text-anchor=%22middle%22 fill=%22%23f7c948%22%3ERund%3C/text%3E%3C/svg%3E'">
-        <div class="close-menu" id="closeMenuBtn">✕</div>
-    </div>
-    <div class="menu-items" id="menuItemsList"></div>
-</div>
+<!-- باقي المودالات (الدول، id، تسجيل الدخول، القائمة) -->
+<div id="countryModal" class="country-modal-overlay"><div class="country-popup"><h3 id="countryModalTitle">اختر دولتك</h3><div class="continent-section"><div class="continent-title" id="asiaTitle">آسيا</div><div class="country-grid" id="asiaGrid"></div></div><div class="continent-section"><div class="continent-title" id="europeTitle">أوروبا</div><div class="country-grid" id="europeGrid"></div></div><div class="continent-section"><div class="continent-title" id="northAmericaTitle">أمريكا الشمالية</div><div class="country-grid" id="naGrid"></div></div><div class="continent-section"><div class="continent-title" id="southAmericaTitle">أمريكا الجنوبية</div><div class="country-grid" id="saGrid"></div></div><div class="close-country-popup" id="closeCountryModalBtn">إغلاق</div></div></div>
+<div id="idModal" class="modal-overlay"><div class="popup-card"><h3 style="color:#f7c948;" id="modalTitle">معرف اللاعب</h3><p id="modalUserId">---</p><div class="popup-buttons"><button id="modalDeleteBtn" class="delete-btn">حذف</button><button id="modalChangeBtn" class="change-btn">تغيير</button></div></div></div>
+<div id="authModal" class="auth-modal"><div class="auth-card"><h3 id="authTitle">تسجيل الدخول</h3><input type="text" id="authUsername" class="auth-input" placeholder="اسم المستخدم" style="display:none;"><input type="email" id="authEmail" class="auth-input" placeholder="البريد الإلكتروني"><input type="password" id="authPassword" class="auth-input" placeholder="كلمة المرور"><div id="authError" class="auth-error"></div><button id="authSubmitBtn" class="auth-btn">دخول</button><div id="authSwitchText" class="auth-switch">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></div></div></div>
+<div class="menu-overlay" id="menuOverlay"></div><div class="side-menu" id="sideMenu"><div class="menu-header"><img src="Rund.png" class="menu-header-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2240%22%3E%3Crect width=%2280%22 height=%2240%22 fill=%22%23111%22/%3E%3Ctext x=%2240%22 y=%2225%22 fill=%22%23f7c948%22%3ERund%3C/text%3E%3C/svg%3E'"><div class="close-menu" id="closeMenuBtn">✕</div></div><div class="menu-items" id="menuItemsList"></div></div>
 
 <script>
-    // ---------------------- 1. نظام تسجيل الدخول (مع اسم المستخدم) ----------------------
-    const USERS_KEY = 'pubg_website_users_v2';
-    const CURRENT_USER_KEY = 'pubg_logged_user_data'; // تخزين البريد واسم المستخدم
+    // ---------------------- 1. نظام الحسابات مع اسم المستخدم ----------------------
+    const USERS_KEY = 'pubg_users_v3';
+    const CURRENT_USER_KEY = 'pubg_logged_user_v3';
+    const ORDERS_KEY = 'pubg_orders';
+    const NOTIF_KEY = 'pubg_notif_enabled';
 
-    function getUsers() {
-        let users = localStorage.getItem(USERS_KEY);
-        return users ? JSON.parse(users) : [];
-    }
-    function saveUsers(users) {
-        localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    }
-    function getLoggedUserData() {
-        let data = localStorage.getItem(CURRENT_USER_KEY);
-        return data ? JSON.parse(data) : null;
-    }
-    function setLoggedUserData(email, username) {
-        if(email && username) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ email, username }));
-        else localStorage.removeItem(CURRENT_USER_KEY);
-    }
-    function isLoggedIn() {
-        return !!getLoggedUserData();
-    }
+    function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
+    function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
+    function getLoggedUser() { return JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null'); }
+    function setLoggedUser(data) { if(data) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(data)); else localStorage.removeItem(CURRENT_USER_KEY); }
+    function isLoggedIn() { return !!getLoggedUser(); }
     function registerUser(username, email, password) {
         let users = getUsers();
-        if(users.find(u => u.email === email)) return { success: false, msg: 'البريد موجود مسبقاً' };
-        if(users.find(u => u.username === username)) return { success: false, msg: 'اسم المستخدم موجود مسبقاً' };
-        users.push({ username, email, password });
+        if(users.find(u=>u.email===email)) return {success:false, msg:'البريد موجود'};
+        if(users.find(u=>u.username===username)) return {success:false, msg:'اسم المستخدم موجود'};
+        users.push({username, email, password});
         saveUsers(users);
-        return { success: true };
+        return {success:true};
     }
     function loginUser(email, password) {
-        let users = getUsers();
-        let user = users.find(u => u.email === email && u.password === password);
-        if(user) {
-            setLoggedUserData(user.email, user.username);
-            return { success: true, username: user.username };
-        }
-        return { success: false, msg: 'بيانات غير صحيحة' };
+        let user = getUsers().find(u=>u.email===email && u.password===password);
+        if(user) { setLoggedUser({email:user.email, username:user.username}); return {success:true, username:user.username}; }
+        return {success:false, msg:'بيانات غير صحيحة'};
     }
-    function logoutUser() {
-        setLoggedUserData(null, null);
-        refreshMenuContent();
-        refreshHeaderAccount(); // لتحديث حالة تسجيل الدخول في الهيدر
-        updateLoginArea();     // تحديث زر تسجيل الدخول / اسم المستخدم
-    }
+    function logoutUser() { setLoggedUser(null); updateLoginArea(); refreshMenuContent(); }
 
-    // تحديث منطقة تسجيل الدخول في الهيدر (إظهار اسم المستخدم بدلاً من تسجيل الدخول)
-    function updateLoginArea() {
-        const loginSpan = document.getElementById('loginText');
-        const loginAreaDiv = document.getElementById('loginArea');
-        if(isLoggedIn()) {
-            const userData = getLoggedUserData();
-            loginSpan.innerText = userData.username;
-            // تغيير سلوك النقر لفتح القائمة بدلاً من مودال تسجيل الدخول
-            loginAreaDiv.onclick = () => openMenu();
-        } else {
-            loginSpan.innerText = 'تسجيل الدخول';
-            loginAreaDiv.onclick = () => openAuthModal();
-        }
+    // الطلبات
+    function addOrder(packageName, price) {
+        let user = getLoggedUser();
+        if(!user) return;
+        let orders = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+        // محاكاة حالات عشوائية للعرض (يمكن جعلها مكتملة دائماً لكن نضيف بعض المعلقات لتجربة الفلتر)
+        let status = Math.random() > 0.7 ? 'pending' : 'completed';
+        let newOrder = { id: Date.now(), userEmail: user.email, package: packageName, price: price, date: new Date().toLocaleString(), status: status };
+        orders.push(newOrder);
+        localStorage.setItem(ORDERS_KEY, JSON.stringify(orders));
+        alert(`تم إضافة الطلب: ${packageName} - ${price} (الحالة: ${status === 'completed' ? 'مكتمل' : 'معلق'})`);
     }
+    function getUserOrders() {
+        let user = getLoggedUser();
+        if(!user) return [];
+        let all = JSON.parse(localStorage.getItem(ORDERS_KEY) || '[]');
+        return all.filter(o => o.userEmail === user.email);
+    }
+    // إعدادات الإشعارات
+    function getNotifStatus() { return localStorage.getItem(NOTIF_KEY) === 'true'; }
+    function setNotifStatus(val) { localStorage.setItem(NOTIF_KEY, val); updateNotifToggleUI(); }
 
-    // ---------------------- 2. الترجمة (نفس السابق) ----------------------
+    // ---------------------- 2. الترجمة الكاملة (إيطاليا، البرازيل) ----------------------
     const translations = {
-        default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "لأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
-        en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" },
-        // باقي اللغات مختصرة للاختصار ولكن بنفس النسق...
+        default: { pageTitle:"PUBG UC Store", loginArea:"تسجيل الدخول", sectionTitle:"اختر الباقة", coupon:"استعمال كوبون", events:"لأحداث", vip:"حساب VIP", countryPlaceholder:"اختر الدولة", payment:"اختر وسيلة الدفع", buy:"شراء الآن", footer:"جميع الحقوق محفوظة", modalTitle:"معرف اللاعب", delete:"حذف", change:"تغيير", pubgBrand:"PUBG MOBILE", countryTitle:"اختر دولتك", asia:"آسيا", europe:"أوروبا", north:"أمريكا الشمالية", south:"أمريكا الجنوبية", close:"إغلاق", notifSettings:"اعدادات الاشعارات", ordersCenter:"مركز الطلبات", logout:"تسجيل الخروج", eventsMenu:"الاحداث", instructions:"التعليمات", support:"الدعم", cardManagement:"إدارة البطاقة", loginMenu:"تسجيل الدخول" },
+        en: { pageTitle:"PUBG UC Store", loginArea:"Login", sectionTitle:"Choose Package", coupon:"Use Coupon", events:"Events", vip:"VIP Account", countryPlaceholder:"Select Country", payment:"Payment Method", buy:"Buy Now", footer:"All Rights Reserved", modalTitle:"Player ID", delete:"Delete", change:"Change", pubgBrand:"PUBG MOBILE", countryTitle:"Select Country", asia:"Asia", europe:"Europe", north:"North America", south:"South America", close:"Close", notifSettings:"Notification Settings", ordersCenter:"Orders Center", logout:"Logout", eventsMenu:"Events", instructions:"Instructions", support:"Support", cardManagement:"Card Management", loginMenu:"Login" },
+        it: { pageTitle:"PUBG UC Store", loginArea:"Accedi", sectionTitle:"Scegli il pacchetto", coupon:"Usa coupon", events:"Eventi", vip:"Account VIP", countryPlaceholder:"Seleziona Paese", payment:"Metodo di pagamento", buy:"Acquista ora", footer:"Tutti i diritti riservati", modalTitle:"ID Giocatore", delete:"Elimina", change:"Modifica", pubgBrand:"PUBG MOBILE", countryTitle:"Seleziona il tuo Paese", asia:"Asia", europe:"Europa", north:"Nord America", south:"Sud America", close:"Chiudi", notifSettings:"Impostazioni notifiche", ordersCenter:"Centro ordini", logout:"Esci", eventsMenu:"Eventi", instructions:"Istruzioni", support:"Supporto", cardManagement:"Gestione carta", loginMenu:"Accedi" },
+        pt: { pageTitle:"PUBG UC Store", loginArea:"Entrar", sectionTitle:"Escolha o pacote", coupon:"Usar cupom", events:"Eventos", vip:"Conta VIP", countryPlaceholder:"Selecione o país", payment:"Método de pagamento", buy:"Comprar agora", footer:"Todos os direitos reservados", modalTitle:"ID do jogador", delete:"Excluir", change:"Alterar", pubgBrand:"PUBG MOBILE", countryTitle:"Selecione seu país", asia:"Ásia", europe:"Europa", north:"América do Norte", south:"América do Sul", close:"Fechar", notifSettings:"Configurações de notificação", ordersCenter:"Central de pedidos", logout:"Sair", eventsMenu:"Eventos", instructions:"Instruções", support:"Suporte", cardManagement:"Gerenciar cartão", loginMenu:"Entrar" }
     };
-    // إكمال الترجمات للغات الأخرى (نفس المنطق السابق)
-    translations.es = { ...translations.default, loginArea: "Iniciar sesión", sectionTitle: "Elige el paquete", coupon: "Usar cupón", events: "Eventos", vip: "Cuenta VIP", countryPlaceholder: "Elige país", paymentPlaceholder: "Método de pago", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar ahora", footer: "Todos los derechos reservados", modalTitle: "ID del jugador", deleteBtn: "Eliminar", changeBtn: "Cambiar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Selecciona tu país", asia: "Asia", europe: "Europa", northAmerica: "América del Norte", southAmerica: "América del Sur", close: "Cerrar", notificationSettings: "Configuración de notificaciones", ordersCenter: "Centro de pedidos", accountInfo: "Información de la cuenta", logout: "Cerrar sesión", eventsMenu: "Eventos", instructions: "Instrucciones", support: "Soporte", cardManagement: "Gestión de tarjeta" };
-    translations.fr = { ...translations.default, loginArea: "Connexion", sectionTitle: "Choisissez le pack", coupon: "Utiliser coupon", events: "Événements", vip: "Compte VIP", countryPlaceholder: "Choisissez le pays", paymentPlaceholder: "Mode de paiement", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acheter maintenant", footer: "Tous droits réservés", modalTitle: "ID du joueur", deleteBtn: "Supprimer", changeBtn: "Changer", pubgBrand: "PUBG MOBILE", countryModalTitle: "Sélectionnez votre pays", asia: "Asie", europe: "Europe", northAmerica: "Amérique du Nord", southAmerica: "Amérique du Sud", close: "Fermer", notificationSettings: "Paramètres de notification", ordersCenter: "Centre de commandes", accountInfo: "Infos du compte", logout: "Déconnexion", eventsMenu: "Événements", instructions: "Instructions", support: "Support", cardManagement: "Gestion de carte" };
-    translations.de = { ...translations.default, loginArea: "Anmelden", sectionTitle: "Paket wählen", coupon: "Gutschein nutzen", events: "Ereignisse", vip: "VIP-Konto", countryPlaceholder: "Land auswählen", paymentPlaceholder: "Zahlungsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Jetzt kaufen", footer: "Alle Rechte vorbehalten", modalTitle: "Spieler-ID", deleteBtn: "Löschen", changeBtn: "Ändern", pubgBrand: "PUBG MOBILE", countryModalTitle: "Wählen Sie Ihr Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Südamerika", close: "Schließen", notificationSettings: "Benachrichtigungseinstellungen", ordersCenter: "Bestellzentrum", accountInfo: "Kontoinformationen", logout: "Abmelden", eventsMenu: "Ereignisse", instructions: "Anleitung", support: "Support", cardManagement: "Kartenverwaltung" };
-    translations.tr = { ...translations.default, loginArea: "Giriş yap", sectionTitle: "Paketi seç", coupon: "Kupon kullan", events: "Etkinlikler", vip: "VIP Hesap", countryPlaceholder: "Ülke seç", paymentPlaceholder: "Ödeme yöntemi", zain: "Zain Cash", asiaHaw: "Asia Havale", master: "Master Card", buy: "Şimdi satın al", footer: "Tüm hakları saklıdır", modalTitle: "Oyuncu ID", deleteBtn: "Sil", changeBtn: "Değiştir", pubgBrand: "PUBG MOBILE", countryModalTitle: "Ülkenizi seçin", asia: "Asya", europe: "Avrupa", northAmerica: "Kuzey Amerika", southAmerica: "Güney Amerika", close: "Kapat", notificationSettings: "Bildirim ayarları", ordersCenter: "Sipariş merkezi", accountInfo: "Hesap bilgileri", logout: "Çıkış yap", eventsMenu: "Etkinlikler", instructions: "Talimatlar", support: "Destek", cardManagement: "Kart Yönetimi" };
-    
-    function getLanguageForCountry(country) { const map = { "الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en","إسبانيا":"es","المكسيك":"es","الأرجنتين":"es","فرنسا":"fr","ألمانيا":"de","إيطاليا":"it","البرازيل":"pt","تركيا":"tr" }; return map[country] || "default"; }
-    function applyTranslation(langCode) {
-        const t = translations[langCode] || translations.default;
+    function getLangForCountry(country) { const map={"الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en","إسبانيا":"es","المكسيك":"es","الأرجنتين":"es","فرنسا":"fr","ألمانيا":"de","إيطاليا":"it","البرازيل":"pt","تركيا":"tr"}; return map[country]||"default"; }
+    let currentLang = "default";
+    function applyTranslation() {
+        let t = translations[currentLang] || translations.default;
         document.title = t.pageTitle;
-        document.getElementById("loginText").innerText = isLoggedIn() ? (getLoggedUserData()?.username || t.loginArea) : t.loginArea;
+        document.getElementById("loginText").innerText = isLoggedIn() ? (getLoggedUser()?.username || t.loginArea) : t.loginArea;
         document.getElementById("sectionTitle").innerText = t.sectionTitle;
         document.getElementById("couponBtn").innerHTML = `📦 ${t.coupon}`;
         document.getElementById("eventsBtn").innerHTML = `🎯 ${t.events}`;
         document.getElementById("vipBtn").innerHTML = `👑 ${t.vip}`;
         if(!localStorage.getItem('selectedCountry')) document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
-        document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ▼";
-        let items = document.querySelectorAll("#paymentList li"); if(items[0]) items[0].innerText = t.zain; if(items[1]) items[1].innerText = t.asiaHaw; if(items[2]) items[2].innerText = t.master;
+        document.getElementById("paymentBtn").innerHTML = t.payment + " ▼";
+        let items = document.querySelectorAll("#paymentList li");
+        if(items[0]) items[0].innerText = "Zain Cash"; if(items[1]) items[1].innerText = "Asia Hawala"; if(items[2]) items[2].innerText = "Master Card";
         document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
-        document.getElementById("footerText").innerText = t.footer; document.getElementById("modalTitle").innerText = t.modalTitle;
-        document.getElementById("modalDeleteBtn").innerText = t.deleteBtn; document.getElementById("modalChangeBtn").innerText = t.changeBtn;
-        document.getElementById("pubgBrandText").innerText = t.pubgBrand; document.getElementById("countryModalTitle").innerText = t.countryModalTitle;
-        document.getElementById("asiaTitle").innerText = t.asia; document.getElementById("europeTitle").innerText = t.europe;
-        document.getElementById("northAmericaTitle").innerText = t.northAmerica; document.getElementById("southAmericaTitle").innerText = t.southAmerica;
+        document.getElementById("footerText").innerText = t.footer;
+        document.getElementById("modalTitle").innerText = t.modalTitle;
+        document.getElementById("modalDeleteBtn").innerText = t.delete;
+        document.getElementById("modalChangeBtn").innerText = t.change;
+        document.getElementById("pubgBrandText").innerText = t.pubgBrand;
+        document.getElementById("countryModalTitle").innerText = t.countryTitle;
+        document.getElementById("asiaTitle").innerText = t.asia;
+        document.getElementById("europeTitle").innerText = t.europe;
+        document.getElementById("northAmericaTitle").innerText = t.north;
+        document.getElementById("southAmericaTitle").innerText = t.south;
         document.getElementById("closeCountryModalBtn").innerText = t.close;
         refreshMenuContent();
     }
 
-    // ---------------------- 3. القائمة الجانبية (تعتمد على اسم المستخدم) ----------------------
+    // ---------------------- 3. القائمة الجانبية مع الصفحات ----------------------
     function refreshMenuContent() {
-        const container = document.getElementById("menuItemsList");
-        if(!container) return;
-        const logged = isLoggedIn();
-        const currentLang = getLanguageForCountry(localStorage.getItem('selectedCountry') || 'العراق');
-        const t = translations[currentLang] || translations.default;
+        let container = document.getElementById("menuItemsList");
+        let logged = isLoggedIn();
+        let t = translations[currentLang] || translations.default;
         let html = '';
         if(logged) {
-            const userData = getLoggedUserData();
-            html += `<div class="menu-item user-info-top"><div class="username-large">${userData.username}</div><div class="account-id-display">📧 ${userData.email}</div></div>`;
-            html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div>`;
+            let user = getLoggedUser();
+            html += `<div class="menu-item user-info-top"><div class="username-large">${user.username}</div><div class="account-id-display">📧 ${user.email}</div></div>`;
+            html += `<div class="menu-item" data-action="notifications">${t.notifSettings}</div>`;
             html += `<div class="menu-item" data-action="orders">${t.ordersCenter}</div>`;
-            html += `<div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>`; // زر إدارة البطاقة
-            html += `<div class="menu-item" data-action="logout">${t.logout}</div>`;
-            html += `<div class="menu-divider"></div>`;
+            html += `<div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>`;
+            html += `<div class="menu-item" data-action="logout">${t.logout}</div><div class="menu-divider"></div>`;
         } else {
-            html += `<div class="menu-item" data-action="login">${t.loginArea}</div>`;
-            html += `<div class="menu-divider"></div>`;
+            html += `<div class="menu-item" data-action="login">${t.loginMenu}</div><div class="menu-divider"></div>`;
         }
         html += `<div class="menu-item" data-action="events">${t.eventsMenu}</div><div class="menu-item" data-action="instructions">${t.instructions}</div><div class="menu-item" data-action="support">${t.support}</div>`;
         container.innerHTML = html;
-        document.querySelectorAll(".menu-item[data-action]").forEach(item => {
-            item.addEventListener('click', (e) => {
-                const action = item.dataset.action;
-                if(action === 'login') { openAuthModal(); closeMenu(); }
-                else if(action === 'logout') { logoutUser(); alert("تم تسجيل الخروج"); closeMenu(); }
-                else if(action === 'notifications') alert(t.notificationSettings + " (قريباً)");
-                else if(action === 'orders') alert(t.ordersCenter + " (سيتم عرض طلباتك قريباً)");
-                else if(action === 'cardManagement') alert("💳 إدارة البطاقة: ستتمكن قريباً من إضافة بطاقات الدفع.");
-                else if(action === 'events') alert(t.eventsMenu + " (قريباً)");
-                else if(action === 'instructions') alert(t.instructions + "\n1- سجل دخولك أولاً\n2- أضف معرف PUBG\n3- اختر الباقة");
-                else if(action === 'support') alert(t.support + ": support@pubgstore.com");
+        document.querySelectorAll(".menu-item[data-action]").forEach(el => {
+            el.addEventListener('click', (e) => {
+                let act = el.dataset.action;
+                if(act === 'login') { closeMenu(); openAuthModal(); }
+                else if(act === 'logout') { logoutUser(); alert("تم تسجيل الخروج"); closeMenu(); }
+                else if(act === 'notifications') { closeMenu(); showNotificationsPage(); }
+                else if(act === 'orders') { closeMenu(); showOrdersPage(); }
+                else if(act === 'cardManagement') alert("💳 إدارة البطاقة (قريباً)");
+                else if(act === 'events') alert(t.eventsMenu + " (قريباً)");
+                else if(act === 'instructions') alert("1- سجل دخولك\n2- أضف معرف PUBG\n3- اختر الباقة");
+                else if(act === 'support') alert("support@pubgstore.com");
                 closeMenu();
             });
         });
     }
 
-    // ---------------------- 4. إدارة ID PUBG في الهيدر (منفصل) ----------------------
-    const STORAGE_KEY = 'pubg_user_id';
-    let currentUserId = localStorage.getItem(STORAGE_KEY);
-    const headerAccountContainer = document.getElementById('headerAccountContainer');
-    const modalAccount = document.getElementById('idModal');
-    const modalUserIdSpan = document.getElementById('modalUserId');
-    function onlyNumbers(str) { return /^\d+$/.test(str); }
-    function promptNumbers(msg, def='') { let val = prompt(msg, def); if(val===null) return null; val=val.trim(); if(val===''){ alert('لا يمكن تركه فارغاً'); return promptNumbers(msg,def); } if(!onlyNumbers(val)){ alert('أرقام فقط'); return promptNumbers(msg,def); } return val; }
-    function showPopup(uid) { modalUserIdSpan.innerText=uid; modalAccount.classList.add('active'); const del=document.getElementById('modalDeleteBtn'), ch=document.getElementById('modalChangeBtn'); const newDel=del.cloneNode(true), newCh=ch.cloneNode(true); del.parentNode.replaceChild(newDel,del); ch.parentNode.replaceChild(newCh,ch); newDel.addEventListener('click',()=>{ localStorage.removeItem(STORAGE_KEY); refreshHeaderAccount(); modalAccount.classList.remove('active'); }); newCh.addEventListener('click',()=>{ modalAccount.classList.remove('active'); let newId=promptNumbers('أدخل الايدي الجديد (أرقام فقط):',currentUserId); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); modalAccount.addEventListener('click',function out(e){ if(e.target===modalAccount){ modalAccount.classList.remove('active'); modalAccount.removeEventListener('click',out); } }); }
-    function refreshHeaderAccount() { currentUserId = localStorage.getItem(STORAGE_KEY); if(!currentUserId) { headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف معرف PUBG</div>`; document.getElementById('headerAddAccountBtn')?.addEventListener('click',()=>{ let newId=promptNumbers('ادخل ايدي PUBG (أرقام فقط):'); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); } else { let display = currentUserId.length>12 ? currentUserId.slice(0,10)+'...' : currentUserId; headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${display}</div>`; document.getElementById('headerSavedIdBtn')?.addEventListener('click',()=>showPopup(currentUserId)); } }
-    refreshHeaderAccount();
+    // ---------------------- 4. عرض الصفحات ----------------------
+    function showMainPage() {
+        document.querySelectorAll('.page, .main-content').forEach(el => el.classList.remove('active-page'));
+        document.getElementById('mainPage').classList.add('active-page');
+        renderCards(); // تحديث البطاقات للترجمة
+    }
+    function showNotificationsPage() {
+        if(!isLoggedIn()) { alert("يرجى تسجيل الدخول أولاً"); openAuthModal(); return; }
+        document.querySelectorAll('.page, .main-content').forEach(el => el.classList.remove('active-page'));
+        document.getElementById('notificationsPage').classList.add('active-page');
+        let user = getLoggedUser();
+        document.getElementById('notifUserEmail').innerText = user.email;
+        updateNotifToggleUI();
+    }
+    function showOrdersPage() {
+        if(!isLoggedIn()) { alert("يرجى تسجيل الدخول أولاً"); openAuthModal(); return; }
+        document.querySelectorAll('.page, .main-content').forEach(el => el.classList.remove('active-page'));
+        document.getElementById('ordersPage').classList.add('active-page');
+        renderOrders('all');
+    }
+    function updateNotifToggleUI() {
+        let toggle = document.getElementById('notifToggle');
+        if(toggle) {
+            if(getNotifStatus()) toggle.classList.add('active');
+            else toggle.classList.remove('active');
+        }
+    }
+    // ربط زر الإشعارات
+    function initNotifToggle() {
+        let toggle = document.getElementById('notifToggle');
+        if(toggle) {
+            toggle.addEventListener('click', () => {
+                let newVal = !getNotifStatus();
+                setNotifStatus(newVal);
+                alert(newVal ? "تم تفعيل الإشعارات" : "تم إيقاف الإشعارات");
+            });
+        }
+    }
+    // عرض الطلبات
+    function renderOrders(filter) {
+        let orders = getUserOrders();
+        let filtered = orders;
+        if(filter === 'completed') filtered = orders.filter(o => o.status === 'completed');
+        else if(filter === 'pending') filtered = orders.filter(o => o.status === 'pending');
+        let container = document.getElementById('ordersListContainer');
+        if(!container) return;
+        if(filtered.length === 0) {
+            let msg = filter === 'completed' ? 'لا يوجد طلبات مكتمله' : (filter === 'pending' ? 'لا يوجد طلبات معلقه' : 'لا توجد طلبات');
+            container.innerHTML = `<div class="empty-msg">${msg}</div>`;
+            return;
+        }
+        container.innerHTML = filtered.map(order => `
+            <div class="order-card">
+                <div><strong>${order.package}</strong><br><small>${order.date}</small></div>
+                <div>${order.price}</div>
+                <div class="order-status ${order.status === 'completed' ? 'status-completed' : 'status-pending'}">${order.status === 'completed' ? 'مكتمل' : 'معلق'}</div>
+            </div>
+        `).join('');
+    }
+    // فلترة الطلبات
+    function bindOrderFilters() {
+        let btns = document.querySelectorAll('.filter-btn');
+        btns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderOrders(btn.dataset.filter);
+            });
+        });
+    }
 
-    // ---------------------- 5. مودال تسجيل الدخول مع اسم المستخدم ----------------------
-    const authModal = document.getElementById('authModal');
-    const authTitle = document.getElementById('authTitle');
-    const authSubmitBtn = document.getElementById('authSubmitBtn');
-    const authSwitchText = document.getElementById('authSwitchText');
-    const authEmail = document.getElementById('authEmail');
-    const authPassword = document.getElementById('authPassword');
-    const authUsername = document.getElementById('authUsername');
-    const authError = document.getElementById('authError');
-    let isLoginMode = true;
-    function openAuthModal() { authModal.classList.add('active'); authEmail.value=''; authPassword.value=''; authUsername.value=''; authError.innerText=''; isLoginMode=true; updateAuthUI(); }
-    function closeAuthModal() { authModal.classList.remove('active'); }
-    function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authUsername.style.display='none'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authUsername.style.display='block'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
-    authSwitchText.addEventListener('click', (e) => { if(e.target.tagName==='SPAN') { isLoginMode = !isLoginMode; updateAuthUI(); } });
-    authSubmitBtn.addEventListener('click', () => { const email = authEmail.value.trim(); const pwd = authPassword.value.trim(); if(!email || !pwd) { authError.innerText='يرجى ملء البريد وكلمة المرور'; return; } if(isLoginMode) { let res = loginUser(email, pwd); if(res.success) { closeAuthModal(); refreshMenuContent(); updateLoginArea(); alert(`مرحباً ${res.username}`); } else { authError.innerText=res.msg; } } else { const username = authUsername.value.trim(); if(!username) { authError.innerText='يرجى إدخال اسم المستخدم'; return; } let res = registerUser(username, email, pwd); if(res.success) { isLoginMode=true; updateAuthUI(); authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; } else { authError.innerText=res.msg; } } });
-    authModal.addEventListener('click', (e) => { if(e.target === authModal) closeAuthModal(); });
-
-    // ---------------------- 6. باقي عناصر الواجهة (دول، بطاقات، دروبداون) ----------------------
-    const countryModalDiv = document.getElementById('countryModal');
-    const openCountryBtn = document.getElementById('openCountryModalBtn');
-    const closeCountryModalBtn = document.getElementById('closeCountryModalBtn');
-    const countryData = { asia:["العراق","السعودية","الإمارات","الكويت","قطر","عمان","الأردن","مصر","تركيا"], europe:["إسبانيا","فرنسا","ألمانيا","إيطاليا","المملكة المتحدة"], northAmerica:["الولايات المتحدة","كندا","المكسيك"], southAmerica:["البرازيل","الأرجنتين"] };
-    function getFlag(country) { const flags={ "العراق":"🇮🇶","السعودية":"🇸🇦","الإمارات":"🇦🇪","الكويت":"🇰🇼","قطر":"🇶🇦","عمان":"🇴🇲","الأردن":"🇯🇴","مصر":"🇪🇬","تركيا":"🇹🇷","إسبانيا":"🇪🇸","فرنسا":"🇫🇷","ألمانيا":"🇩🇪","إيطاليا":"🇮🇹","المملكة المتحدة":"🇬🇧","الولايات المتحدة":"🇺🇸","كندا":"🇨🇦","المكسيك":"🇲🇽","البرازيل":"🇧🇷","الأرجنتين":"🇦🇷"}; return flags[country]||"🏳️"; }
-    function renderCountries() { const asiaGrid=document.getElementById('asiaGrid'), europeGrid=document.getElementById('europeGrid'), naGrid=document.getElementById('naGrid'), saGrid=document.getElementById('saGrid'); function renderGrid(grid,arr){ grid.innerHTML=arr.map(c=>`<div class="country-item" data-country="${c}">${getFlag(c)} ${c}</div>`).join(''); grid.querySelectorAll('.country-item').forEach(el=>{ el.addEventListener('click',()=>{ const country=el.dataset.country; localStorage.setItem('selectedCountry',country); document.getElementById('countryBtnText').innerHTML=`${getFlag(country)} ${country}`; applyTranslation(getLanguageForCountry(country)); closeCountryModalFunc(); }); }); } renderGrid(asiaGrid,countryData.asia); renderGrid(europeGrid,countryData.europe); renderGrid(naGrid,countryData.northAmerica); renderGrid(saGrid,countryData.southAmerica); }
-    function closeCountryModalFunc() { countryModalDiv.classList.remove('active'); }
-    openCountryBtn.addEventListener('click',()=>countryModalDiv.classList.add('active'));
-    closeCountryModalBtn.addEventListener('click',closeCountryModalFunc);
-    countryModalDiv.addEventListener('click',(e)=>{if(e.target===countryModalDiv) closeCountryModalFunc();});
-    renderCountries();
-    const savedCountry = localStorage.getItem('selectedCountry');
-    if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; applyTranslation(getLanguageForCountry(savedCountry)); } else applyTranslation('default');
-
-    // تعديل البطاقات: استخدام صورة uc.png
+    // ---------------------- 5. بطاقات UC وصورة uc.png ----------------------
     const cardsData = [{ title: "60 UC", price: "$0.99" },{ title: "325 UC", price: "$4.99" },{ title: "660 UC", price: "$9.99" },{ title: "1800 UC", price: "$24.99" }];
-    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
-    renderCards();
-    function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' ▼'; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
-    initDropdown();
-    document.getElementById('couponBtn')?.addEventListener('click',()=>alert('🔖 كوبونات قريباً'));
-    document.getElementById('eventsBtn')?.addEventListener('click',()=>alert('📅 الأحداث قريباً'));
-    document.getElementById('vipBtn')?.addEventListener('click',()=>alert('👑 VIP قريباً'));
+    function renderCards() {
+        let container = document.getElementById('cardsContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        cardsData.forEach(card => {
+            let div = document.createElement('div');
+            div.className = 'card';
+            div.innerHTML = `<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">${translations[currentLang]?.buy || 'شراء الآن'}</button></div>`;
+            container.appendChild(div);
+        });
+        document.querySelectorAll('.buy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; }
+                let cardDiv = e.target.closest('.card');
+                let title = cardDiv.querySelector('.card-title').innerText;
+                let price = cardDiv.querySelector('.price').innerText;
+                addOrder(title, price);
+                // تحديث صفحة الطلبات إذا كانت مفتوحة
+                if(document.getElementById('ordersPage').classList.contains('active-page')) renderOrders(document.querySelector('.filter-btn.active')?.dataset.filter || 'all');
+            });
+        });
+    }
 
-    // Side menu controls (بدون تحريك الصفحة)
-    const menuIcon = document.getElementById('menuIcon'), sideMenu = document.getElementById('sideMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
-    function openMenu() { sideMenu.classList.add('open'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; } // منع التمرير خلف القائمة
-    function closeMenu() { sideMenu.classList.remove('open'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
-    menuIcon.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); menuOverlay.addEventListener('click', closeMenu);
-    
-    // تحديث منطقة تسجيل الدخول في البداية
-    updateLoginArea();
+    // ---------------------- 6. باقي الوظائف (الدول، id، تسجيل الدخول، القائمة) ----------------------
+    const countryData = { asia:["العراق","السعودية","الإمارات","الكويت","قطر","عمان","الأردن","مصر","تركيا"], europe:["إسبانيا","فرنسا","ألمانيا","إيطاليا","المملكة المتحدة"], northAmerica:["الولايات المتحدة","كندا","المكسيك"], southAmerica:["البرازيل","الأرجنتين"] };
+    function getFlag(c) { const f={"العراق":"🇮🇶","السعودية":"🇸🇦","الإمارات":"🇦🇪","الكويت":"🇰🇼","قطر":"🇶🇦","عمان":"🇴🇲","الأردن":"🇯🇴","مصر":"🇪🇬","تركيا":"🇹🇷","إسبانيا":"🇪🇸","فرنسا":"🇫🇷","ألمانيا":"🇩🇪","إيطاليا":"🇮🇹","المملكة المتحدة":"🇬🇧","الولايات المتحدة":"🇺🇸","كندا":"🇨🇦","المكسيك":"🇲🇽","البرازيل":"🇧🇷","الأرجنتين":"🇦🇷"}; return f[c]||"🏳️"; }
+    function renderCountries() {
+        const grids = { asiaGrid: countryData.asia, europeGrid: countryData.europe, naGrid: countryData.northAmerica, saGrid: countryData.southAmerica };
+        for(let [id, arr] of Object.entries(grids)) {
+            let grid = document.getElementById(id);
+            if(grid) grid.innerHTML = arr.map(c => `<div class="country-item" data-country="${c}">${getFlag(c)} ${c}</div>`).join('');
+        }
+        document.querySelectorAll('.country-item').forEach(el => {
+            el.addEventListener('click', () => {
+                let country = el.dataset.country;
+                localStorage.setItem('selectedCountry', country);
+                document.getElementById('countryBtnText').innerHTML = `${getFlag(country)} ${country}`;
+                currentLang = getLangForCountry(country);
+                applyTranslation();
+                document.getElementById('countryModal').classList.remove('active');
+                renderCards();
+            });
+        });
+    }
+    // Header Account (ID PUBG)
+    let currentUserId = localStorage.getItem('pubg_user_id');
+    function refreshHeaderAccount() {
+        let container = document.getElementById('headerAccountContainer');
+        if(!currentUserId) container.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف معرف PUBG</div>`;
+        else container.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${currentUserId.length>12?currentUserId.slice(0,10)+'...':currentUserId}</div>`;
+        document.getElementById('headerAddAccountBtn')?.addEventListener('click',()=>{ let newId=prompt('ادخل ايدي PUBG (أرقام فقط):'); if(newId&&/^\d+$/.test(newId)){ localStorage.setItem('pubg_user_id',newId); currentUserId=newId; refreshHeaderAccount(); } else alert('أرقام فقط'); });
+        document.getElementById('headerSavedIdBtn')?.addEventListener('click',()=>{ let modal=document.getElementById('idModal'); document.getElementById('modalUserId').innerText=currentUserId; modal.classList.add('active'); });
+    }
+    // مودال id
+    document.getElementById('modalDeleteBtn')?.addEventListener('click',()=>{ localStorage.removeItem('pubg_user_id'); currentUserId=null; refreshHeaderAccount(); document.getElementById('idModal').classList.remove('active'); });
+    document.getElementById('modalChangeBtn')?.addEventListener('click',()=>{ let newId=prompt('أدخل الايدي الجديد'); if(newId&&/^\d+$/.test(newId)){ localStorage.setItem('pubg_user_id',newId); currentUserId=newId; refreshHeaderAccount(); } document.getElementById('idModal').classList.remove('active'); });
+    // مودال تسجيل الدخول
+    let authModal = document.getElementById('authModal'), isLogin=true;
+    function openAuthModal() { authModal.classList.add('active'); isLogin=true; updateAuthUI(); }
+    function closeAuthModal() { authModal.classList.remove('active'); }
+    function updateAuthUI() { document.getElementById('authTitle').innerText=isLogin?'تسجيل الدخول':'إنشاء حساب'; document.getElementById('authSubmitBtn').innerText=isLogin?'دخول':'إنشاء حساب'; document.getElementById('authUsername').style.display=isLogin?'none':'block'; document.getElementById('authSwitchText').innerHTML=isLogin?'ليس لديك حساب؟ <span>إنشاء حساب جديد</span>':'لديك حساب؟ <span>تسجيل الدخول</span>'; }
+    document.getElementById('authSwitchText')?.addEventListener('click',(e)=>{ if(e.target.tagName==='SPAN'){ isLogin=!isLogin; updateAuthUI(); } });
+    document.getElementById('authSubmitBtn')?.addEventListener('click',()=>{ let email=document.getElementById('authEmail').value.trim(), pwd=document.getElementById('authPassword').value.trim(); if(!email||!pwd){ document.getElementById('authError').innerText='املأ الحقول'; return; } if(isLogin){ let res=loginUser(email,pwd); if(res.success){ closeAuthModal(); updateLoginArea(); refreshMenuContent(); showMainPage(); } else document.getElementById('authError').innerText=res.msg; } else { let user=document.getElementById('authUsername').value.trim(); if(!user){ document.getElementById('authError').innerText='أدخل اسم المستخدم'; return; } let res=registerUser(user,email,pwd); if(res.success){ isLogin=true; updateAuthUI(); document.getElementById('authError').innerText='تم إنشاء الحساب، سجل دخول الآن'; } else document.getElementById('authError').innerText=res.msg; } });
+    function updateLoginArea() { let span=document.getElementById('loginText'); let logged=isLoggedIn(); span.innerText=logged?getLoggedUser().username:'تسجيل الدخول'; document.getElementById('loginArea').onclick=logged?()=>openMenu():()=>openAuthModal(); }
+    // القائمة
+    let sideMenu=document.getElementById('sideMenu'), overlay=document.getElementById('menuOverlay');
+    function openMenu() { sideMenu.classList.add('open'); overlay.classList.add('active'); document.body.style.overflow='hidden'; }
+    function closeMenu() { sideMenu.classList.remove('open'); overlay.classList.remove('active'); document.body.style.overflow=''; }
+    document.getElementById('menuIcon')?.addEventListener('click',openMenu);
+    document.getElementById('closeMenuBtn')?.addEventListener('click',closeMenu);
+    overlay.addEventListener('click',closeMenu);
+    // الدولة
+    let savedCountry = localStorage.getItem('selectedCountry');
+    if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; currentLang=getLangForCountry(savedCountry); } else currentLang='default';
+    applyTranslation(); renderCountries(); renderCards(); refreshHeaderAccount(); updateLoginArea(); refreshMenuContent();
+    document.getElementById('openCountryModalBtn')?.addEventListener('click',()=>document.getElementById('countryModal').classList.add('active'));
+    document.getElementById('closeCountryModalBtn')?.addEventListener('click',()=>document.getElementById('countryModal').classList.remove('active'));
+    // دروبداون
+    let payBtn=document.getElementById('paymentBtn'), payList=document.getElementById('paymentList');
+    payBtn?.addEventListener('click',(e)=>{ e.stopPropagation(); payList.style.display=payList.style.display==='block'?'none':'block'; });
+    document.querySelectorAll('#paymentList li').forEach(li=>li.addEventListener('click',()=>{ payBtn.innerHTML=li.innerText+' ▼'; payList.style.display='none'; }));
+    document.addEventListener('click',()=>payList&&(payList.style.display='none'));
+    // أحداث الأزرار
+    document.getElementById('couponBtn')?.addEventListener('click',()=>alert('كوبونات قريباً'));
+    document.getElementById('eventsBtn')?.addEventListener('click',()=>alert('الأحداث قريباً'));
+    document.getElementById('vipBtn')?.addEventListener('click',()=>alert('VIP قريباً'));
+    // تهيئة صفحة الإشعارات والطلبات
+    initNotifToggle();
+    bindOrderFilters();
+    // ربط شعار الصفحة الرئيسية
+    window.showMainPage = showMainPage;
+    window.showNotificationsPage = showNotificationsPage;
+    window.showOrdersPage = showOrdersPage;
+    // إذا تم فتح الصفحات من القائمة يتم التحديث
 </script>
 </body>
 </html>
