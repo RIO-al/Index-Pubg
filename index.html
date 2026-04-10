@@ -75,18 +75,18 @@ header {
     cursor: default;
 }
 
-/* Hero / Banner section */
+/* Hero Banner */
 .hero {
     position: relative;
     background: url('bg.jpg') center/cover no-repeat;
     min-height: 180px;
     display: flex;
-    align-items: flex-start;     /* الأعلى */
-    justify-content: flex-end;   /* الجهة المقابلة (اليمين في RTL) */
+    align-items: flex-start;
+    justify-content: flex-end; /* الجهة المقابلة (اليمين) */
     padding: 15px 25px;
 }
 
-/* ترتيب العناصر أفقياً في صف واحد */
+/* ترتيب العناصر أفقياً: PU.png ثم النص ثم علامة التوثيق */
 .hero-content-new {
     position: relative;
     z-index: 2;
@@ -119,7 +119,7 @@ header {
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-/* علامة التوثيق: بيضاء بالكامل بدون دوائر */
+/* علامة التوثيق بيضاء بدون دوائر خارجية */
 .verified-badge {
     display: inline-flex;
     align-items: center;
@@ -129,7 +129,6 @@ header {
     width: auto;
     height: auto;
     box-shadow: none;
-    margin-right: 2px;
 }
 
 .verified-badge svg {
@@ -139,7 +138,7 @@ header {
     filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3));
 }
 
-/* حقوق النشر في أسفل اليمين (ثابت) */
+/* حقوق النشر في أسفل اليمين */
 .copyright-corner {
     position: absolute;
     bottom: 12px;
@@ -169,7 +168,7 @@ header {
     padding-right: 12px;
 }
 
-/* Filters Row */
+/* Filters */
 .filters {
     display: flex;
     gap: 15px;
@@ -178,7 +177,7 @@ header {
     align-items: center;
 }
 
-/* Custom Dropdown Styles */
+/* Custom Dropdown */
 .custom-dropdown {
     position: relative;
     min-width: 190px;
@@ -232,7 +231,7 @@ header {
     color: #111;
 }
 
-/* Account button & ID display */
+/* Account */
 .account-wrapper {
     display: inline-flex;
     align-items: center;
@@ -260,12 +259,10 @@ header {
 
 .saved-id-btn {
     background: #2a2a2a;
-    border-color: #f7c948;
     font-family: monospace;
-    font-size: 14px;
 }
 
-/* Modal / Popup Notification */
+/* Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -322,7 +319,6 @@ header {
     font-weight: bold;
     font-size: 14px;
     cursor: pointer;
-    transition: 0.2s;
 }
 
 .delete-btn {
@@ -425,7 +421,6 @@ footer {
     font-size: 13px;
 }
 
-/* Responsive */
 @media (max-width: 680px) {
     .hero {
         min-height: 140px;
@@ -453,9 +448,6 @@ footer {
         padding: 8px 14px;
         font-size: 12px;
     }
-    .login-area span {
-        font-size: 13px;
-    }
 }
 </style>
 </head>
@@ -473,13 +465,12 @@ footer {
     </div>
 </header>
 
-<!-- Hero Banner: العناصر في الجهة المقابلة (اليمين في الأعلى) -->
 <section class="hero">
     <div class="hero-content-new">
         <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
         <span class="pubg-text">PUBG MOBILE</span>
         <div class="verified-badge">
-            <svg viewBox="0 0 24 24" fill="white">
+            <svg viewBox="0 0 24 24">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
             </svg>
         </div>
@@ -489,9 +480,7 @@ footer {
 
 <section class="section">
     <h2 class="section-title">اختر الباقة</h2>
-
     <div class="filters">
-        <!-- Custom dropdown: الدولة -->
         <div class="custom-dropdown" id="countryDropdown">
             <div class="dropdown-btn" id="countryBtn">اختر الدولة ▼</div>
             <ul class="dropdown-list" id="countryList">
@@ -500,8 +489,6 @@ footer {
                 <li data-value="الإمارات">الإمارات</li>
             </ul>
         </div>
-
-        <!-- Custom dropdown: وسيلة الدفع -->
         <div class="custom-dropdown" id="paymentDropdown">
             <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع ▼</div>
             <ul class="dropdown-list" id="paymentList">
@@ -510,8 +497,6 @@ footer {
                 <li data-value="Master Card">Master Card</li>
             </ul>
         </div>
-
-        <!-- Account section -->
         <div class="account-wrapper" id="accountWrapper"></div>
     </div>
 
@@ -551,11 +536,8 @@ footer {
     </div>
 </section>
 
-<footer>
-    جميع الحقوق محفوظة © PUBG UC Store
-</footer>
+<footer>جميع الحقوق محفوظة © PUBG UC Store</footer>
 
-<!-- Modal Popup -->
 <div id="idModal" class="modal-overlay">
     <div class="popup-card">
         <h3 style="color:#f7c948;">حساب PUBG</h3>
@@ -569,13 +551,12 @@ footer {
 </div>
 
 <script>
-    // Custom Dropdowns (تظهر وتختفي)
+    // Dropdowns
     function initDropdown(triggerId, listId, btnId) {
         const dropdown = document.getElementById(triggerId);
         const btn = document.getElementById(btnId);
         const list = document.getElementById(listId);
         if (!dropdown || !btn || !list) return;
-
         btn.addEventListener('click', (e) => {
             e.stopPropagation();
             document.querySelectorAll('.dropdown-list').forEach(menu => {
@@ -583,150 +564,79 @@ footer {
             });
             list.style.display = list.style.display === 'block' ? 'none' : 'block';
         });
-
         list.querySelectorAll('li').forEach(li => {
             li.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const selectedValue = li.getAttribute('data-value') || li.innerText;
-                btn.innerHTML = selectedValue + ' ▼';
+                const val = li.getAttribute('data-value') || li.innerText;
+                btn.innerHTML = val + ' ▼';
                 list.style.display = 'none';
-                btn.setAttribute('data-selected', selectedValue);
+                btn.setAttribute('data-selected', val);
             });
         });
-
-        document.addEventListener('click', function(e) {
-            if (!dropdown.contains(e.target)) {
-                list.style.display = 'none';
-            }
+        document.addEventListener('click', (e) => {
+            if (!dropdown.contains(e.target)) list.style.display = 'none';
         });
     }
-
     initDropdown('countryDropdown', 'countryList', 'countryBtn');
     initDropdown('paymentDropdown', 'paymentList', 'paymentBtn');
 
-    // Account Management (أرقام فقط)
+    // Account (numbers only)
     const STORAGE_KEY = 'pubg_user_id';
-    let currentUserId = localStorage.getItem(STORAGE_KEY) || null;
+    let currentUserId = localStorage.getItem(STORAGE_KEY);
     const accountWrapper = document.getElementById('accountWrapper');
     const modal = document.getElementById('idModal');
     const modalUserIdSpan = document.getElementById('modalUserId');
 
-    function validateOnlyNumbers(input) {
-        return /^\d+$/.test(input);
+    function onlyNumbers(str) { return /^\d+$/.test(str); }
+    function promptNumbers(msg, def='') {
+        let val = prompt(msg, def);
+        if (val === null) return null;
+        val = val.trim();
+        if (val === '') { alert('لا يمكن ترك الحقل فارغاً'); return promptNumbers(msg, def); }
+        if (!onlyNumbers(val)) { alert('الأرقام فقط مسموحة'); return promptNumbers(msg, def); }
+        return val;
     }
-
-    function promptForNumbers(description, defaultValue = '') {
-        let value = prompt(description, defaultValue);
-        if (value === null) return null;
-        value = value.trim();
-        if (value === '') {
-            alert('لا يمكن ترك الحقل فارغاً');
-            return promptForNumbers(description, defaultValue);
-        }
-        if (!validateOnlyNumbers(value)) {
-            alert('خطأ: يسمح فقط بإدخال الأرقام (0-9). الرجاء إدخال ايدي PUBG بشكل صحيح.');
-            return promptForNumbers(description, defaultValue);
-        }
-        return value;
-    }
-
-    function refreshAccountUI() {
-        if (!accountWrapper) return;
+    function refreshUI() {
         currentUserId = localStorage.getItem(STORAGE_KEY);
         if (!currentUserId) {
             accountWrapper.innerHTML = `<button class="add-account-btn" id="addAccountBtn">➕ اضف حسابك</button>`;
-            const addBtn = document.getElementById('addAccountBtn');
-            if (addBtn) {
-                addBtn.addEventListener('click', () => {
-                    const newId = promptForNumbers('ادخل ايدي حساب ببجي الخاص بك (أرقام فقط):', '');
-                    if (newId !== null && newId !== '') {
-                        localStorage.setItem(STORAGE_KEY, newId);
-                        refreshAccountUI();
-                    }
-                });
-            }
-        } else {
-            const displayId = currentUserId.length > 18 ? currentUserId.slice(0, 15) + '...' : currentUserId;
-            accountWrapper.innerHTML = `<button class="saved-id-btn" id="savedIdBtn">🆔 ${displayId}</button>`;
-            const savedBtn = document.getElementById('savedIdBtn');
-            if (savedBtn) {
-                savedBtn.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    showIdPopup(currentUserId);
-                });
-            }
-        }
-    }
-
-    function showIdPopup(userId) {
-        if (!modal || !modalUserIdSpan) return;
-        modalUserIdSpan.innerText = userId;
-        modal.classList.add('active');
-
-        const deleteBtn = document.getElementById('modalDeleteBtn');
-        const changeBtn = document.getElementById('modalChangeBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
-
-        const newDelete = deleteBtn.cloneNode(true);
-        const newChange = changeBtn.cloneNode(true);
-        deleteBtn.parentNode.replaceChild(newDelete, deleteBtn);
-        changeBtn.parentNode.replaceChild(newChange, changeBtn);
-        
-        const newClose = closeBtn.cloneNode(true);
-        closeBtn.parentNode.replaceChild(newClose, closeBtn);
-        
-        newDelete.addEventListener('click', () => {
-            localStorage.removeItem(STORAGE_KEY);
-            refreshAccountUI();
-            modal.classList.remove('active');
-        });
-        
-        newChange.addEventListener('click', () => {
-            modal.classList.remove('active');
-            const newId = promptForNumbers('أدخل ايدي PUBG الجديد (أرقام فقط):', currentUserId);
-            if (newId !== null && newId !== '') {
-                localStorage.setItem(STORAGE_KEY, newId);
-                refreshAccountUI();
-            }
-        });
-        
-        newClose.addEventListener('click', () => {
-            modal.classList.remove('active');
-        });
-        
-        modal.addEventListener('click', function outsideClick(e) {
-            if (e.target === modal) {
-                modal.classList.remove('active');
-                modal.removeEventListener('click', outsideClick);
-            }
-        });
-    }
-
-    refreshAccountUI();
-
-    // Buy buttons demo
-    const buyBtns = document.querySelectorAll('.buy-btn');
-    buyBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            alert('تمت إضافة الطلب! سيتم تحويلك لصفحة الدفع (تجريبي)');
-        });
-    });
-
-    // Close dropdowns globally
-    window.addEventListener('click', function(e) {
-        if (!e.target.closest('.custom-dropdown')) {
-            document.querySelectorAll('.dropdown-list').forEach(menu => {
-                menu.style.display = 'none';
+            document.getElementById('addAccountBtn')?.addEventListener('click', () => {
+                let newId = promptNumbers('ادخل ايدي PUBG (أرقام فقط):');
+                if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshUI(); }
             });
+        } else {
+            let display = currentUserId.length > 18 ? currentUserId.slice(0,15)+'...' : currentUserId;
+            accountWrapper.innerHTML = `<button class="saved-id-btn" id="savedIdBtn">🆔 ${display}</button>`;
+            document.getElementById('savedIdBtn')?.addEventListener('click', () => showPopup(currentUserId));
         }
-    });
-    
-    const loginAreaDiv = document.getElementById('loginArea');
-    if(loginAreaDiv){
-        loginAreaDiv.addEventListener('click', () => {
-            alert("مرحباً! يمكنك تسجيل الدخول لربط حسابك (تجريبي)");
-        });
     }
+    function showPopup(uid) {
+        modalUserIdSpan.innerText = uid;
+        modal.classList.add('active');
+        const del = document.getElementById('modalDeleteBtn'), ch = document.getElementById('modalChangeBtn'), close = document.getElementById('closeModalBtn');
+        const newDel = del.cloneNode(true), newCh = ch.cloneNode(true), newClose = close.cloneNode(true);
+        del.parentNode.replaceChild(newDel, del);
+        ch.parentNode.replaceChild(newCh, ch);
+        close.parentNode.replaceChild(newClose, close);
+        newDel.addEventListener('click', () => {
+            localStorage.removeItem(STORAGE_KEY);
+            refreshUI();
+            modal.classList.remove('active');
+        });
+        newCh.addEventListener('click', () => {
+            modal.classList.remove('active');
+            let newId = promptNumbers('أدخل الايدي الجديد (أرقام فقط):', currentUserId);
+            if (newId) { localStorage.setItem(STORAGE_KEY, newId); refreshUI(); }
+        });
+        newClose.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', function out(e) { if(e.target===modal){ modal.classList.remove('active'); modal.removeEventListener('click',out); } });
+    }
+    refreshUI();
+
+    document.querySelectorAll('.buy-btn').forEach(btn => btn.addEventListener('click', () => alert('تمت إضافة الطلب! سيتم تحويلك لصفحة الدفع (تجريبي)')));
+
+    document.getElementById('loginArea')?.addEventListener('click', () => alert("مرحباً! يمكنك تسجيل الدخول لربط حسابك (تجريبي)"));
+    window.addEventListener('click', (e) => { if(!e.target.closest('.custom-dropdown')) document.querySelectorAll('.dropdown-list').forEach(m=>m.style.display='none'); });
 </script>
 </body>
 </html>
