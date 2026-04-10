@@ -81,9 +81,9 @@ header {
     background: url('bg.jpg') center/cover no-repeat;
     min-height: 180px;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 20px 25px;
+    align-items: flex-start; /* محاذاة للأعلى */
+    justify-content: flex-start; /* محاذاة لليسار */
+    padding: 15px 25px;
 }
 
 /* ترتيب العناصر أفقياً في صف واحد */
@@ -119,23 +119,24 @@ header {
     text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-/* علامة التوثيق (شارة زرقاء مع صح) */
+/* علامة التوثيق: بيضاء بالكامل بدون دوائر خارجية */
 .verified-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: #1d9bf0;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    box-shadow: 0 0 0 2px #0f0f0f, 0 0 0 4px #1d9bf0;
-    margin-right: 2px; /* تقريب قليلاً للنص */
+    background: transparent; /* إزالة الخلفية الزرقاء */
+    border-radius: 0;
+    width: auto;
+    height: auto;
+    box-shadow: none; /* إزالة الظل الخارجي */
+    margin-right: 2px;
 }
 
 .verified-badge svg {
-    width: 18px;
-    height: 18px;
-    fill: white;
+    width: 24px;
+    height: 24px;
+    fill: white; /* اللون أبيض بالكامل */
+    filter: drop-shadow(0 1px 2px rgba(0,0,0,0.3)); /* ظل بسيط للوضوح */
 }
 
 /* حقوق النشر في أسفل اليمين */
@@ -428,7 +429,7 @@ footer {
 @media (max-width: 680px) {
     .hero {
         min-height: 140px;
-        padding: 15px;
+        padding: 12px 15px;
     }
     .hero-content-new {
         gap: 8px;
@@ -440,13 +441,9 @@ footer {
     .pubg-text {
         font-size: 18px;
     }
-    .verified-badge {
-        width: 22px;
-        height: 22px;
-    }
     .verified-badge svg {
-        width: 14px;
-        height: 14px;
+        width: 20px;
+        height: 20px;
     }
     .dropdown-btn {
         font-size: 13px;
@@ -476,12 +473,12 @@ footer {
     </div>
 </header>
 
-<!-- Hero Banner مع تعديل: إزالة C وإضافة علامة توثيق -->
+<!-- Hero Banner: العناصر في أقصى اليسار الأعلى -->
 <section class="hero">
     <div class="hero-content-new">
         <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
         <span class="pubg-text">PUBG MOBILE</span>
-        <!-- علامة التوثيق (بدلاً من C.png) -->
+        <!-- علامة توثيق بيضاء بدون دوائر -->
         <div class="verified-badge">
             <svg viewBox="0 0 24 24" fill="white">
                 <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
