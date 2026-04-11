@@ -144,42 +144,16 @@ header {
     color: #f7c948;
 }
 
-/* HERO */
+/* HERO - بدون أي محتوى داخلي (تم إزالة PU.png و Round.png و نص PUBG MOBILE) */
 .hero {
     background: url('Pnael.png') center/cover no-repeat;
     min-height: 140px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 12px 16px;
+    width: 100%;
+    display: block;
 }
-.hero-badge-box {
-    background: #111;
-    padding: 6px 12px;
-    border-radius: 60px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #333;
-}
-.hero-badge-box img {
-    height: 36px;
-    width: auto;
-}
-.pu-image {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    object-fit: cover;
-    border: 1px solid rgba(247, 201, 72, 0.6);
-}
-.pubg-text {
-    font-size: 18px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #f9d56e, #ffb347);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
+/* إخفاء أي محتوى داخل hero */
+.hero-content-new {
+    display: none;
 }
 
 /* SECTIONS */
@@ -614,15 +588,8 @@ footer {
     </div>
 </header>
 
-<section class="hero">
-    <div class="hero-content-new">
-        <div class="hero-badge-box">
-            <img src="Round.png" alt="Round" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
-            <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
-        </div>
-        <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22%3EPU%3C/text%3E%3C/svg%3E'">
-    </div>
-</section>
+<!-- تم إزالة كل المحتوى الداخلي من hero (PU.png و Round.png و نص PUBG MOBILE) -->
+<section class="hero"></section>
 
 <section class="section">
     <div class="section-header">
@@ -715,7 +682,6 @@ footer {
     const countryToLang = { "العراق":"ar","الولايات المتحدة الأمريكية":"en","روسيا":"ru","الصين":"zh","اليابان":"ja","كوريا الجنوبية":"ko","كوريا الشمالية":"ko" };
     const flagMap = { "العراق":"🇮🇶","الولايات المتحدة الأمريكية":"🇺🇸","روسيا":"🇷🇺","الصين":"🇨🇳","اليابان":"🇯🇵","كوريا الجنوبية":"🇰🇷","كوريا الشمالية":"🇰🇵" };
     const countryNameLocal = { ar:{}, en:{}, ru:{}, zh:{}, ja:{}, ko:{} };
-    // Fill names
     countryList.forEach(c => { Object.keys(countryNameLocal).forEach(l => { countryNameLocal[l][c] = c; }); });
     countryNameLocal.en["العراق"]="Iraq"; countryNameLocal.en["الولايات المتحدة الأمريكية"]="USA"; countryNameLocal.en["روسيا"]="Russia"; countryNameLocal.en["الصين"]="China"; countryNameLocal.en["اليابان"]="Japan"; countryNameLocal.en["كوريا الجنوبية"]="South Korea"; countryNameLocal.en["كوريا الشمالية"]="North Korea";
     countryNameLocal.ru["العراق"]="Ирак"; countryNameLocal.ru["الولايات المتحدة الأمريكية"]="США"; countryNameLocal.ru["روسيا"]="Россия"; countryNameLocal.ru["الصين"]="Китай"; countryNameLocal.ru["اليابان"]="Япония"; countryNameLocal.ru["كوريا الجنوبية"]="Южная Корея"; countryNameLocal.ru["كوريا الشمالية"]="Северная Корея";
@@ -935,7 +901,6 @@ footer {
         if(!name) { errDiv.innerText = t("alertSupportName"); return; }
         if(!msg) { errDiv.innerText = t("alertSupportMsg"); return; }
         errDiv.innerText = t("alertSupportSending");
-        // simulate send
         setTimeout(() => { errDiv.innerText = t("alertSupportSuccess"); setTimeout(()=>closeSupportModal(), 1500); }, 500);
     });
     document.getElementById("closeSupportBtn")?.addEventListener("click", closeSupportModal);
