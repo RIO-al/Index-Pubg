@@ -19,7 +19,7 @@ body {
     overflow-x: hidden;
 }
 
-/* إزالة جميع تأثيرات التركيز والإطار الأزرق بالكامل */
+/* إزالة جميع تأثيرات التركيز والإطار الأزرق بالكامل - لا خط أبيض عند الضغط */
 *:focus,
 *:focus-visible,
 *:active,
@@ -40,7 +40,26 @@ button:focus-visible,
 .support-close:focus,
 .auth-switch span:focus,
 .menu-icon:focus,
-.dropdown-list li:focus {
+.dropdown-list li:focus,
+.coupon-apply-btn:focus,
+.coupon-close:focus,
+.close-notification:focus,
+#applyCouponBtn:focus,
+#closeCouponBtn:focus,
+#closeNotificationBtn:focus,
+#closeSupportBtn:focus,
+#closeCountryModalBtn:focus,
+#modalDeleteBtn:focus,
+#modalChangeBtn:focus,
+#sendSupportBtn:focus,
+#authSubmitBtn:focus,
+#headerAddAccountBtn:focus,
+#headerSavedIdBtn:focus,
+.country-item:focus,
+.coupon-input:focus,
+.support-input:focus,
+.support-textarea:focus,
+.auth-input:focus {
     outline: none !important;
     box-shadow: none !important;
     -webkit-tap-highlight-color: transparent !important;
@@ -59,7 +78,12 @@ div[role="button"],
 .country-item,
 .dropdown-btn,
 .extra-btn,
-.buy-btn {
+.buy-btn,
+.coupon-apply-btn,
+.coupon-close,
+.close-notification,
+.support-close,
+.close-country-popup {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
 }
@@ -76,7 +100,7 @@ header {
 }
 
 .logo-img {
-    height: 70px;
+    height: 90px;
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
@@ -175,6 +199,11 @@ header {
     gap: 12px;
     background: transparent;
     flex-wrap: wrap;
+}
+
+.hero-badge-box img {
+    height: 48px;
+    width: auto;
 }
 
 .pu-image {
@@ -590,7 +619,7 @@ header {
     flex-wrap: wrap;
 }
 .round-logo-text span {
-    font-size: 52px;
+    font-size: 72px;
     font-weight: 900;
     font-family: 'Segoe UI', 'Tahoma', 'Amiri', serif;
     background: linear-gradient(135deg, #FFD966, #FFB347, #FF8C00);
@@ -774,7 +803,7 @@ footer {
     align-items: center;
 }
 .menu-header-img {
-    height: 70px;
+    height: 90px;
     width: auto;
     object-fit: contain;
 }
@@ -884,7 +913,6 @@ footer {
     border-radius: 40px;
     color: white;
     font-size: 14px;
-    outline: none;
 }
 .auth-input:focus {
     border-color: #f7c948;
@@ -959,7 +987,6 @@ footer {
     border-radius: 20px;
     color: white;
     font-size: 14px;
-    outline: none;
     font-family: inherit;
 }
 .support-textarea {
@@ -1097,7 +1124,6 @@ footer {
 }
 .coupon-input:focus {
     border-color: #f7c948;
-    outline: none;
 }
 .coupon-apply-btn {
     background: #f7c948;
@@ -1160,10 +1186,10 @@ footer {
         width: 260px;
     }
     .logo-img {
-        height: 55px;
+        height: 65px;
     }
     .round-logo-text span {
-        font-size: 38px;
+        font-size: 48px;
     }
     .social-icons img {
         width: 40px;
@@ -1174,6 +1200,12 @@ footer {
     }
     .info-block p {
         font-size: 13px;
+    }
+    .hero-badge-box img {
+        height: 38px;
+    }
+    .menu-header-img {
+        height: 65px;
     }
 }
 </style>
@@ -1195,7 +1227,7 @@ footer {
 <section class="hero">
     <div class="hero-content-new">
         <div class="hero-badge-box">
-            <img src="Round.png" alt="Rund" style="height:32px; width:auto; filter:brightness(0) invert(1);" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
+            <img src="Round.png" alt="Rund" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
             <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
         </div>
         <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
