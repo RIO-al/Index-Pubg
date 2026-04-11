@@ -144,7 +144,7 @@ header {
     color: #f7c948;
 }
 
-/* HERO */
+/* HERO - تم إزالة العناصر المطلوبة، نترك فقط خلفية بدون محتوى إضافي */
 .hero {
     background: url('Pnael.png') center/cover no-repeat;
     min-height: 140px;
@@ -152,34 +152,6 @@ header {
     align-items: center;
     justify-content: flex-end;
     padding: 12px 16px;
-}
-.hero-badge-box {
-    background: #111;
-    padding: 6px 12px;
-    border-radius: 60px;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: 1px solid #333;
-}
-.hero-badge-box img {
-    height: 36px;
-    width: auto;
-}
-.pu-image {
-    width: 36px;
-    height: 36px;
-    border-radius: 12px;
-    object-fit: cover;
-    border: 1px solid rgba(247, 201, 72, 0.6);
-}
-.pubg-text {
-    font-size: 18px;
-    font-weight: 800;
-    background: linear-gradient(135deg, #f9d56e, #ffb347);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
 }
 
 /* SECTIONS */
@@ -614,14 +586,9 @@ footer {
     </div>
 </header>
 
+<!-- تم إزالة صورة PU.png والنص PUBG MOBILE وصورة Round.png من داخل hero-badge-box -->
 <section class="hero">
-    <div class="hero-content-new">
-        <div class="hero-badge-box">
-            <img src="Round.png" alt="Round" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
-            <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
-        </div>
-        <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22%3EPU%3C/text%3E%3C/svg%3E'">
-    </div>
+    <!-- المحتوى السابق (hero-badge-box و PU.png) تم حذفه بالكامل حسب الطلب -->
 </section>
 
 <section class="section">
@@ -756,7 +723,7 @@ footer {
         document.getElementById("modalTitle").innerText = t("modalTitle");
         document.getElementById("modalDeleteBtn").innerText = t("deleteBtn");
         document.getElementById("modalChangeBtn").innerText = t("changeBtn");
-        document.getElementById("pubgBrandText").innerText = t("pubgBrand");
+        // no pubgBrandText element anymore (removed from hero)
         document.getElementById("countryModalTitle").innerText = t("countryModalTitle");
         document.getElementById("closeCountryModalBtn").innerText = t("close");
         document.getElementById("roundBrandName").innerText = t("roundBrand");
