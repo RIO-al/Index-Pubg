@@ -862,14 +862,18 @@ footer {
     flex: 1;
     text-align: right;
 }
-.profile-menu-icon {
+.profile-initial {
     width: 42px;
     height: 42px;
-    object-fit: contain;
-    filter: brightness(0) invert(1);
-    background: #2a2a2a;
+    background: #f7c948;
     border-radius: 50%;
-    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #111;
+    text-transform: uppercase;
 }
 
 .auth-modal {
@@ -1207,6 +1211,11 @@ footer {
     .menu-header-img {
         height: 65px;
     }
+    .profile-initial {
+        width: 36px;
+        height: 36px;
+        font-size: 16px;
+    }
 }
 </style>
 </head>
@@ -1230,7 +1239,7 @@ footer {
             <img src="Round.png" alt="Rund" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
             <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
         </div>
-        <img src="PUBG.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
+        <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
     </div>
 </section>
 
@@ -1367,28 +1376,46 @@ footer {
         }
     }
 
+    // الترجمات الكاملة لجميع اللغات
     const translations = {
-        default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "الأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
+        ar: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "الأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
         en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" },
         tr: { pageTitle: "PUBG UC Mağazası", loginArea: "Giriş Yap", sectionTitle: "Paket Seçin", coupon: "Kupon Kullan", events: "Etkinlikler", vip: "VIP Hesap", countryPlaceholder: "Ülke Seçin", paymentPlaceholder: "Ödeme Yöntemi", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Şimdi Satın Al", footer: "Tüm Hakları Saklıdır © PUBG UC Mağazası", modalTitle: "Oyuncu ID", deleteBtn: "Sil", changeBtn: "Değiştir", pubgBrand: "PUBG MOBILE", countryModalTitle: "Ülkenizi Seçin", asia: "Asya", europe: "Avrupa", northAmerica: "Kuzey Amerika", southAmerica: "Güney Amerika", close: "Kapat", notificationSettings: "Bildirim Ayarları", ordersCenter: "Sipariş Merkezi", accountInfo: "Hesap Bilgileri", logout: "Çıkış Yap", eventsMenu: "Etkinlikler", instructions: "Talimatlar", support: "Destek", cardManagement: "Kart Yönetimi" },
         zh: { pageTitle: "PUBG UC商店", loginArea: "登录", sectionTitle: "选择套餐", coupon: "使用优惠券", events: "活动", vip: "VIP账户", countryPlaceholder: "选择国家", paymentPlaceholder: "支付方式", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "立即购买", footer: "版权所有 © PUBG UC商店", modalTitle: "玩家ID", deleteBtn: "删除", changeBtn: "更改", pubgBrand: "PUBG MOBILE", countryModalTitle: "选择您的国家", asia: "亚洲", europe: "欧洲", northAmerica: "北美洲", southAmerica: "南美洲", close: "关闭", notificationSettings: "通知设置", ordersCenter: "订单中心", accountInfo: "账户信息", logout: "退出登录", eventsMenu: "活动", instructions: "说明", support: "支持", cardManagement: "卡片管理" },
         ja: { pageTitle: "PUBG UCストア", loginArea: "ログイン", sectionTitle: "パッケージを選択", coupon: "クーポンを使用", events: "イベント", vip: "VIPアカウント", countryPlaceholder: "国を選択", paymentPlaceholder: "支払い方法", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "今すぐ購入", footer: "全著作権所有 © PUBG UCストア", modalTitle: "プレイヤーID", deleteBtn: "削除", changeBtn: "変更", pubgBrand: "PUBG MOBILE", countryModalTitle: "国を選択してください", asia: "アジア", europe: "ヨーロッパ", northAmerica: "北アメリカ", southAmerica: "南アメリカ", close: "閉じる", notificationSettings: "通知設定", ordersCenter: "注文センター", accountInfo: "アカウント情報", logout: "ログアウト", eventsMenu: "イベント", instructions: "説明", support: "サポート", cardManagement: "カード管理" },
-        ko: { pageTitle: "PUBG UC 스토어", loginArea: "로그인", sectionTitle: "패키지 선택", coupon: "쿠폰 사용", events: "이벤트", vip: "VIP 계정", countryPlaceholder: "국가 선택", paymentPlaceholder: "결제 수단", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "지금 구매", footer: "판권 소유 © PUBG UC 스토어", modalTitle: "플레이어 ID", deleteBtn: "삭제", changeBtn: "변경", pubgBrand: "PUBG MOBILE", countryModalTitle: "국가를 선택하세요", asia: "아시아", europe: "유럽", northAmerica: "북아메리카", southAmerica: "남아메리카", close: "닫기", notificationSettings: "알림 설정", ordersCenter: "주문 센터", accountInfo: "계정 정보", logout: "로그아웃", eventsMenu: "이벤트", instructions: "지침", support: "지원", cardManagement: "카드 관리" }
+        ko: { pageTitle: "PUBG UC 스토어", loginArea: "로그인", sectionTitle: "패키지 선택", coupon: "쿠폰 사용", events: "이벤트", vip: "VIP 계정", countryPlaceholder: "국가 선택", paymentPlaceholder: "결제 수단", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "지금 구매", footer: "판권 소유 © PUBG UC 스토어", modalTitle: "플레이어 ID", deleteBtn: "삭제", changeBtn: "변경", pubgBrand: "PUBG MOBILE", countryModalTitle: "국가를 선택하세요", asia: "아시아", europe: "유럽", northAmerica: "북아메리카", southAmerica: "남아메리카", close: "닫기", notificationSettings: "알림 설정", ordersCenter: "주문 센터", accountInfo: "계정 정보", logout: "로그아웃", eventsMenu: "이벤트", instructions: "지침", support: "지원", cardManagement: "카드 관리" },
+        ms: { pageTitle: "Kedai PUBG UC", loginArea: "Log Masuk", sectionTitle: "Pilih Pakej", coupon: "Guna Kupon", events: "Acara", vip: "Akaun VIP", countryPlaceholder: "Pilih Negara", paymentPlaceholder: "Kaedah Pembayaran", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Beli Sekarang", footer: "Hak Cipta Terpelihara © Kedai PUBG UC", modalTitle: "ID Pemain", deleteBtn: "Padam", changeBtn: "Tukar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Pilih Negara Anda", asia: "Asia", europe: "Eropah", northAmerica: "Amerika Utara", southAmerica: "Amerika Selatan", close: "Tutup", notificationSettings: "Tetapan Notifikasi", ordersCenter: "Pusat Pesanan", accountInfo: "Maklumat Akaun", logout: "Log Keluar", eventsMenu: "Acara", instructions: "Arahan", support: "Sokongan", cardManagement: "Pengurusan Kad" },
+        id: { pageTitle: "Toko PUBG UC", loginArea: "Masuk", sectionTitle: "Pilih Paket", coupon: "Gunakan Kupon", events: "Acara", vip: "Akun VIP", countryPlaceholder: "Pilih Negara", paymentPlaceholder: "Metode Pembayaran", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Beli Sekarang", footer: "Hak Cipta Dilindungi © Toko PUBG UC", modalTitle: "ID Pemain", deleteBtn: "Hapus", changeBtn: "Ubah", pubgBrand: "PUBG MOBILE", countryModalTitle: "Pilih Negara Anda", asia: "Asia", europe: "Eropa", northAmerica: "Amerika Utara", southAmerica: "Amerika Selatan", close: "Tutup", notificationSettings: "Pengaturan Notifikasi", ordersCenter: "Pusat Pesanan", accountInfo: "Info Akun", logout: "Keluar", eventsMenu: "Acara", instructions: "Petunjuk", support: "Dukungan", cardManagement: "Manajemen Kartu" },
+        th: { pageTitle: "ร้านค้า PUBG UC", loginArea: "เข้าสู่ระบบ", sectionTitle: "เลือกแพ็คเกจ", coupon: "ใช้คูปอง", events: "กิจกรรม", vip: "บัญชี VIP", countryPlaceholder: "เลือกประเทศ", paymentPlaceholder: "วิธีการชำระเงิน", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "ซื้อเลย", footer: "สงวนลิขสิทธิ์ © ร้านค้า PUBG UC", modalTitle: "ไอดีผู้เล่น", deleteBtn: "ลบ", changeBtn: "เปลี่ยน", pubgBrand: "PUBG MOBILE", countryModalTitle: "เลือกประเทศของคุณ", asia: "เอเชีย", europe: "ยุโรป", northAmerica: "อเมริกาเหนือ", southAmerica: "อเมริกาใต้", close: "ปิด", notificationSettings: "ตั้งค่าการแจ้งเตือน", ordersCenter: "ศูนย์คำสั่งซื้อ", accountInfo: "ข้อมูลบัญชี", logout: "ออกจากระบบ", eventsMenu: "กิจกรรม", instructions: "คำแนะนำ", support: "สนับสนุน", cardManagement: "จัดการบัตร" },
+        vi: { pageTitle: "Cửa hàng PUBG UC", loginArea: "Đăng nhập", sectionTitle: "Chọn gói", coupon: "Sử dụng phiếu giảm giá", events: "Sự kiện", vip: "Tài khoản VIP", countryPlaceholder: "Chọn quốc gia", paymentPlaceholder: "Phương thức thanh toán", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Mua ngay", footer: "Đã đăng ký bản quyền © Cửa hàng PUBG UC", modalTitle: "ID người chơi", deleteBtn: "Xóa", changeBtn: "Thay đổi", pubgBrand: "PUBG MOBILE", countryModalTitle: "Chọn quốc gia của bạn", asia: "Châu Á", europe: "Châu Âu", northAmerica: "Bắc Mỹ", southAmerica: "Nam Mỹ", close: "Đóng", notificationSettings: "Cài đặt thông báo", ordersCenter: "Trung tâm đơn hàng", accountInfo: "Thông tin tài khoản", logout: "Đăng xuất", eventsMenu: "Sự kiện", instructions: "Hướng dẫn", support: "Hỗ trợ", cardManagement: "Quản lý thẻ" },
+        tl: { pageTitle: "PUBG UC Store", loginArea: "Mag-sign in", sectionTitle: "Pumili ng Package", coupon: "Gumamit ng Coupon", events: "Mga Event", vip: "VIP Account", countryPlaceholder: "Pumili ng Bansa", paymentPlaceholder: "Paraan ng Pagbabayad", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Bumili Ngayon", footer: "Lahat ng Karapatan ay Nakalaan © PUBG UC Store", modalTitle: "ID ng Manlalaro", deleteBtn: "Burahin", changeBtn: "Baguhin", pubgBrand: "PUBG MOBILE", countryModalTitle: "Piliin ang Iyong Bansa", asia: "Asya", europe: "Europa", northAmerica: "Hilagang Amerika", southAmerica: "Timog Amerika", close: "Isara", notificationSettings: "Mga Setting ng Abiso", ordersCenter: "Center ng Order", accountInfo: "Impormasyon ng Account", logout: "Mag-logout", eventsMenu: "Mga Event", instructions: "Mga Tagubilin", support: "Suporta", cardManagement: "Pamamahala ng Card" },
+        hi: { pageTitle: "पीयूबीजी यूसी स्टोर", loginArea: "लॉगिन करें", sectionTitle: "पैकेज चुनें", coupon: "कूपन का उपयोग करें", events: "ईवेंट", vip: "वीआईपी खाता", countryPlaceholder: "देश चुनें", paymentPlaceholder: "भुगतान विधि", zain: "ज़ैन कैश", asiaHaw: "एशिया हवाला", master: "मास्टर कार्ड", buy: "अभी खरीदें", footer: "सर्वाधिकार सुरक्षित © पीयूबीजी यूसी स्टोर", modalTitle: "खिलाड़ी आईडी", deleteBtn: "हटाएं", changeBtn: "बदलें", pubgBrand: "पीयूबीजी मोबाइल", countryModalTitle: "अपना देश चुनें", asia: "एशिया", europe: "यूरोप", northAmerica: "उत्तरी अमेरिका", southAmerica: "दक्षिण अमेरिका", close: "बंद करें", notificationSettings: "सूचना सेटिंग्स", ordersCenter: "ऑर्डर सेंटर", accountInfo: "खाता जानकारी", logout: "लॉगआउट", eventsMenu: "ईवेंट", instructions: "निर्देश", support: "सहायता", cardManagement: "कार्ड प्रबंधन" },
+        ur: { pageTitle: "پی یو بی جی یو سی اسٹور", loginArea: "لاگ ان کریں", sectionTitle: "پیکج منتخب کریں", coupon: "کوپن استعمال کریں", events: "تقریبات", vip: "وی آئی پی اکاؤنٹ", countryPlaceholder: "ملک منتخب کریں", paymentPlaceholder: "ادائیگی کا طریقہ", zain: "زین کیش", asiaHaw: "ایشیا حوالہ", master: "ماسٹر کارڈ", buy: "ابھی خریدیں", footer: "جملہ حقوق محفوظ ہیں © پی یو بی جی یو سی اسٹور", modalTitle: "کھلاڑی آئی ڈی", deleteBtn: "حذف کریں", changeBtn: "تبدیلی کریں", pubgBrand: "پی یو بی جی موبائل", countryModalTitle: "اپنا ملک منتخب کریں", asia: "ایشیا", europe: "یورپ", northAmerica: "شمالی امریکہ", southAmerica: "جنوبی امریکہ", close: "بند کریں", notificationSettings: "اطلاعات کی ترتیبات", ordersCenter: "آرڈر سینٹر", accountInfo: "اکاؤنٹ کی معلومات", logout: "لاگ آؤٹ", eventsMenu: "تقریبات", instructions: "ہدایات", support: "مدد", cardManagement: "کارڈ مینجمنٹ" },
+        bn: { pageTitle: "পাবজি ইউসি স্টোর", loginArea: "লগইন করুন", sectionTitle: "প্যাকেজ নির্বাচন করুন", coupon: "কুপন ব্যবহার করুন", events: "ইভেন্ট", vip: "ভিআইপি অ্যাকাউন্ট", countryPlaceholder: "দেশ নির্বাচন করুন", paymentPlaceholder: "পেমেন্ট পদ্ধতি", zain: "জেইন ক্যাশ", asiaHaw: "এশিয়া হাওয়ালা", master: "মাস্টার কার্ড", buy: "এখনই কিনুন", footer: "সব অধিকার সংরক্ষিত © পাবজি ইউসি স্টোর", modalTitle: "প্লেয়ার আইডি", deleteBtn: "মুছুন", changeBtn: "পরিবর্তন করুন", pubgBrand: "পাবজি মোবাইল", countryModalTitle: "আপনার দেশ নির্বাচন করুন", asia: "এশিয়া", europe: "ইউরোপ", northAmerica: "উত্তর আমেরিকা", southAmerica: "দক্ষিণ আমেরিকা", close: "বন্ধ করুন", notificationSettings: "বিজ্ঞপ্তি সেটিংস", ordersCenter: "অর্ডার সেন্টার", accountInfo: "অ্যাকাউন্ট তথ্য", logout: "লগআউট", eventsMenu: "ইভেন্ট", instructions: "নির্দেশাবলী", support: "সহায়তা", cardManagement: "কার্ড ব্যবস্থাপনা" },
+        es: { pageTitle: "Tienda PUBG UC", loginArea: "Iniciar Sesión", sectionTitle: "Elige Paquete", coupon: "Usar Cupón", events: "Eventos", vip: "Cuenta VIP", countryPlaceholder: "Elige País", paymentPlaceholder: "Método de Pago", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar Ahora", footer: "Todos los Derechos Reservados © Tienda PUBG UC", modalTitle: "ID del Jugador", deleteBtn: "Eliminar", changeBtn: "Cambiar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Elige tu País", asia: "Asia", europe: "Europa", northAmerica: "América del Norte", southAmerica: "América del Sur", close: "Cerrar", notificationSettings: "Configuración de Notificaciones", ordersCenter: "Centro de Pedidos", accountInfo: "Información de la Cuenta", logout: "Cerrar Sesión", eventsMenu: "Eventos", instructions: "Instrucciones", support: "Soporte", cardManagement: "Gestión de Tarjeta" },
+        fr: { pageTitle: "Boutique PUBG UC", loginArea: "Se Connecter", sectionTitle: "Choisissez un Pack", coupon: "Utiliser un Code Promo", events: "Événements", vip: "Compte VIP", countryPlaceholder: "Choisissez un Pays", paymentPlaceholder: "Moyen de Paiement", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acheter Maintenant", footer: "Tous Droits Réservés © Boutique PUBG UC", modalTitle: "ID du Joueur", deleteBtn: "Supprimer", changeBtn: "Changer", pubgBrand: "PUBG MOBILE", countryModalTitle: "Choisissez Votre Pays", asia: "Asie", europe: "Europe", northAmerica: "Amérique du Nord", southAmerica: "Amérique du Sud", close: "Fermer", notificationSettings: "Paramètres de Notification", ordersCenter: "Centre de Commandes", accountInfo: "Informations du Compte", logout: "Déconnexion", eventsMenu: "Événements", instructions: "Instructions", support: "Support", cardManagement: "Gestion de Carte" },
+        de: { pageTitle: "PUBG UC Shop", loginArea: "Anmelden", sectionTitle: "Paket auswählen", coupon: "Gutschein verwenden", events: "Events", vip: "VIP-Konto", countryPlaceholder: "Land auswählen", paymentPlaceholder: "Zahlungsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Jetzt kaufen", footer: "Alle Rechte vorbehalten © PUBG UC Shop", modalTitle: "Spieler-ID", deleteBtn: "Löschen", changeBtn: "Ändern", pubgBrand: "PUBG MOBILE", countryModalTitle: "Wählen Sie Ihr Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Südamerika", close: "Schließen", notificationSettings: "Benachrichtigungseinstellungen", ordersCenter: "Bestellzentrum", accountInfo: "Kontoinformationen", logout: "Abmelden", eventsMenu: "Events", instructions: "Anweisungen", support: "Unterstützung", cardManagement: "Kartenverwaltung" },
+        it: { pageTitle: "Negozio PUBG UC", loginArea: "Accedi", sectionTitle: "Scegli Pacchetto", coupon: "Usa Coupon", events: "Eventi", vip: "Account VIP", countryPlaceholder: "Scegli Paese", paymentPlaceholder: "Metodo di Pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Acquista Ora", footer: "Tutti i Diritti Riservati © Negozio PUBG UC", modalTitle: "ID Giocatore", deleteBtn: "Elimina", changeBtn: "Cambia", pubgBrand: "PUBG MOBILE", countryModalTitle: "Scegli il Tuo Paese", asia: "Asia", europe: "Europa", northAmerica: "Nord America", southAmerica: "Sud America", close: "Chiudi", notificationSettings: "Impostazioni Notifiche", ordersCenter: "Centro Ordini", accountInfo: "Informazioni Account", logout: "Disconnetti", eventsMenu: "Eventi", instructions: "Istruzioni", support: "Supporto", cardManagement: "Gestione Carta" },
+        pt: { pageTitle: "Loja PUBG UC", loginArea: "Entrar", sectionTitle: "Escolha o Pacote", coupon: "Usar Cupom", events: "Eventos", vip: "Conta VIP", countryPlaceholder: "Escolha o País", paymentPlaceholder: "Método de Pagamento", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Comprar Agora", footer: "Todos os Direitos Reservados © Loja PUBG UC", modalTitle: "ID do Jogador", deleteBtn: "Excluir", changeBtn: "Alterar", pubgBrand: "PUBG MOBILE", countryModalTitle: "Escolha Seu País", asia: "Ásia", europe: "Europa", northAmerica: "América do Norte", southAmerica: "América do Sul", close: "Fechar", notificationSettings: "Configurações de Notificação", ordersCenter: "Central de Pedidos", accountInfo: "Informações da Conta", logout: "Sair", eventsMenu: "Eventos", instructions: "Instruções", support: "Suporte", cardManagement: "Gerenciamento de Cartão" },
+        nl: { pageTitle: "PUBG UC Winkel", loginArea: "Inloggen", sectionTitle: "Kies Pakket", coupon: "Gebruik Coupon", events: "Evenementen", vip: "VIP-account", countryPlaceholder: "Kies Land", paymentPlaceholder: "Betalingsmethode", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Nu Kopen", footer: "Alle Rechten Voorbehouden © PUBG UC Winkel", modalTitle: "Speler-ID", deleteBtn: "Verwijderen", changeBtn: "Wijzigen", pubgBrand: "PUBG MOBILE", countryModalTitle: "Kies Uw Land", asia: "Azië", europe: "Europa", northAmerica: "Noord-Amerika", southAmerica: "Zuid-Amerika", close: "Sluiten", notificationSettings: "Meldingen Instellingen", ordersCenter: "Bestelcentrum", accountInfo: "Accountgegevens", logout: "Uitloggen", eventsMenu: "Evenementen", instructions: "Instructies", support: "Ondersteuning", cardManagement: "Kaartbeheer" },
+        sv: { pageTitle: "PUBG UC Butik", loginArea: "Logga In", sectionTitle: "Välj Paket", coupon: "Använd Kupong", events: "Evenemang", vip: "VIP-konto", countryPlaceholder: "Välj Land", paymentPlaceholder: "Betalningsmetod", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Köp Nu", footer: "Alla Rättigheter Förbehållna © PUBG UC Butik", modalTitle: "Spelar-ID", deleteBtn: "Radera", changeBtn: "Ändra", pubgBrand: "PUBG MOBILE", countryModalTitle: "Välj Ditt Land", asia: "Asien", europe: "Europa", northAmerica: "Nordamerika", southAmerica: "Sydamerika", close: "Stäng", notificationSettings: "Aviseringsinställningar", ordersCenter: "Beställningscenter", accountInfo: "Kontoinformation", logout: "Logga Ut", eventsMenu: "Evenemang", instructions: "Instruktioner", support: "Support", cardManagement: "Korthantering" }
     };
     
     function getLanguageForCountry(country) { 
         const map = { 
+            "العراق":"ar","السعودية":"ar","الإمارات":"ar","الكويت":"ar","قطر":"ar","عمان":"ar","الأردن":"ar","مصر":"ar",
+            "تركيا":"tr","الصين":"zh","اليابان":"ja","كوريا الجنوبية":"ko","ماليزيا":"ms","إندونيسيا":"id",
+            "تايلاند":"th","فيتنام":"vi","الفلبين":"tl","الهند":"hi","باكستان":"ur","بنغلاديش":"bn","سريلانكا":"si","نيبال":"ne",
             "الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en",
-            "إسبانيا":"es","المكسيك":"es","الأرجنتين":"es",
-            "فرنسا":"fr","ألمانيا":"de","إيطاليا":"it",
-            "تركيا":"tr","البرازيل":"pt",
-            "الصين":"zh","اليابان":"ja","كوريا الجنوبية":"ko"
+            "إسبانيا":"es","المكسيك":"es","الأرجنتين":"es","كولومبيا":"es","تشيلي":"es","بيرو":"es","فنزويلا":"es","الإكوادور":"es",
+            "فرنسا":"fr","ألمانيا":"de","إيطاليا":"it","البرازيل":"pt","البرتغال":"pt",
+            "هولندا":"nl","السويد":"sv","النرويج":"no","الدنمارك":"da","فنلندا":"fi","اليونان":"el","بولندا":"pl","التشيك":"cs"
         }; 
-        return map[country] || "default"; 
+        return map[country] || "ar"; 
     }
     
     function applyTranslation(langCode) {
-        const t = translations[langCode] || translations.default;
+        const t = translations[langCode] || translations.ar;
         document.title = t.pageTitle;
         const loginSpan = document.getElementById('loginText');
         if(isLoggedIn()) {
@@ -1428,16 +1455,26 @@ footer {
         if(!container) return;
         const logged = isLoggedIn();
         const currentLang = getLanguageForCountry(localStorage.getItem('selectedCountry') || 'العراق');
-        const t = translations[currentLang] || translations.default;
+        const t = translations[currentLang] || translations.ar;
         let html = '';
         if(logged) {
             const userData = getLoggedUserData();
-            html += `<div class="menu-item user-info-top"><div class="username-large">${userData.username}</div><img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="profile" class="profile-menu-icon"></div>`;
-            html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div><div class="menu-item" data-action="orders">${t.ordersCenter}</div><div class="menu-item" data-action="cardManagement">${t.cardManagement}</div><div class="menu-item" data-action="logout">${t.logout}</div><div class="menu-divider"></div>`;
+            const firstLetter = userData.username.charAt(0).toUpperCase();
+            html += `<div class="menu-item user-info-top">
+                        <div class="username-large">${userData.username}</div>
+                        <div class="profile-initial">${firstLetter}</div>
+                     </div>`;
+            html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div>
+                     <div class="menu-item" data-action="orders">${t.ordersCenter}</div>
+                     <div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>
+                     <div class="menu-item" data-action="logout">${t.logout}</div>
+                     <div class="menu-divider"></div>`;
         } else {
             html += `<div class="menu-item" data-action="login">${t.loginArea}</div><div class="menu-divider"></div>`;
         }
-        html += `<div class="menu-item" data-action="events">${t.eventsMenu}</div><div class="menu-item" data-action="instructions">${t.instructions}</div><div class="menu-item" data-action="support">${t.support}</div>`;
+        html += `<div class="menu-item" data-action="events">${t.eventsMenu}</div>
+                 <div class="menu-item" data-action="instructions">${t.instructions}</div>
+                 <div class="menu-item" data-action="support">${t.support}</div>`;
         container.innerHTML = html;
         document.querySelectorAll(".menu-item[data-action]").forEach(item => {
             item.addEventListener('click', (e) => {
@@ -1614,7 +1651,7 @@ footer {
     const openCountryBtn = document.getElementById('openCountryModalBtn');
     const closeCountryModalBtn = document.getElementById('closeCountryModalBtn');
     const countryData = { 
-        asia: ["العراق","السعودية","الإمارات","الكويت","قطر","عمان","الأردن","مصر","تركيا","الصين","كوريا الجنوبية","كوريا الشمالية","اليابان","تايلاند","فيتنام","ماليزيا","إندونيسيا","الفلبين","الهند","باكستان","بنغلاديش","سريلانكا","نيبال"], 
+        asia: ["العراق","السعودية","الإمارات","الكويت","قطر","عمان","الأردن","مصر","تركيا","الصين","كوريا الجنوبية","كوريا الشمالية","اليابان","ماليزيا","إندونيسيا","تايلاند","فيتنام","الفلبين","الهند","باكستان","بنغلاديش","سريلانكا","نيبال"], 
         europe: ["إسبانيا","فرنسا","ألمانيا","إيطاليا","المملكة المتحدة","البرتغال","هولندا","بلجيكا","سويسرا","النمسا","السويد","النرويج","الدنمارك","فنلندا","بولندا","التشيك","اليونان"], 
         northAmerica: ["الولايات المتحدة","كندا","المكسيك","كوبا","جمهورية الدومينيكان"], 
         southAmerica: ["البرازيل","الأرجنتين","كولومبيا","تشيلي","بيرو","فنزويلا","الإكوادور"] 
@@ -1622,7 +1659,7 @@ footer {
     function getFlag(country) { 
         const flags={ 
             "العراق":"🇮🇶","السعودية":"🇸🇦","الإمارات":"🇦🇪","الكويت":"🇰🇼","قطر":"🇶🇦","عمان":"🇴🇲","الأردن":"🇯🇴","مصر":"🇪🇬","تركيا":"🇹🇷",
-            "الصين":"🇨🇳","كوريا الجنوبية":"🇰🇷","كوريا الشمالية":"🇰🇵","اليابان":"🇯🇵","تايلاند":"🇹🇭","فيتنام":"🇻🇳","ماليزيا":"🇲🇾","إندونيسيا":"🇮🇩","الفلبين":"🇵🇭","الهند":"🇮🇳","باكستان":"🇵🇰","بنغلاديش":"🇧🇩","سريلانكا":"🇱🇰","نيبال":"🇳🇵",
+            "الصين":"🇨🇳","كوريا الجنوبية":"🇰🇷","كوريا الشمالية":"🇰🇵","اليابان":"🇯🇵","ماليزيا":"🇲🇾","إندونيسيا":"🇮🇩","تايلاند":"🇹🇭","فيتنام":"🇻🇳","الفلبين":"🇵🇭","الهند":"🇮🇳","باكستان":"🇵🇰","بنغلاديش":"🇧🇩","سريلانكا":"🇱🇰","نيبال":"🇳🇵",
             "إسبانيا":"🇪🇸","فرنسا":"🇫🇷","ألمانيا":"🇩🇪","إيطاليا":"🇮🇹","المملكة المتحدة":"🇬🇧","البرتغال":"🇵🇹","هولندا":"🇳🇱","بلجيكا":"🇧🇪","سويسرا":"🇨🇭","النمسا":"🇦🇹","السويد":"🇸🇪","النرويج":"🇳🇴","الدنمارك":"🇩🇰","فنلندا":"🇫🇮","بولندا":"🇵🇱","التشيك":"🇨🇿","اليونان":"🇬🇷",
             "الولايات المتحدة":"🇺🇸","كندا":"🇨🇦","المكسيك":"🇲🇽","كوبا":"🇨🇺","جمهورية الدومينيكان":"🇩🇴",
             "البرازيل":"🇧🇷","الأرجنتين":"🇦🇷","كولومبيا":"🇨🇴","تشيلي":"🇨🇱","بيرو":"🇵🇪","فنزويلا":"🇻🇪","الإكوادور":"🇪🇨"
@@ -1661,10 +1698,10 @@ footer {
     countryModalDiv.addEventListener('click',(e)=>{if(e.target===countryModalDiv) closeCountryModalFunc();});
     renderCountries();
     const savedCountry = localStorage.getItem('selectedCountry');
-    if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; applyTranslation(getLanguageForCountry(savedCountry)); } else applyTranslation('default');
+    if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; applyTranslation(getLanguageForCountry(savedCountry)); } else applyTranslation('ar');
 
     const cardsData = [{ title: "60 UC", price: "$0.99" },{ title: "325 UC", price: "$4.99" },{ title: "660 UC", price: "$9.99" },{ title: "1800 UC", price: "$24.99" }];
-    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
+    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.ar; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
     renderCards();
     
     function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' '; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
