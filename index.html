@@ -812,7 +812,6 @@ footer {
     background: #222;
     margin: 8px 0;
 }
-/* تنسيق معلومات الحساب في القائمة: الاسم بجانب الأيقونة */
 .user-info-top {
     background: #1a1a1a;
     margin-bottom: 8px;
@@ -1302,6 +1301,7 @@ footer {
         });
     }
 
+    // دوال مستقلة لكل قائمة منبثقة
     function openNotificationModal() { document.getElementById('notificationModal').classList.add('active'); }
     function closeNotificationModal() { document.getElementById('notificationModal').classList.remove('active'); }
     document.getElementById('closeNotificationBtn')?.addEventListener('click', closeNotificationModal);
