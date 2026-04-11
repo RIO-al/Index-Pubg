@@ -1274,6 +1274,25 @@ footer {
     const USERS_KEY = 'pubg_website_users_v2';
     const CURRENT_USER_KEY = 'pubg_logged_user_data';
 
+    // دوال التحكم في قفل التمرير
+    function disableBodyScroll() {
+        document.body.style.overflow = 'hidden';
+        document.body.style.position = 'fixed';
+        document.body.style.width = '100%';
+        document.body.style.top = `-${window.scrollY}px`;
+    }
+    
+    function enableBodyScroll() {
+        const scrollY = document.body.style.top;
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.top = '';
+        if (scrollY) {
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+    }
+
     function getUsers() { let users = localStorage.getItem(USERS_KEY); return users ? JSON.parse(users) : []; }
     function saveUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
     function getLoggedUserData() { let data = localStorage.getItem(CURRENT_USER_KEY); return data ? JSON.parse(data) : null; }
@@ -1380,8 +1399,14 @@ footer {
         });
     }
 
-    function openNotificationModal() { document.getElementById('notificationModal').classList.add('active'); }
-    function closeNotificationModal() { document.getElementById('notificationModal').classList.remove('active'); }
+    function openNotificationModal() { 
+        document.getElementById('notificationModal').classList.add('active'); 
+        disableBodyScroll();
+    }
+    function closeNotificationModal() { 
+        document.getElementById('notificationModal').classList.remove('active'); 
+        enableBodyScroll();
+    }
     document.getElementById('closeNotificationBtn')?.addEventListener('click', closeNotificationModal);
     document.getElementById('notificationModal')?.addEventListener('click', (e) => { if(e.target === document.getElementById('notificationModal')) closeNotificationModal(); });
 
@@ -1389,8 +1414,16 @@ footer {
     const couponModal = document.getElementById('couponModal');
     const couponInput = document.getElementById('couponCodeInput');
     const couponMessage = document.getElementById('couponMessage');
-    function openCouponModal() { couponModal.classList.add('active'); couponInput.value = ''; couponMessage.innerHTML = ''; }
-    function closeCouponModal() { couponModal.classList.remove('active'); }
+    function openCouponModal() { 
+        couponModal.classList.add('active'); 
+        couponInput.value = ''; 
+        couponMessage.innerHTML = '';
+        disableBodyScroll();
+    }
+    function closeCouponModal() { 
+        couponModal.classList.remove('active'); 
+        enableBodyScroll();
+    }
     document.getElementById('applyCouponBtn')?.addEventListener('click', () => {
         const code = couponInput.value.trim().toUpperCase();
         if(code === 'ROUND10') {
@@ -1415,7 +1448,37 @@ footer {
     const modalUserIdSpan = document.getElementById('modalUserId');
     function onlyNumbers(str) { return /^\d+$/.test(str); }
     function promptNumbers(msg, def='') { let val = prompt(msg, def); if(val===null) return null; val=val.trim(); if(val===''){ alert('لا يمكن تركه فارغاً'); return promptNumbers(msg,def); } if(!onlyNumbers(val)){ alert('أرقام فقط'); return promptNumbers(msg,def); } return val; }
-    function showPopup(uid) { modalUserIdSpan.innerText=uid; modalAccount.classList.add('active'); const del=document.getElementById('modalDeleteBtn'), ch=document.getElementById('modalChangeBtn'); const newDel=del.cloneNode(true), newCh=ch.cloneNode(true); del.parentNode.replaceChild(newDel,del); ch.parentNode.replaceChild(newCh,ch); newDel.addEventListener('click',()=>{ localStorage.removeItem(STORAGE_KEY); refreshHeaderAccount(); modalAccount.classList.remove('active'); }); newCh.addEventListener('click',()=>{ modalAccount.classList.remove('active'); let newId=promptNumbers('أدخل الايدي الجديد (أرقام فقط):',currentUserId); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); modalAccount.addEventListener('click',function out(e){ if(e.target===modalAccount){ modalAccount.classList.remove('active'); modalAccount.removeEventListener('click',out); } }); }
+    function showPopup(uid) { 
+        modalUserIdSpan.innerText=uid; 
+        modalAccount.classList.add('active'); 
+        disableBodyScroll();
+        const del=document.getElementById('modalDeleteBtn'), ch=document.getElementById('modalChangeBtn'); 
+        const newDel=del.cloneNode(true), newCh=ch.cloneNode(true); 
+        del.parentNode.replaceChild(newDel,del); 
+        ch.parentNode.replaceChild(newCh,ch); 
+        newDel.addEventListener('click',()=>{ 
+            localStorage.removeItem(STORAGE_KEY); 
+            refreshHeaderAccount(); 
+            modalAccount.classList.remove('active'); 
+            enableBodyScroll();
+        }); 
+        newCh.addEventListener('click',()=>{ 
+            modalAccount.classList.remove('active'); 
+            enableBodyScroll();
+            let newId=promptNumbers('أدخل الايدي الجديد (أرقام فقط):',currentUserId); 
+            if(newId){ 
+                localStorage.setItem(STORAGE_KEY,newId); 
+                refreshHeaderAccount(); 
+            } 
+        }); 
+        modalAccount.addEventListener('click',function out(e){ 
+            if(e.target===modalAccount){ 
+                modalAccount.classList.remove('active'); 
+                enableBodyScroll();
+                modalAccount.removeEventListener('click',out); 
+            } 
+        }); 
+    }
     function refreshHeaderAccount() { currentUserId = localStorage.getItem(STORAGE_KEY); if(!currentUserId) { headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف معرف PUBG</div>`; document.getElementById('headerAddAccountBtn')?.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } let newId=promptNumbers('ادخل ايدي PUBG (أرقام فقط):'); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); } else { let display = currentUserId.length>12 ? currentUserId.slice(0,10)+'...' : currentUserId; headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${display}</div>`; document.getElementById('headerSavedIdBtn')?.addEventListener('click',()=>showPopup(currentUserId)); } }
     refreshHeaderAccount();
 
@@ -1428,8 +1491,20 @@ footer {
     const authUsername = document.getElementById('authUsername');
     const authErrorSpan = document.getElementById('authError');
     let isLoginMode = true;
-    function openAuthModal() { authModal.classList.add('active'); authEmail.value=''; authPassword.value=''; authUsername.value=''; authErrorSpan.innerText=''; isLoginMode=true; updateAuthUI(); }
-    function closeAuthModal() { authModal.classList.remove('active'); }
+    function openAuthModal() { 
+        authModal.classList.add('active'); 
+        authEmail.value=''; 
+        authPassword.value=''; 
+        authUsername.value=''; 
+        authErrorSpan.innerText=''; 
+        isLoginMode=true; 
+        updateAuthUI();
+        disableBodyScroll();
+    }
+    function closeAuthModal() { 
+        authModal.classList.remove('active'); 
+        enableBodyScroll();
+    }
     function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authUsername.style.display='none'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authUsername.style.display='block'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
     authSwitchText.addEventListener('click', (e) => { if(e.target.tagName==='SPAN') { isLoginMode = !isLoginMode; updateAuthUI(); } });
     authSubmitBtn.addEventListener('click', async () => { 
@@ -1461,8 +1536,12 @@ footer {
         supportEmailField.value = userData.email;
         supportName.value = ''; supportMessage.value = ''; supportErrorSpan.innerText = '';
         supportModalEl.classList.add('active');
+        disableBodyScroll();
     }
-    function closeSupportModal() { supportModalEl.classList.remove('active'); }
+    function closeSupportModal() { 
+        supportModalEl.classList.remove('active'); 
+        enableBodyScroll();
+    }
     sendSupportBtn.addEventListener('click', async () => {
         const name = supportName.value.trim(); const email = supportEmailField.value.trim(); const message = supportMessage.value.trim();
         if(!name) { supportErrorSpan.innerText = 'الرجاء إدخال الاسم'; return; }
@@ -1482,9 +1561,16 @@ footer {
     const countryData = { asia:["العراق","السعودية","الإمارات","الكويت","قطر","عمان","الأردن","مصر","تركيا"], europe:["إسبانيا","فرنسا","ألمانيا","إيطاليا","المملكة المتحدة"], northAmerica:["الولايات المتحدة","كندا","المكسيك"], southAmerica:["البرازيل","الأرجنتين"] };
     function getFlag(country) { const flags={ "العراق":"🇮🇶","السعودية":"🇸🇦","الإمارات":"🇦🇪","الكويت":"🇰🇼","قطر":"🇶🇦","عمان":"🇴🇲","الأردن":"🇯🇴","مصر":"🇪🇬","تركيا":"🇹🇷","إسبانيا":"🇪🇸","فرنسا":"🇫🇷","ألمانيا":"🇩🇪","إيطاليا":"🇮🇹","المملكة المتحدة":"🇬🇧","الولايات المتحدة":"🇺🇸","كندا":"🇨🇦","المكسيك":"🇲🇽","البرازيل":"🇧🇷","الأرجنتين":"🇦🇷"}; return flags[country]||"🏳️"; }
     function renderCountries() { const asiaGrid=document.getElementById('asiaGrid'), europeGrid=document.getElementById('europeGrid'), naGrid=document.getElementById('naGrid'), saGrid=document.getElementById('saGrid'); function renderGrid(grid,arr){ grid.innerHTML=arr.map(c=>`<div class="country-item" data-country="${c}">${getFlag(c)} ${c}</div>`).join(''); grid.querySelectorAll('.country-item').forEach(el=>{ el.addEventListener('click',()=>{ const country=el.dataset.country; localStorage.setItem('selectedCountry',country); document.getElementById('countryBtnText').innerHTML=`${getFlag(country)} ${country}`; applyTranslation(getLanguageForCountry(country)); closeCountryModalFunc(); }); }); } renderGrid(asiaGrid,countryData.asia); renderGrid(europeGrid,countryData.europe); renderGrid(naGrid,countryData.northAmerica); renderGrid(saGrid,countryData.southAmerica); }
-    function closeCountryModalFunc() { countryModalDiv.classList.remove('active'); }
-    openCountryBtn.addEventListener('click',()=>countryModalDiv.classList.add('active'));
-    closeCountryModalBtn.addEventListener('click',closeCountryModalFunc);
+    function closeCountryModalFunc() { 
+        countryModalDiv.classList.remove('active'); 
+        enableBodyScroll();
+    }
+    function openCountryModalFunc() {
+        countryModalDiv.classList.add('active');
+        disableBodyScroll();
+    }
+    openCountryBtn.addEventListener('click', openCountryModalFunc);
+    closeCountryModalBtn.addEventListener('click', closeCountryModalFunc);
     countryModalDiv.addEventListener('click',(e)=>{if(e.target===countryModalDiv) closeCountryModalFunc();});
     renderCountries();
     const savedCountry = localStorage.getItem('selectedCountry');
