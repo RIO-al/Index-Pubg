@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
 <title id="pageTitle">45Charge</title>
-<link rel="icon" type="image/png" href="Round.png">
+<link rel="icon" type="image/png" href="45Charge.png">
 <style>
 /* RESET & GLOBAL */
 * {
@@ -587,7 +587,7 @@ footer {
 <body>
 
 <header>
-    <img src="Round2.png" alt="45Charge" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2270%22 viewBox=%220 0 100 70%22%3E%3Crect width=%22100%22 height=%2270%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2224%22%3E45Charge%3C/text%3E%3C/svg%3E'">
+    <img src="45.png" alt="45Charge" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2270%22 viewBox=%220 0 100 70%22%3E%3Crect width=%22100%22 height=%2270%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2224%22%3E45Charge%3C/text%3E%3C/svg%3E'">
     <div class="nav-icons">
         <div class="account-group">
             <div class="login-area" id="loginArea">
@@ -658,7 +658,7 @@ footer {
 <div id="supportModal" class="support-modal"><div class="support-card"><h3>الدعم</h3><input type="text" id="supportName" placeholder="الاسم"><input type="email" id="supportEmail" placeholder="البريد" readonly><textarea id="supportMessage" placeholder="رسالتك"></textarea><div id="supportError"></div><button id="sendSupportBtn">إرسال</button><div class="support-close" id="closeSupportBtn">إغلاق</div></div></div>
 
 <div class="menu-overlay" id="menuOverlay"></div>
-<div class="side-menu" id="sideMenu"><div class="menu-header"><img src="Round2.png" class="menu-header-img"><div class="close-menu" id="closeMenuBtn">✕</div></div><div class="menu-items" id="menuItemsList"></div></div>
+<div class="side-menu" id="sideMenu"><div class="menu-header"><img src="45.png" class="menu-header-img"><div class="close-menu" id="closeMenuBtn">✕</div></div><div class="menu-items" id="menuItemsList"></div></div>
 
 <script>
     // ---------- TRANSLATIONS (UPDATED: "Round" → "45Charge") ----------
@@ -759,7 +759,7 @@ footer {
         document.getElementById("vipBtn").innerHTML = t("vip");
         document.getElementById("supportBtn").innerHTML = t("support");
         document.getElementById("notificationsBtn").innerHTML = t("notificationsBtn");
-        document.getElementById("paymentBtn").innerHTML = t("paymentPlaceholder") + " ▼";
+        document.getElementById("paymentBtn").innerHTML = t("paymentPlaceholder") + " ";
         let items = document.querySelectorAll("#paymentList li");
         if(items[0]) items[0].innerText = t("zain");
         if(items[1]) items[1].innerText = t("asiaHaw");
@@ -863,7 +863,7 @@ footer {
                 else if(newId) alert(t("alertIdNumbers"));
             });
         } else {
-            container.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">🆔 ${id.slice(0,10)}</div>`;
+            container.innerHTML = `<div class="header-account-btn" id="headerSavedIdBtn">${id.slice(0,10)}</div>`;
             document.getElementById("headerSavedIdBtn")?.addEventListener("click", () => {
                 let modal = document.getElementById("idModal");
                 document.getElementById("modalUserId").innerText = id;
@@ -887,7 +887,7 @@ footer {
     function initDropdown() {
         let btn = document.getElementById("paymentBtn"), list = document.getElementById("paymentList");
         btn.addEventListener("click", (e) => { e.stopPropagation(); list.style.display = list.style.display === "block" ? "none" : "block"; });
-        list.querySelectorAll("li").forEach(li => li.addEventListener("click", (e) => { e.stopPropagation(); btn.innerHTML = li.innerText + " ▼"; list.style.display = "none"; }));
+        list.querySelectorAll("li").forEach(li => li.addEventListener("click", (e) => { e.stopPropagation(); btn.innerHTML = li.innerText + " "; list.style.display = "none"; }));
         document.addEventListener("click", () => list.style.display = "none");
     }
 
