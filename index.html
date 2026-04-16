@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-<title id="pageTitle">PUBG UC Store</title>
+<title id="pageTitle">45Charge</title>
 <link rel="icon" type="image/png" href="Round.png">
 <style>
 /* RESET & GLOBAL */
@@ -109,6 +109,13 @@ header {
 .nav-icons {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.account-group {
+    display: flex;
+    align-items: center;
     gap: 12px;
 }
 
@@ -144,7 +151,7 @@ header {
     color: #f7c948;
 }
 
-/* HERO - بدون محتوى إضافي */
+/* HERO */
 .hero {
     background: url('Pnael.png') center/cover no-repeat;
     min-height: 140px;
@@ -247,10 +254,10 @@ header {
     color: #111;
 }
 
-/* CARDS */
+/* CARDS - تعديل لعرض بطاقتين بجانب بعض */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
 }
 .card {
@@ -540,7 +547,7 @@ footer {
     color: #111;
 }
 
-/* RESPONSIVE */
+/* RESPONSIVE - تحسين للشاشات الصغيرة */
 @media (min-width: 600px) {
     .filters {
         flex-direction: row;
@@ -555,14 +562,19 @@ footer {
         justify-content: space-between;
         align-items: center;
     }
+    /* الحفاظ على بطاقتين في الصف حتى على الشاشات المتوسطة */
     .cards {
         grid-template-columns: repeat(2, 1fr);
     }
 }
-@media (min-width: 900px) {
+@media (max-width: 480px) {
+    /* على الشاشات الصغيرة جداً، نضبط الحد الأدنى للعرض */
     .cards {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 12px;
     }
+}
+@media (min-width: 900px) {
     .hero {
         min-height: 180px;
     }
@@ -577,11 +589,13 @@ footer {
 <header>
     <img src="Round2.png" alt="45Charge" class="logo-img" id="logoImg" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%2270%22 viewBox=%220 0 100 70%22%3E%3Crect width=%22100%22 height=%2270%22 fill=%22%23111%22/%3E%3Ctext x=%2250%22 y=%2240%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2224%22%3E45Charge%3C/text%3E%3C/svg%3E'">
     <div class="nav-icons">
-        <div class="login-area" id="loginArea">
-            <span id="loginText">تسجيل الدخول</span>
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" class="profile-icon-img">
+        <div class="account-group">
+            <div class="login-area" id="loginArea">
+                <span id="loginText">تسجيل الدخول</span>
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E" class="profile-icon-img">
+            </div>
+            <div id="headerAccountContainer"></div>
         </div>
-        <div id="headerAccountContainer"></div>
         <div class="menu-icon" id="menuIcon">☰</div>
     </div>
 </header>
@@ -601,10 +615,10 @@ footer {
     </div>
     <div class="filters">
         <div class="country-modal-btn" id="openCountryModalBtn">
-            <span id="countryBtnText">اختر الدولة</span> <span>▼</span>
+            <span id="countryBtnText">اختر الدولة</span>
         </div>
         <div class="custom-dropdown" id="paymentDropdown">
-            <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع ▼</div>
+            <div class="dropdown-btn" id="paymentBtn">اختر وسيلة الدفع</div>
             <ul class="dropdown-list" id="paymentList">
                 <li data-value="Zain Cash">Zain Cash</li>
                 <li data-value="Asia Hawala">Asia Hawala</li>
@@ -633,7 +647,7 @@ footer {
         <div class="info-block"><p><span class="info-number">3</span><span class="info-text" id="infoText3"><strong>PUBG MOBILE</strong><br>أفضل لعبة باتل رويال.</span></p></div>
     </div>
 </section>
-<footer id="footerText">جميع الحقوق محفوظة © PUBG UC Store</footer>
+<footer id="footerText">جميع الحقوق محفوظة ©</footer>
 
 <!-- MODALS -->
 <div id="idModal" class="modal-overlay"><div class="popup-card"><h3 id="modalTitle">معرف اللاعب</h3><p id="modalUserId">---</p><div class="popup-buttons"><button id="modalDeleteBtn">حذف</button><button id="modalChangeBtn">تغيير</button></div></div></div>
@@ -650,7 +664,7 @@ footer {
     // ---------- TRANSLATIONS (UPDATED: "Round" → "45Charge") ----------
     const translations = {
         ar: {
-            pageTitle: "PUBG UC Store - متجر شدات ببجي", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "الأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © PUBG UC Store", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", close: "إغلاق", notificationSettings: "إعدادات الإشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الأحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة", addPubgId: "➕ أضف معرف PUBG",
+            pageTitle: "45Charge Stor", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "الأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © ", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", close: "إغلاق", notificationSettings: "إعدادات الإشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الأحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة", addPubgId: "ادخل معرف حسابك",
             roundBrand: "45Charge", roundDesc: "هو متجر الشحن الرسمي من Tencent. ادفع بأمان وسرعة مع 45Charge.",
             socialFollow: "تابعنا على :", whyTitle: "لماذا 45Charge؟",
             info1Title: "45Charge: متجر الشحن الرسمي", info1Text: "خدمات آمنة وسريعة.",
@@ -660,54 +674,54 @@ footer {
             alertLoginFirst: "يرجى تسجيل الدخول أولاً", alertOrderAdded: "تم إضافة الطلب!", alertLogout: "تم تسجيل الخروج", alertCardMgmt: "إدارة البطاقة قريباً", alertEventsSoon: "الأحداث قريباً", alertVipSoon: "VIP قريباً", alertInstructions: "التعليمات:\n1- سجل دخولك\n2- أضف معرف PUBG\n3- اختر الباقة", alertOrdersSoon: "مركز الطلبات (قريباً)", alertCouponApply: "تم تطبيق الكوبون! خصم 10%", alertCouponEmpty: "أدخل رمز الكوبون", alertCouponInvalid: "كود غير صالح", alertIdRequired: "سجل الدخول أولاً", alertIdPrompt: "أدخل معرف PUBG (أرقام فقط):", alertIdEmpty: "لا يمكن تركه فارغاً", alertIdNumbers: "أرقام فقط", alertIdNew: "أدخل المعرف الجديد (أرقام فقط):", alertSupportName: "أدخل اسمك", alertSupportMsg: "أدخل رسالتك", alertSupportSending: "جاري الإرسال...", alertSupportSuccess: "تم إرسال رسالتك!", alertSupportError: "حدث خطأ", alertAuthFill: "املأ البريد وكلمة المرور", alertAuthWrong: "بيانات غير صحيحة", alertAuthUserRequired: "أدخل اسم المستخدم", alertAuthSuccess: "تم إنشاء الحساب، يمكنك تسجيل الدخول", alertWelcome: (n)=>`مرحباً ${n}`
         },
         en: {
-            pageTitle: "PUBG UC Store", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved © PUBG UC Store", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management", addPubgId: "➕ Add PUBG ID",
+            pageTitle: "45Charge", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved ©", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management", addPubgId: "Add ID Player",
             roundBrand: "45Charge", roundDesc: "Official recharge store by Tencent. Pay safely with 45Charge.",
             socialFollow: "Follow us:", whyTitle: "Why 45Charge?",
             info1Title: "45Charge: Official Store", info1Text: "Secure and fast UC recharge.",
             info2Title: "Exclusive Discounts", info2Text: "Get over 10% discount on UC packs.",
             info3Title: "PUBG MOBILE", info3Text: "Best Battle Royale game.",
             notificationsBtn: "Notifications", notif1: "10% discount on all packs until end of month!", notif2: "New payment method: Master Card", notif3: "Weekly UC contest: win 5000 UC",
-            alertLoginFirst: "Please login first", alertOrderAdded: "Order added!", alertLogout: "Logged out", alertCardMgmt: "Card management coming soon", alertEventsSoon: "Events coming soon", alertVipSoon: "VIP coming soon", alertInstructions: "Instructions:\n1- Login\n2- Add PUBG ID\n3- Choose package", alertOrdersSoon: "Orders center coming soon", alertCouponApply: "Coupon applied! 10% off", alertCouponEmpty: "Enter coupon code", alertCouponInvalid: "Invalid code", alertIdRequired: "Please login first", alertIdPrompt: "Enter PUBG ID (numbers only):", alertIdEmpty: "Cannot be empty", alertIdNumbers: "Numbers only", alertIdNew: "Enter new ID (numbers only):", alertSupportName: "Enter your name", alertSupportMsg: "Enter your message", alertSupportSending: "Sending...", alertSupportSuccess: "Message sent!", alertSupportError: "Error occurred", alertAuthFill: "Fill email and password", alertAuthWrong: "Invalid credentials", alertAuthUserRequired: "Enter username", alertAuthSuccess: "Account created, you can login now", alertWelcome: (n)=>`Welcome ${n}`
+            alertLoginFirst: "Please login first", alertOrderAdded: "Order added!", alertLogout: "Logged out", alertCardMgmt: "Card management coming soon", alertEventsSoon: "Events coming soon", alertVipSoon: "VIP coming soon", alertInstructions: "Instructions:\n1- Login\n2- Add ID\n3- Choose package", alertOrdersSoon: "Orders center coming soon", alertCouponApply: "Coupon applied! 10% off", alertCouponEmpty: "Enter coupon code", alertCouponInvalid: "Invalid code", alertIdRequired: "Please login first", alertIdPrompt: "Enter ID (numbers only):", alertIdEmpty: "Cannot be empty", alertIdNumbers: "Numbers only", alertIdNew: "Enter new ID (numbers only):", alertSupportName: "Enter your name", alertSupportMsg: "Enter your message", alertSupportSending: "Sending...", alertSupportSuccess: "Message sent!", alertSupportError: "Error occurred", alertAuthFill: "Fill email and password", alertAuthWrong: "Invalid credentials", alertAuthUserRequired: "Enter username", alertAuthSuccess: "Account created, you can login now", alertWelcome: (n)=>`Welcome ${n}`
         },
         ru: { 
-            pageTitle: "PUBG UC Store", loginArea: "Войти", sectionTitle: "Выберите пакет", coupon: "Купон", events: "События", vip: "VIP аккаунт", countryPlaceholder: "Выберите страну", paymentPlaceholder: "Способ оплаты", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Купить", footer: "Все права защищены", modalTitle: "ID игрока", deleteBtn: "Удалить", changeBtn: "Изменить", pubgBrand: "PUBG MOBILE", countryModalTitle: "Выберите страну", close: "Закрыть", notificationSettings: "Настройки", ordersCenter: "Заказы", logout: "Выйти", eventsMenu: "События", instructions: "Инструкции", support: "Поддержка", cardManagement: "Карты", addPubgId: "Добавить PUBG ID",
+            pageTitle: "45Charge", loginArea: "Войти", sectionTitle: "Выберите пакет", coupon: "Купон", events: "События", vip: "VIP аккаунт", countryPlaceholder: "Выберите страну", paymentPlaceholder: "Способ оплаты", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Купить", footer: "Все права защищены", modalTitle: "ID игрока", deleteBtn: "Удалить", changeBtn: "Изменить", pubgBrand: "PUBG MOBILE", countryModalTitle: "Выберите страну", close: "Закрыть", notificationSettings: "Настройки", ordersCenter: "Заказы", logout: "Выйти", eventsMenu: "События", instructions: "Инструкции", support: "Поддержка", cardManagement: "Карты", addPubgId: "Добавить ID",
             roundBrand: "45Charge", roundDesc: "Официальный магазин Tencent. Платите безопасно с 45Charge.",
             socialFollow: "Мы в соцсетях:", whyTitle: "Почему 45Charge?",
             info1Title: "45Charge: Официальный магазин", info1Text: "Безопасно и быстро.",
             info2Title: "Скидки", info2Text: "Скидка 10% на UC.",
             info3Title: "PUBG MOBILE", info3Text: "Лучшая королевская битва.",
             notificationsBtn: "Уведомления", notif1: "Скидка 10% до конца месяца!", notif2: "Master Card добавлена", notif3: "Конкурс: выиграй 5000 UC",
-            alertLoginFirst: "Сначала войдите", alertOrderAdded: "Заказ добавлен!", alertLogout: "Выход", alertCouponApply: "Купон применён! Скидка 10%", alertCouponEmpty: "Введите код", alertCouponInvalid: "Неверный код", alertIdRequired: "Войдите", alertIdPrompt: "Введите PUBG ID (цифры):", alertIdEmpty: "Не может быть пустым", alertIdNumbers: "Только цифры", alertIdNew: "Новый ID (цифры):", alertSupportName: "Ваше имя", alertSupportMsg: "Сообщение", alertSupportSending: "Отправка...", alertSupportSuccess: "Отправлено!", alertSupportError: "Ошибка", alertAuthFill: "Email и пароль", alertAuthWrong: "Неверные данные", alertAuthUserRequired: "Имя пользователя", alertAuthSuccess: "Аккаунт создан", alertWelcome: (n)=>`Добро пожаловать, ${n}` 
+            alertLoginFirst: "Сначала войдите", alertOrderAdded: "Заказ добавлен!", alertLogout: "Выход", alertCouponApply: "Купон применён! Скидка 10%", alertCouponEmpty: "Введите код", alertCouponInvalid: "Неверный код", alertIdRequired: "Войдите", alertIdPrompt: "Введите ID (цифры):", alertIdEmpty: "Не может быть пустым", alertIdNumbers: "Только цифры", alertIdNew: "Новый ID (цифры):", alertSupportName: "Ваше имя", alertSupportMsg: "Сообщение", alertSupportSending: "Отправка...", alertSupportSuccess: "Отправлено!", alertSupportError: "Ошибка", alertAuthFill: "Email и пароль", alertAuthWrong: "Неверные данные", alertAuthUserRequired: "Имя пользователя", alertAuthSuccess: "Аккаунт создан", alertWelcome: (n)=>`Добро пожаловать, ${n}` 
         },
         zh: { 
-            pageTitle: "PUBG UC商店", loginArea: "登录", sectionTitle: "选择套餐", coupon: "使用优惠券", events: "活动", vip: "VIP账户", countryPlaceholder: "选择国家", paymentPlaceholder: "支付方式", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "购买", footer: "版权所有", modalTitle: "玩家ID", deleteBtn: "删除", changeBtn: "更改", pubgBrand: "PUBG MOBILE", countryModalTitle: "选择国家", close: "关闭", notificationSettings: "通知设置", ordersCenter: "订单中心", logout: "退出", eventsMenu: "活动", instructions: "说明", support: "支持", cardManagement: "卡片管理", addPubgId: "添加PUBG ID",
+            pageTitle: "PUBG UC商店", loginArea: "登录", sectionTitle: "选择套餐", coupon: "使用优惠券", events: "活动", vip: "VIP账户", countryPlaceholder: "选择国家", paymentPlaceholder: "支付方式", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "购买", footer: "版权所有", modalTitle: "玩家ID", deleteBtn: "删除", changeBtn: "更改", pubgBrand: "PUBG MOBILE", countryModalTitle: "选择国家", close: "关闭", notificationSettings: "通知设置", ordersCenter: "订单中心", logout: "退出", eventsMenu: "活动", instructions: "说明", support: "支持", cardManagement: "卡片管理", addPubgId: "添加ID",
             roundBrand: "45Charge", roundDesc: "腾讯官方充值商店。使用45Charge安全支付。",
             socialFollow: "关注我们：", whyTitle: "为什么选择45Charge？",
             info1Title: "45Charge：官方商店", info1Text: "安全快速的UC充值。",
             info2Title: "独家折扣", info2Text: "UC包10%以上折扣。",
             info3Title: "PUBG MOBILE", info3Text: "最佳吃鸡游戏。",
             notificationsBtn: "通知", notif1: "所有包月10%折扣！", notif2: "新增Master Card支付", notif3: "周赛赢5000 UC",
-            alertLoginFirst: "请先登录", alertOrderAdded: "订单已添加！", alertLogout: "已退出", alertCouponApply: "优惠券已应用！10%折扣", alertCouponEmpty: "输入优惠码", alertCouponInvalid: "无效代码", alertIdRequired: "请先登录", alertIdPrompt: "输入PUBG ID（仅数字）：", alertIdEmpty: "不能为空", alertIdNumbers: "仅数字", alertIdNew: "新ID（仅数字）：", alertSupportName: "您的姓名", alertSupportMsg: "您的消息", alertSupportSending: "发送中...", alertSupportSuccess: "发送成功！", alertSupportError: "错误", alertAuthFill: "填写邮箱和密码", alertAuthWrong: "凭证无效", alertAuthUserRequired: "用户名", alertAuthSuccess: "账户已创建", alertWelcome: (n)=>`欢迎 ${n}` 
+            alertLoginFirst: "请先登录", alertOrderAdded: "订单已添加！", alertLogout: "已退出", alertCouponApply: "优惠券已应用！10%折扣", alertCouponEmpty: "输入优惠码", alertCouponInvalid: "无效代码", alertIdRequired: "请先登录", alertIdPrompt: "输入ID（仅数字）：", alertIdEmpty: "不能为空", alertIdNumbers: "仅数字", alertIdNew: "新ID（仅数字）：", alertSupportName: "您的姓名", alertSupportMsg: "您的消息", alertSupportSending: "发送中...", alertSupportSuccess: "发送成功！", alertSupportError: "错误", alertAuthFill: "填写邮箱和密码", alertAuthWrong: "凭证无效", alertAuthUserRequired: "用户名", alertAuthSuccess: "账户已创建", alertWelcome: (n)=>`欢迎 ${n}` 
         },
         ja: { 
-            pageTitle: "PUBG UCストア", loginArea: "ログイン", sectionTitle: "パッケージを選択", coupon: "クーポンを使う", events: "イベント", vip: "VIPアカウント", countryPlaceholder: "国を選択", paymentPlaceholder: "支払い方法", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "購入", footer: "全著作権所有", modalTitle: "プレイヤーID", deleteBtn: "削除", changeBtn: "変更", pubgBrand: "PUBG MOBILE", countryModalTitle: "国を選択", close: "閉じる", notificationSettings: "通知設定", ordersCenter: "注文センター", logout: "ログアウト", eventsMenu: "イベント", instructions: "説明", support: "サポート", cardManagement: "カード管理", addPubgId: "PUBG IDを追加",
+            pageTitle: "PUBG UCストア", loginArea: "ログイン", sectionTitle: "パッケージを選択", coupon: "クーポンを使う", events: "イベント", vip: "VIPアカウント", countryPlaceholder: "国を選択", paymentPlaceholder: "支払い方法", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "購入", footer: "全著作権所有", modalTitle: "プレイヤーID", deleteBtn: "削除", changeBtn: "変更", pubgBrand: "PUBG MOBILE", countryModalTitle: "国を選択", close: "閉じる", notificationSettings: "通知設定", ordersCenter: "注文センター", logout: "ログアウト", eventsMenu: "イベント", instructions: "説明", support: "サポート", cardManagement: "カード管理", addPubgId: "IDを追加",
             roundBrand: "45Charge", roundDesc: "Tencent公式チャージストア。45Chargeで安全に支払う。",
             socialFollow: "フォローする：", whyTitle: "なぜ45Chargeなのか？",
             info1Title: "45Charge: 公式ストア", info1Text: "安全で高速なUCチャージ。",
             info2Title: "限定割引", info2Text: "UCパック10%以上割引。",
             info3Title: "PUBG MOBILE", info3Text: "最高のバトルロワイヤル。",
             notificationsBtn: "通知", notif1: "全パック10%割引！", notif2: "Master Card追加", notif3: "週間コンテストで5000UC",
-            alertLoginFirst: "ログインしてください", alertOrderAdded: "注文追加！", alertLogout: "ログアウト", alertCouponApply: "クーポン適用！10%割引", alertCouponEmpty: "クーポンコードを入力", alertCouponInvalid: "無効なコード", alertIdRequired: "ログインしてください", alertIdPrompt: "PUBG IDを入力（数字のみ）：", alertIdEmpty: "空にできません", alertIdNumbers: "数字のみ", alertIdNew: "新しいID（数字のみ）：", alertSupportName: "お名前", alertSupportMsg: "メッセージ", alertSupportSending: "送信中...", alertSupportSuccess: "送信成功！", alertSupportError: "エラー", alertAuthFill: "メールとパスワードを入力", alertAuthWrong: "認証エラー", alertAuthUserRequired: "ユーザー名", alertAuthSuccess: "アカウント作成完了", alertWelcome: (n)=>`ようこそ ${n}` 
+            alertLoginFirst: "ログインしてください", alertOrderAdded: "注文追加！", alertLogout: "ログアウト", alertCouponApply: "クーポン適用！10%割引", alertCouponEmpty: "クーポンコードを入力", alertCouponInvalid: "無効なコード", alertIdRequired: "ログインしてください", alertIdPrompt: "IDを入力（数字のみ）：", alertIdEmpty: "空にできません", alertIdNumbers: "数字のみ", alertIdNew: "新しいID（数字のみ）：", alertSupportName: "お名前", alertSupportMsg: "メッセージ", alertSupportSending: "送信中...", alertSupportSuccess: "送信成功！", alertSupportError: "エラー", alertAuthFill: "メールとパスワードを入力", alertAuthWrong: "認証エラー", alertAuthUserRequired: "ユーザー名", alertAuthSuccess: "アカウント作成完了", alertWelcome: (n)=>`ようこそ ${n}` 
         },
         ko: { 
-            pageTitle: "PUBG UC 스토어", loginArea: "로그인", sectionTitle: "패키지 선택", coupon: "쿠폰 사용", events: "이벤트", vip: "VIP 계정", countryPlaceholder: "국가 선택", paymentPlaceholder: "결제 수단", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "구매", footer: "판권 소유", modalTitle: "플레이어 ID", deleteBtn: "삭제", changeBtn: "변경", pubgBrand: "PUBG MOBILE", countryModalTitle: "국가 선택", close: "닫기", notificationSettings: "알림 설정", ordersCenter: "주문 센터", logout: "로그아웃", eventsMenu: "이벤트", instructions: "지침", support: "지원", cardManagement: "카드 관리", addPubgId: "PUBG ID 추가",
+            pageTitle: "PUBG UC 스토어", loginArea: "로그인", sectionTitle: "패키지 선택", coupon: "쿠폰 사용", events: "이벤트", vip: "VIP 계정", countryPlaceholder: "국가 선택", paymentPlaceholder: "결제 수단", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "구매", footer: "판권 소유", modalTitle: "플레이어 ID", deleteBtn: "삭제", changeBtn: "변경", pubgBrand: "PUBG MOBILE", countryModalTitle: "국가 선택", close: "닫기", notificationSettings: "알림 설정", ordersCenter: "주문 센터", logout: "로그아웃", eventsMenu: "이벤트", instructions: "지침", support: "지원", cardManagement: "카드 관리", addPubgId: "ID 추가",
             roundBrand: "45Charge", roundDesc: "Tencent 공식 충전 스토어. 45Charge로 안전하게 결제하세요.",
             socialFollow: "팔로우:", whyTitle: "왜 45Charge인가요?",
             info1Title: "45Charge: 공식 스토어", info1Text: "안전하고 빠른 UC 충전.",
             info2Title: "독점 할인", info2Text: "UC 팩 10% 이상 할인.",
             info3Title: "PUBG MOBILE", info3Text: "최고의 배틀로얄 게임.",
             notificationsBtn: "알림", notif1: "모든 팩 10% 할인!", notif2: "Master Card 추가됨", notif3: "주간 대회 5000UC",
-            alertLoginFirst: "로그인하세요", alertOrderAdded: "주문 추가됨!", alertLogout: "로그아웃됨", alertCouponApply: "쿠폰 적용! 10% 할인", alertCouponEmpty: "쿠폰 코드 입력", alertCouponInvalid: "잘못된 코드", alertIdRequired: "로그인 필요", alertIdPrompt: "PUBG ID 입력 (숫자만):", alertIdEmpty: "비워둘 수 없음", alertIdNumbers: "숫자만", alertIdNew: "새 ID (숫자만):", alertSupportName: "이름", alertSupportMsg: "메시지", alertSupportSending: "전송 중...", alertSupportSuccess: "전송 성공!", alertSupportError: "오류 발생", alertAuthFill: "이메일과 비밀번호 입력", alertAuthWrong: "잘못된 정보", alertAuthUserRequired: "사용자 이름", alertAuthSuccess: "계정 생성됨", alertWelcome: (n)=>`${n}님 환영합니다` 
+            alertLoginFirst: "로그인하세요", alertOrderAdded: "주문 추가됨!", alertLogout: "로그아웃됨", alertCouponApply: "쿠폰 적용! 10% 할인", alertCouponEmpty: "쿠폰 코드 입력", alertCouponInvalid: "잘못된 코드", alertIdRequired: "로그인 필요", alertIdPrompt: "ID 입력 (숫자만):", alertIdEmpty: "비워둘 수 없음", alertIdNumbers: "숫자만", alertIdNew: "새 ID (숫자만):", alertSupportName: "이름", alertSupportMsg: "메시지", alertSupportSending: "전송 중...", alertSupportSuccess: "전송 성공!", alertSupportError: "오류 발생", alertAuthFill: "이메일과 비밀번호 입력", alertAuthWrong: "잘못된 정보", alertAuthUserRequired: "사용자 이름", alertAuthSuccess: "계정 생성됨", alertWelcome: (n)=>`${n}님 환영합니다` 
         }
     };
 
