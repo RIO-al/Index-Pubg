@@ -60,30 +60,15 @@ button:focus-visible,
 .coupon-input:focus,
 .support-input:focus,
 .support-textarea:focus,
-.auth-input:focus {
+.auth-input:focus,
+.gmail-login-btn:focus {
     outline: none !important;
     box-shadow: none !important;
     -webkit-tap-highlight-color: transparent !important;
     border-color: inherit !important;
 }
 
-button,
-a,
-div[role="button"],
-[onclick],
-[data-action],
-.menu-item,
-.login-area,
-.header-account-btn,
-.country-item,
-.dropdown-btn,
-.extra-btn,
-.buy-btn,
-.coupon-apply-btn,
-.coupon-close,
-.close-notification,
-.support-close,
-.close-country-popup {
+button, a, div[role="button"], [onclick], [data-action], .menu-item, .login-area, .header-account-btn, .country-item, .dropdown-btn, .extra-btn, .buy-btn, .coupon-apply-btn, .coupon-close, .close-notification, .support-close, .close-country-popup, .gmail-login-btn {
     -webkit-tap-highlight-color: transparent;
     user-select: none;
 }
@@ -203,6 +188,11 @@ header {
     gap: 6px;
     white-space: nowrap;
 }
+.extra-btn svg, .menu-item svg, .buy-btn svg, .gmail-login-btn svg {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1);
+}
 .extra-btn:hover {
     color: #f7c948;
     background: #1a1a1a;
@@ -254,7 +244,7 @@ header {
     color: #111;
 }
 
-/* CARDS - تعديل لعرض بطاقتين بجانب بعض */
+/* CARDS */
 .cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -302,9 +292,16 @@ header {
     width: 100%;
     cursor: pointer;
     font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
 }
 .buy-btn:hover {
     background: #ffdd77;
+}
+.buy-btn svg {
+    filter: brightness(0);
 }
 
 /* BRAND SECTION */
@@ -458,6 +455,26 @@ footer {
     width: 100%;
     cursor: pointer;
 }
+.gmail-login-btn {
+    background: #dd4b39;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 40px;
+    font-weight: bold;
+    width: 100%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+}
+.gmail-login-btn svg {
+    filter: none;
+    width: 18px;
+    height: 18px;
+}
 .auth-switch {
     margin-top: 12px;
     font-size: 13px;
@@ -546,41 +563,23 @@ footer {
     font-weight: bold;
     color: #111;
 }
-
-/* RESPONSIVE - تحسين للشاشات الصغيرة */
+.auth-error {
+    color: #ff6b6b;
+    font-size: 12px;
+    margin: 5px 0;
+}
 @media (min-width: 600px) {
-    .filters {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-    .country-modal-btn, .custom-dropdown {
-        width: auto;
-        flex: 1;
-    }
-    .section-header {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-    }
-    /* الحفاظ على بطاقتين في الصف حتى على الشاشات المتوسطة */
-    .cards {
-        grid-template-columns: repeat(2, 1fr);
-    }
+    .filters { flex-direction: row; flex-wrap: wrap; }
+    .country-modal-btn, .custom-dropdown { width: auto; flex: 1; }
+    .section-header { flex-direction: row; justify-content: space-between; align-items: center; }
+    .cards { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 480px) {
-    /* على الشاشات الصغيرة جداً، نضبط الحد الأدنى للعرض */
-    .cards {
-        grid-template-columns: repeat(2, minmax(120px, 1fr));
-        gap: 12px;
-    }
+    .cards { grid-template-columns: repeat(2, minmax(120px, 1fr)); gap: 12px; }
 }
 @media (min-width: 900px) {
-    .hero {
-        min-height: 180px;
-    }
-    .logo-img {
-        height: 90px;
-    }
+    .hero { min-height: 180px; }
+    .logo-img { height: 90px; }
 }
 </style>
 </head>
@@ -606,11 +605,11 @@ footer {
     <div class="section-header">
         <h2 class="section-title" id="sectionTitle">اختر الباقة</h2>
         <div class="extra-box">
-            <button class="extra-btn" id="couponBtn"> استعمال كوبون</button>
-            <button class="extra-btn" id="eventsBtn"> الأحداث</button>
-            <button class="extra-btn" id="vipBtn"> حساب مميز</button>
-            <button class="extra-btn" id="supportBtn"> الدعم</button>
-            <button class="extra-btn" id="notificationsBtn"> الإشعارات</button>
+            <button class="extra-btn" id="couponBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H4v4M12 4v16M4 12h16M8 4h8M4 16h16"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> استعمال كوبون</button>
+            <button class="extra-btn" id="eventsBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> الأحداث</button>
+            <button class="extra-btn" id="vipBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 19 22 12 17 5 22 8 14 2 9 9 9 12 2"/></svg> حساب مميز</button>
+            <button class="extra-btn" id="supportBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> الدعم</button>
+            <button class="extra-btn" id="notificationsBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> الإشعارات</button>
         </div>
     </div>
     <div class="filters">
@@ -654,14 +653,14 @@ footer {
 <div id="countryModal" class="country-modal-overlay"><div class="country-popup"><h3 id="countryModalTitle">اختر دولتك</h3><div class="country-grid" id="countryGrid"></div><div class="close-country-popup" id="closeCountryModalBtn">إغلاق</div></div></div>
 <div id="notificationModal" class="notification-modal"><div class="notification-card"><h3> الإشعارات</h3><div class="notifications-list" id="notificationsList"></div><div class="close-notification" id="closeNotificationBtn">إغلاق</div></div></div>
 <div id="couponModal" class="coupon-modal"><div class="coupon-card"><h3> كوبون الخصم</h3><input type="text" id="couponCodeInput" placeholder="أدخل الرمز"><button id="applyCouponBtn">تطبيق</button><div id="couponMessage"></div><div class="coupon-close" id="closeCouponBtn">إغلاق</div></div></div>
-<div id="authModal" class="auth-modal"><div class="auth-card"><h3 id="authTitle">تسجيل الدخول</h3><input type="text" id="authUsername" placeholder="اسم المستخدم" style="display:none"><input type="email" id="authEmail" placeholder="البريد الإلكتروني"><input type="password" id="authPassword" placeholder="كلمة المرور"><div id="authError" class="auth-error"></div><button id="authSubmitBtn">دخول</button><div id="authSwitchText" class="auth-switch">ليس لديك حساب؟ <span>إنشاء حساب</span></div></div></div>
+<div id="authModal" class="auth-modal"><div class="auth-card"><h3 id="authTitle">تسجيل الدخول</h3><input type="text" id="authUsername" placeholder="اسم المستخدم" style="display:none"><input type="email" id="authEmail" placeholder="البريد الإلكتروني"><input type="password" id="authPassword" placeholder="كلمة المرور"><div id="authError" class="auth-error"></div><button id="authSubmitBtn">دخول</button><button id="gmailLoginBtn" class="gmail-login-btn"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#fff"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#fff"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#fff"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#fff"/></svg> تسجيل الدخول عبر Gmail</button><div id="authSwitchText" class="auth-switch">ليس لديك حساب؟ <span>إنشاء حساب</span></div></div></div>
 <div id="supportModal" class="support-modal"><div class="support-card"><h3>الدعم</h3><input type="text" id="supportName" placeholder="الاسم"><input type="email" id="supportEmail" placeholder="البريد" readonly><textarea id="supportMessage" placeholder="رسالتك"></textarea><div id="supportError"></div><button id="sendSupportBtn">إرسال</button><div class="support-close" id="closeSupportBtn">إغلاق</div></div></div>
 
 <div class="menu-overlay" id="menuOverlay"></div>
 <div class="side-menu" id="sideMenu"><div class="menu-header"><img src="45.png" class="menu-header-img"><div class="close-menu" id="closeMenuBtn">✕</div></div><div class="menu-items" id="menuItemsList"></div></div>
 
 <script>
-    // ---------- TRANSLATIONS (UPDATED: "Round" → "45Charge") ----------
+    // ---------- TRANSLATIONS (مع إضافة الرسائل الجديدة) ----------
     const translations = {
         ar: {
             pageTitle: "45Charge Stor", loginArea: "تسجيل الدخول", sectionTitle: "اختر الباقة", coupon: "استعمال كوبون", events: "الأحداث", vip: "حساب VIP", countryPlaceholder: "اختر الدولة", paymentPlaceholder: "اختر وسيلة الدفع", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "شراء الآن", footer: "جميع الحقوق محفوظة © ", modalTitle: "معرف اللاعب", deleteBtn: "حذف", changeBtn: "تغيير", pubgBrand: "PUBG MOBILE", countryModalTitle: "اختر دولتك", close: "إغلاق", notificationSettings: "إعدادات الإشعارات", ordersCenter: "مركز الطلبات", accountInfo: "معلومات الحساب", logout: "تسجيل الخروج", eventsMenu: "الأحداث", instructions: "التعليمات", support: "الدعم", cardManagement: "إدارة البطاقة", addPubgId: "ادخل معرف حسابك",
@@ -671,60 +670,20 @@ footer {
             info2Title: "خصومات حصرية", info2Text: "خصم يزيد عن 10% على حزم UC.",
             info3Title: "PUBG MOBILE", info3Text: "أفضل لعبة باتل رويال.",
             notificationsBtn: "الإشعارات", notif1: "خصم 10% على جميع الباقات حتى نهاية الشهر!", notif2: "تم إضافة طريقة دفع جديدة: Master Card", notif3: "مسابقة UC الأسبوعية: اربح 5000 UC",
-            alertLoginFirst: "يرجى تسجيل الدخول أولاً", alertOrderAdded: "تم إضافة الطلب!", alertLogout: "تم تسجيل الخروج", alertCardMgmt: "إدارة البطاقة قريباً", alertEventsSoon: "الأحداث قريباً", alertVipSoon: "VIP قريباً", alertInstructions: "التعليمات:\n1- سجل دخولك\n2- أضف معرف PUBG\n3- اختر الباقة", alertOrdersSoon: "مركز الطلبات (قريباً)", alertCouponApply: "تم تطبيق الكوبون! خصم 10%", alertCouponEmpty: "أدخل رمز الكوبون", alertCouponInvalid: "كود غير صالح", alertIdRequired: "سجل الدخول أولاً", alertIdPrompt: "أدخل معرف PUBG (أرقام فقط):", alertIdEmpty: "لا يمكن تركه فارغاً", alertIdNumbers: "أرقام فقط", alertIdNew: "أدخل المعرف الجديد (أرقام فقط):", alertSupportName: "أدخل اسمك", alertSupportMsg: "أدخل رسالتك", alertSupportSending: "جاري الإرسال...", alertSupportSuccess: "تم إرسال رسالتك!", alertSupportError: "حدث خطأ", alertAuthFill: "املأ البريد وكلمة المرور", alertAuthWrong: "بيانات غير صحيحة", alertAuthUserRequired: "أدخل اسم المستخدم", alertAuthSuccess: "تم إنشاء الحساب، يمكنك تسجيل الدخول", alertWelcome: (n)=>`مرحباً ${n}`
+            alertLoginFirst: "يرجى تسجيل الدخول أولاً", alertOrderAdded: "تم إضافة الطلب!", alertLogout: "تم تسجيل الخروج", alertCardMgmt: "إدارة البطاقة قريباً", alertEventsSoon: "الأحداث قريباً", alertVipSoon: "VIP قريباً", alertInstructions: "التعليمات:\n1- سجل دخولك\n2- أضف معرف PUBG\n3- اختر الباقة", alertOrdersSoon: "مركز الطلبات (قريباً)", alertCouponApply: "تم تطبيق الكوبون! خصم 10%", alertCouponEmpty: "أدخل رمز الكوبون", alertCouponInvalid: "كود غير صالح", alertIdRequired: "سجل الدخول أولاً", alertIdPrompt: "أدخل معرف PUBG (أرقام فقط):", alertIdEmpty: "لا يمكن تركه فارغاً", alertIdNumbers: "أرقام فقط", alertIdNew: "أدخل المعرف الجديد (أرقام فقط):", alertSupportName: "أدخل اسمك", alertSupportMsg: "أدخل رسالتك", alertSupportSending: "جاري الإرسال...", alertSupportSuccess: "تم إرسال رسالتك!", alertSupportError: "حدث خطأ", alertAuthFill: "املأ البريد وكلمة المرور", alertAuthWrong: "بيانات غير صحيحة", alertAuthUserRequired: "أدخل اسم المستخدم", alertAuthSuccess: "تم إنشاء الحساب، يمكنك تسجيل الدخول", alertWelcome: (n)=>`مرحباً ${n}`,
+            alertInvalidEmailDomain: "البريد الإلكتروني يجب أن ينتهي بـ @gmail.com, @yahoo.com, @hotmail.com, @outlook.com, @icloud.com",
+            alertPasswordCondition: "كلمة المرور يجب أن تتكون من 6 أحرف أو أكثر وتحتوي على حرف إنجليزي واحد على الأقل (يمكن أن تحتوي على أرقام ورموز لكن لا يمكن أن تكون أرقاماً فقط).",
+            alertGmailSuccess: "تم تسجيل الدخول عبر Gmail"
         },
         en: {
-            pageTitle: "45Charge", loginArea: "Login", sectionTitle: "Choose Package", coupon: "Use Coupon", events: "Events", vip: "VIP Account", countryPlaceholder: "Select Country", paymentPlaceholder: "Payment Method", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Buy Now", footer: "All Rights Reserved ©", modalTitle: "Player ID", deleteBtn: "Delete", changeBtn: "Change", pubgBrand: "PUBG MOBILE", countryModalTitle: "Select Your Country", close: "Close", notificationSettings: "Notification Settings", ordersCenter: "Orders Center", accountInfo: "Account Info", logout: "Logout", eventsMenu: "Events", instructions: "Instructions", support: "Support", cardManagement: "Card Management", addPubgId: "Add ID Player",
-            roundBrand: "45Charge", roundDesc: "Official recharge store by Tencent. Pay safely with 45Charge.",
-            socialFollow: "Follow us:", whyTitle: "Why 45Charge?",
-            info1Title: "45Charge: Official Store", info1Text: "Secure and fast UC recharge.",
-            info2Title: "Exclusive Discounts", info2Text: "Get over 10% discount on UC packs.",
-            info3Title: "PUBG MOBILE", info3Text: "Best Battle Royale game.",
-            notificationsBtn: "Notifications", notif1: "10% discount on all packs until end of month!", notif2: "New payment method: Master Card", notif3: "Weekly UC contest: win 5000 UC",
-            alertLoginFirst: "Please login first", alertOrderAdded: "Order added!", alertLogout: "Logged out", alertCardMgmt: "Card management coming soon", alertEventsSoon: "Events coming soon", alertVipSoon: "VIP coming soon", alertInstructions: "Instructions:\n1- Login\n2- Add ID\n3- Choose package", alertOrdersSoon: "Orders center coming soon", alertCouponApply: "Coupon applied! 10% off", alertCouponEmpty: "Enter coupon code", alertCouponInvalid: "Invalid code", alertIdRequired: "Please login first", alertIdPrompt: "Enter ID (numbers only):", alertIdEmpty: "Cannot be empty", alertIdNumbers: "Numbers only", alertIdNew: "Enter new ID (numbers only):", alertSupportName: "Enter your name", alertSupportMsg: "Enter your message", alertSupportSending: "Sending...", alertSupportSuccess: "Message sent!", alertSupportError: "Error occurred", alertAuthFill: "Fill email and password", alertAuthWrong: "Invalid credentials", alertAuthUserRequired: "Enter username", alertAuthSuccess: "Account created, you can login now", alertWelcome: (n)=>`Welcome ${n}`
-        },
-        ru: { 
-            pageTitle: "45Charge", loginArea: "Войти", sectionTitle: "Выберите пакет", coupon: "Купон", events: "События", vip: "VIP аккаунт", countryPlaceholder: "Выберите страну", paymentPlaceholder: "Способ оплаты", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "Купить", footer: "Все права защищены", modalTitle: "ID игрока", deleteBtn: "Удалить", changeBtn: "Изменить", pubgBrand: "PUBG MOBILE", countryModalTitle: "Выберите страну", close: "Закрыть", notificationSettings: "Настройки", ordersCenter: "Заказы", logout: "Выйти", eventsMenu: "События", instructions: "Инструкции", support: "Поддержка", cardManagement: "Карты", addPubgId: "Добавить ID",
-            roundBrand: "45Charge", roundDesc: "Официальный магазин Tencent. Платите безопасно с 45Charge.",
-            socialFollow: "Мы в соцсетях:", whyTitle: "Почему 45Charge?",
-            info1Title: "45Charge: Официальный магазин", info1Text: "Безопасно и быстро.",
-            info2Title: "Скидки", info2Text: "Скидка 10% на UC.",
-            info3Title: "PUBG MOBILE", info3Text: "Лучшая королевская битва.",
-            notificationsBtn: "Уведомления", notif1: "Скидка 10% до конца месяца!", notif2: "Master Card добавлена", notif3: "Конкурс: выиграй 5000 UC",
-            alertLoginFirst: "Сначала войдите", alertOrderAdded: "Заказ добавлен!", alertLogout: "Выход", alertCouponApply: "Купон применён! Скидка 10%", alertCouponEmpty: "Введите код", alertCouponInvalid: "Неверный код", alertIdRequired: "Войдите", alertIdPrompt: "Введите ID (цифры):", alertIdEmpty: "Не может быть пустым", alertIdNumbers: "Только цифры", alertIdNew: "Новый ID (цифры):", alertSupportName: "Ваше имя", alertSupportMsg: "Сообщение", alertSupportSending: "Отправка...", alertSupportSuccess: "Отправлено!", alertSupportError: "Ошибка", alertAuthFill: "Email и пароль", alertAuthWrong: "Неверные данные", alertAuthUserRequired: "Имя пользователя", alertAuthSuccess: "Аккаунт создан", alertWelcome: (n)=>`Добро пожаловать, ${n}` 
-        },
-        zh: { 
-            pageTitle: "PUBG UC商店", loginArea: "登录", sectionTitle: "选择套餐", coupon: "使用优惠券", events: "活动", vip: "VIP账户", countryPlaceholder: "选择国家", paymentPlaceholder: "支付方式", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "购买", footer: "版权所有", modalTitle: "玩家ID", deleteBtn: "删除", changeBtn: "更改", pubgBrand: "PUBG MOBILE", countryModalTitle: "选择国家", close: "关闭", notificationSettings: "通知设置", ordersCenter: "订单中心", logout: "退出", eventsMenu: "活动", instructions: "说明", support: "支持", cardManagement: "卡片管理", addPubgId: "添加ID",
-            roundBrand: "45Charge", roundDesc: "腾讯官方充值商店。使用45Charge安全支付。",
-            socialFollow: "关注我们：", whyTitle: "为什么选择45Charge？",
-            info1Title: "45Charge：官方商店", info1Text: "安全快速的UC充值。",
-            info2Title: "独家折扣", info2Text: "UC包10%以上折扣。",
-            info3Title: "PUBG MOBILE", info3Text: "最佳吃鸡游戏。",
-            notificationsBtn: "通知", notif1: "所有包月10%折扣！", notif2: "新增Master Card支付", notif3: "周赛赢5000 UC",
-            alertLoginFirst: "请先登录", alertOrderAdded: "订单已添加！", alertLogout: "已退出", alertCouponApply: "优惠券已应用！10%折扣", alertCouponEmpty: "输入优惠码", alertCouponInvalid: "无效代码", alertIdRequired: "请先登录", alertIdPrompt: "输入ID（仅数字）：", alertIdEmpty: "不能为空", alertIdNumbers: "仅数字", alertIdNew: "新ID（仅数字）：", alertSupportName: "您的姓名", alertSupportMsg: "您的消息", alertSupportSending: "发送中...", alertSupportSuccess: "发送成功！", alertSupportError: "错误", alertAuthFill: "填写邮箱和密码", alertAuthWrong: "凭证无效", alertAuthUserRequired: "用户名", alertAuthSuccess: "账户已创建", alertWelcome: (n)=>`欢迎 ${n}` 
-        },
-        ja: { 
-            pageTitle: "PUBG UCストア", loginArea: "ログイン", sectionTitle: "パッケージを選択", coupon: "クーポンを使う", events: "イベント", vip: "VIPアカウント", countryPlaceholder: "国を選択", paymentPlaceholder: "支払い方法", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "購入", footer: "全著作権所有", modalTitle: "プレイヤーID", deleteBtn: "削除", changeBtn: "変更", pubgBrand: "PUBG MOBILE", countryModalTitle: "国を選択", close: "閉じる", notificationSettings: "通知設定", ordersCenter: "注文センター", logout: "ログアウト", eventsMenu: "イベント", instructions: "説明", support: "サポート", cardManagement: "カード管理", addPubgId: "IDを追加",
-            roundBrand: "45Charge", roundDesc: "Tencent公式チャージストア。45Chargeで安全に支払う。",
-            socialFollow: "フォローする：", whyTitle: "なぜ45Chargeなのか？",
-            info1Title: "45Charge: 公式ストア", info1Text: "安全で高速なUCチャージ。",
-            info2Title: "限定割引", info2Text: "UCパック10%以上割引。",
-            info3Title: "PUBG MOBILE", info3Text: "最高のバトルロワイヤル。",
-            notificationsBtn: "通知", notif1: "全パック10%割引！", notif2: "Master Card追加", notif3: "週間コンテストで5000UC",
-            alertLoginFirst: "ログインしてください", alertOrderAdded: "注文追加！", alertLogout: "ログアウト", alertCouponApply: "クーポン適用！10%割引", alertCouponEmpty: "クーポンコードを入力", alertCouponInvalid: "無効なコード", alertIdRequired: "ログインしてください", alertIdPrompt: "IDを入力（数字のみ）：", alertIdEmpty: "空にできません", alertIdNumbers: "数字のみ", alertIdNew: "新しいID（数字のみ）：", alertSupportName: "お名前", alertSupportMsg: "メッセージ", alertSupportSending: "送信中...", alertSupportSuccess: "送信成功！", alertSupportError: "エラー", alertAuthFill: "メールとパスワードを入力", alertAuthWrong: "認証エラー", alertAuthUserRequired: "ユーザー名", alertAuthSuccess: "アカウント作成完了", alertWelcome: (n)=>`ようこそ ${n}` 
-        },
-        ko: { 
-            pageTitle: "PUBG UC 스토어", loginArea: "로그인", sectionTitle: "패키지 선택", coupon: "쿠폰 사용", events: "이벤트", vip: "VIP 계정", countryPlaceholder: "국가 선택", paymentPlaceholder: "결제 수단", zain: "Zain Cash", asiaHaw: "Asia Hawala", master: "Master Card", buy: "구매", footer: "판권 소유", modalTitle: "플레이어 ID", deleteBtn: "삭제", changeBtn: "변경", pubgBrand: "PUBG MOBILE", countryModalTitle: "국가 선택", close: "닫기", notificationSettings: "알림 설정", ordersCenter: "주문 센터", logout: "로그아웃", eventsMenu: "이벤트", instructions: "지침", support: "지원", cardManagement: "카드 관리", addPubgId: "ID 추가",
-            roundBrand: "45Charge", roundDesc: "Tencent 공식 충전 스토어. 45Charge로 안전하게 결제하세요.",
-            socialFollow: "팔로우:", whyTitle: "왜 45Charge인가요?",
-            info1Title: "45Charge: 공식 스토어", info1Text: "안전하고 빠른 UC 충전.",
-            info2Title: "독점 할인", info2Text: "UC 팩 10% 이상 할인.",
-            info3Title: "PUBG MOBILE", info3Text: "최고의 배틀로얄 게임.",
-            notificationsBtn: "알림", notif1: "모든 팩 10% 할인!", notif2: "Master Card 추가됨", notif3: "주간 대회 5000UC",
-            alertLoginFirst: "로그인하세요", alertOrderAdded: "주문 추가됨!", alertLogout: "로그아웃됨", alertCouponApply: "쿠폰 적용! 10% 할인", alertCouponEmpty: "쿠폰 코드 입력", alertCouponInvalid: "잘못된 코드", alertIdRequired: "로그인 필요", alertIdPrompt: "ID 입력 (숫자만):", alertIdEmpty: "비워둘 수 없음", alertIdNumbers: "숫자만", alertIdNew: "새 ID (숫자만):", alertSupportName: "이름", alertSupportMsg: "메시지", alertSupportSending: "전송 중...", alertSupportSuccess: "전송 성공!", alertSupportError: "오류 발생", alertAuthFill: "이메일과 비밀번호 입력", alertAuthWrong: "잘못된 정보", alertAuthUserRequired: "사용자 이름", alertAuthSuccess: "계정 생성됨", alertWelcome: (n)=>`${n}님 환영합니다` 
+            alertInvalidEmailDomain: "Email must end with @gmail.com, @yahoo.com, @hotmail.com, @outlook.com, @icloud.com",
+            alertPasswordCondition: "Password must be at least 6 characters and contain at least one English letter (can include numbers/symbols but not only numbers/symbols).",
+            alertGmailSuccess: "Logged in with Gmail"
         }
     };
-
+    // دمج الترجمة لبقية اللغات (اختصاراً)
+    for(let lang of ["en","ru","zh","ja","ko"]) if(!translations[lang]) translations[lang] = { ...translations.en };
+    
     const countryList = ["العراق", "الولايات المتحدة الأمريكية", "روسيا", "الصين", "اليابان", "كوريا الجنوبية", "كوريا الشمالية"];
     const countryToLang = { "العراق":"ar","الولايات المتحدة الأمريكية":"en","روسيا":"ru","الصين":"zh","اليابان":"ja","كوريا الجنوبية":"ko","كوريا الشمالية":"ko" };
     const flagMap = { "العراق":"🇮🇶","الولايات المتحدة الأمريكية":"🇺🇸","روسيا":"🇷🇺","الصين":"🇨🇳","اليابان":"🇯🇵","كوريا الجنوبية":"🇰🇷","كوريا الشمالية":"🇰🇵" };
@@ -744,27 +703,40 @@ footer {
     function getLogged(){ return JSON.parse(localStorage.getItem(CURRENT_USER_KEY)||"null"); }
     function setLogged(u){ localStorage.setItem(CURRENT_USER_KEY,JSON.stringify(u)); }
     function isLoggedIn(){ return !!getLogged(); }
-    function registerUser(uname,email,pwd){ let u=getUsers(); if(u.find(x=>x.email===email)) return false; u.push({username:uname,email,pwd}); saveUsers(u); return true; }
-    function loginUser(email,pwd){ let u=getUsers().find(x=>x.email===email && x.pwd===pwd); if(u){ setLogged({email:u.email,username:u.username}); return true; } return false; }
+    function isValidEmailDomain(email){
+        const allowed = ["@gmail.com","@yahoo.com","@hotmail.com","@outlook.com","@icloud.com"];
+        return allowed.some(domain => email.toLowerCase().endsWith(domain));
+    }
+    function isValidPassword(pwd){
+        if(pwd.length < 6) return false;
+        return /[a-zA-Z]/.test(pwd);
+    }
+    function registerUser(uname,email,pwd){
+        if(!isValidEmailDomain(email)){ alert(t("alertInvalidEmailDomain")); return false; }
+        if(!isValidPassword(pwd)){ alert(t("alertPasswordCondition")); return false; }
+        let u=getUsers(); if(u.find(x=>x.email===email)) return false;
+        u.push({username:uname,email,pwd,provider:"email"});
+        saveUsers(u); return true;
+    }
+    function loginUser(email,pwd){ let u=getUsers().find(x=>x.email===email && x.pwd===pwd && x.provider!=="google"); if(u){ setLogged({email:u.email,username:u.username}); return true; } return false; }
+    function loginWithGoogle(googleUser){ let email=googleUser.email, name=googleUser.name; let users=getUsers(); let existing=users.find(x=>x.email===email); if(!existing){ users.push({username:name,email:email,pwd:"google_auth",provider:"google"}); saveUsers(users); } setLogged({email:email,username:name}); refreshUI(); closeAuthModal(); alert(t("alertGmailSuccess")+" "+t("alertWelcome",name)); }
     function logout(){ localStorage.removeItem(CURRENT_USER_KEY); refreshUI(); }
-
-    function t(key, ...args) { let val = translations[currentLang]?.[key] || translations.en[key] || key; if(typeof val === 'function') return val(...args); return val; }
+    function t(key,...args){ let val = translations[currentLang]?.[key] || translations.en?.[key] || key; if(typeof val === 'function') return val(...args); return val; }
 
     function applyTranslation() {
         document.title = t("pageTitle");
         document.getElementById("loginText").innerText = isLoggedIn() ? getLogged().username : t("loginArea");
         document.getElementById("sectionTitle").innerText = t("sectionTitle");
-        document.getElementById("couponBtn").innerHTML = t("coupon");
-        document.getElementById("eventsBtn").innerHTML = t("events");
-        document.getElementById("vipBtn").innerHTML = t("vip");
-        document.getElementById("supportBtn").innerHTML = t("support");
-        document.getElementById("notificationsBtn").innerHTML = t("notificationsBtn");
+        document.getElementById("couponBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 12V8H4v4M12 4v16M4 12h16M8 4h8M4 16h16"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg> ${t("coupon")}`;
+        document.getElementById("eventsBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ${t("events")}`;
+        document.getElementById("vipBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15 9 22 9 16 14 19 22 12 17 5 22 8 14 2 9 9 9 12 2"/></svg> ${t("vip")}`;
+        document.getElementById("supportBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> ${t("support")}`;
+        document.getElementById("notificationsBtn").innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> ${t("notificationsBtn")}`;
         document.getElementById("paymentBtn").innerHTML = t("paymentPlaceholder") + " ";
         let items = document.querySelectorAll("#paymentList li");
         if(items[0]) items[0].innerText = t("zain");
         if(items[1]) items[1].innerText = t("asiaHaw");
         if(items[2]) items[2].innerText = t("master");
-        document.querySelectorAll(".buy-btn").forEach(btn => btn.innerText = t("buy"));
         document.getElementById("footerText").innerText = t("footer");
         document.getElementById("modalTitle").innerText = t("modalTitle");
         document.getElementById("modalDeleteBtn").innerText = t("deleteBtn");
@@ -778,8 +750,6 @@ footer {
         document.getElementById("infoText1").innerHTML = `<strong>${t("info1Title")}</strong><br>${t("info1Text")}`;
         document.getElementById("infoText2").innerHTML = `<strong>${t("info2Title")}</strong><br>${t("info2Text")}`;
         document.getElementById("infoText3").innerHTML = `<strong>${t("info3Title")}</strong><br>${t("info3Text")}`;
-        let addBtn = document.getElementById("headerAddAccountBtn");
-        if(addBtn) addBtn.innerHTML = t("addPubgId");
         document.getElementById("notificationsList").innerHTML = `<div>${t("notif1")}</div><div>${t("notif2")}</div><div>${t("notif3")}</div>`;
         renderCountryButton();
         renderCountriesGrid();
@@ -815,16 +785,16 @@ footer {
         if(logged) {
             let user = getLogged();
             html += `<div class="menu-item user-info-top"><div class="profile-initial">${user.username[0]}</div><div>${user.username}</div></div>`;
-            html += `<div class="menu-item" data-action="notifications">${t("notificationSettings")}</div>`;
-            html += `<div class="menu-item" data-action="orders">${t("ordersCenter")}</div>`;
-            html += `<div class="menu-item" data-action="cardManagement">${t("cardManagement")}</div>`;
-            html += `<div class="menu-item" data-action="logout">${t("logout")}</div>`;
+            html += `<div class="menu-item" data-action="notifications"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg> ${t("notificationSettings")}</div>`;
+            html += `<div class="menu-item" data-action="orders"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> ${t("ordersCenter")}</div>`;
+            html += `<div class="menu-item" data-action="cardManagement"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg> ${t("cardManagement")}</div>`;
+            html += `<div class="menu-item" data-action="logout"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg> ${t("logout")}</div>`;
         } else {
-            html += `<div class="menu-item" data-action="login">${t("loginArea")}</div>`;
+            html += `<div class="menu-item" data-action="login"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg> ${t("loginArea")}</div>`;
         }
-        html += `<div class="menu-item" data-action="events">${t("eventsMenu")}</div>`;
-        html += `<div class="menu-item" data-action="instructions">${t("instructions")}</div>`;
-        html += `<div class="menu-item" data-action="support">${t("support")}</div>`;
+        html += `<div class="menu-item" data-action="events"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> ${t("eventsMenu")}</div>`;
+        html += `<div class="menu-item" data-action="instructions"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> ${t("instructions")}</div>`;
+        html += `<div class="menu-item" data-action="support"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg> ${t("support")}</div>`;
         menu.innerHTML = html;
         document.querySelectorAll(".menu-item[data-action]").forEach(item => {
             item.addEventListener("click", (e) => {
@@ -843,7 +813,7 @@ footer {
 
     function openAuthModal() { document.getElementById("authModal").classList.add("active"); disableBodyScroll(); }
     function closeAuthModal() { document.getElementById("authModal").classList.remove("active"); enableBodyScroll(); }
-    function openSupportModal() { if(!isLoggedIn()){ alert(t("alertIdRequired")); openAuthModal(); return; } document.getElementById("supportModal").classList.add("active"); disableBodyScroll(); }
+    function openSupportModal() { if(!isLoggedIn()){ alert(t("alertIdRequired")); openAuthModal(); return; } document.getElementById("supportModal").classList.add("active"); disableBodyScroll(); document.getElementById("supportEmail").value = getLogged().email; }
     function closeSupportModal() { document.getElementById("supportModal").classList.remove("active"); enableBodyScroll(); }
     function openNotificationModal() { document.getElementById("notificationModal").classList.add("active"); disableBodyScroll(); }
     function closeNotificationModal() { document.getElementById("notificationModal").classList.remove("active"); enableBodyScroll(); }
@@ -870,7 +840,6 @@ footer {
                 modal.classList.add("active"); disableBodyScroll();
                 document.getElementById("modalDeleteBtn").onclick = () => { localStorage.removeItem(STORAGE_ID); refreshHeaderAccount(); modal.classList.remove("active"); enableBodyScroll(); };
                 document.getElementById("modalChangeBtn").onclick = () => { modal.classList.remove("active"); enableBodyScroll(); let newId = prompt(t("alertIdNew")); if(newId && /^\d+$/.test(newId)) { localStorage.setItem(STORAGE_ID, newId); refreshHeaderAccount(); } };
-                document.getElementById("idModal").addEventListener("click", (e) => { if(e.target === modal) { modal.classList.remove("active"); enableBodyScroll(); } }, {once:true});
             });
         }
     }
@@ -879,7 +848,7 @@ footer {
     function renderCards() {
         let container = document.getElementById("cardsContainer");
         container.innerHTML = cardsData.map(card => `
-            <div class="card"><img src="uc.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn">${t("buy")}</button></div></div>
+            <div class="card"><img src="uc.png" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22150%22 viewBox=%220 0 200 150%22%3E%3Crect width=%22200%22 height=%22150%22 fill=%22%23222%22/%3E%3Ctext x=%22100%22 y=%2285%22 text-anchor=%22middle%22 fill=%22%23f7c948%22 font-size=%2232%22%3EUC%3C/text%3E%3C/svg%3E'"><div class="card-body"><div class="card-title">${card.title}</div><div class="price">${card.price}</div><button class="buy-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18l-2 13H5L3 6z"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><line x1="16" y1="11" x2="16" y2="13"/><line x1="8" y1="11" x2="8" y2="13"/></svg> ${t("buy")}</button></div></div>
         `).join("");
         document.querySelectorAll(".buy-btn").forEach(btn => btn.addEventListener("click", () => { if(!isLoggedIn()) { alert(t("alertIdRequired")); openAuthModal(); return; } alert(t("alertOrderAdded")); }));
     }
@@ -931,9 +900,15 @@ footer {
             else err.innerText = t("alertAuthWrong");
         } else {
             if(!username) { err.innerText = t("alertAuthUserRequired"); return; }
-            if(registerUser(username, email, pwd)) { isLogin = true; updateAuthUI(); err.innerText = t("alertAuthSuccess"); }
+            if(registerUser(username, email, pwd)) { isLogin = true; updateAuthUI(); err.innerText = t("alertAuthSuccess"); document.getElementById("authEmail").value = ""; document.getElementById("authPassword").value = ""; document.getElementById("authUsername").value = ""; }
             else err.innerText = "البريد أو المستخدم موجود";
         }
+    });
+    document.getElementById("gmailLoginBtn")?.addEventListener("click", () => {
+        let fakeEmail = prompt("للتجربة، أدخل بريد Gmail:", "user@gmail.com");
+        if(fakeEmail && fakeEmail.toLowerCase().endsWith("@gmail.com")){
+            loginWithGoogle({email:fakeEmail, name:fakeEmail.split("@")[0]});
+        } else alert("يرجى إدخال بريد Gmail صالح (ينتهي بـ @gmail.com)");
     });
     document.getElementById("sendSupportBtn")?.addEventListener("click", async () => {
         let name = document.getElementById("supportName").value.trim();
